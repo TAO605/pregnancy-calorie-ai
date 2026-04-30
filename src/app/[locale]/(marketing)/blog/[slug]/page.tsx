@@ -7,6 +7,7 @@ import { ContentPageViewTracker } from "@/components/content/content-page-view-t
 import { JsonLd } from "@/components/seo/json-ld";
 import { MarketingShell } from "@/components/site/marketing-shell";
 import { getContentPageBySlug, getPublishedContentPages } from "@/lib/content/content-store";
+import { getGuideTopic } from "@/lib/content/guide-topic";
 import { buildBlogAiPrompt } from "@/lib/i18n/blog-ai-prompt";
 import { getBlogToolCtaCopy } from "@/lib/i18n/blog-tool-cta-copy";
 import { getDictionary } from "@/lib/i18n/copy";
@@ -83,6 +84,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
     .map((item) => item.trim())
     .filter(Boolean);
   const pageUrl = `${SITE_URL}/${locale}/blog/${slug}`;
+  const guideTopic = getGuideTopic(slug, locale);
   const blogAiHref = `/${locale}/ai?prompt=${encodeURIComponent(
     buildBlogAiPrompt(locale, {
       title: page.title,
@@ -94,6 +96,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
     "@type": "Article",
     headline: page.title,
     description: page.description,
+    keywords: guideTopic.keywords,
     inLanguage: locale,
     dateModified: page.updatedAt,
     mainEntityOfPage: pageUrl,
@@ -139,7 +142,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       <section className="app-container py-12 md:py-18">
         <article className="surface-card rounded-[2rem] p-8 md:p-12">
-          <span className="eyebrow">{pageCopy.blogPublishedEyebrow}</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="eyebrow">{pageCopy.blogPublishedEyebrow}</span>
+            <span className="rounded-full bg-[rgba(10,114,239,0.08)] px-3 py-1 text-xs font-semibold text-[#0a72ef]">
+              {guideTopic.label}
+            </span>
+          </div>
           <h1 className="mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-[-0.08em] md:text-6xl">
             {page.title}
           </h1>

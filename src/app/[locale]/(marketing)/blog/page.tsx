@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { JsonLd } from "@/components/seo/json-ld";
+import { getGuideTopic } from "@/lib/content/guide-topic";
 import { MarketingShell } from "@/components/site/marketing-shell";
 import { getPublishedContentPages } from "@/lib/content/content-store";
 import { getDictionary } from "@/lib/i18n/copy";
@@ -29,46 +30,6 @@ function formatDate(value: string, locale: string) {
   return new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
   }).format(new Date(value));
-}
-
-function getGuideTopicLabel(slug: string, locale: Locale) {
-  if (slug.includes("weight")) {
-    return {
-      en: "Weight trend",
-      "zh-CN": "体重趋势",
-      es: "Tendencia de peso",
-    }[locale];
-  }
-
-  if (slug.includes("fiber") || slug.includes("hydration")) {
-    return {
-      en: "Fiber and hydration",
-      "zh-CN": "纤维和补水",
-      es: "Fibra e hidratacion",
-    }[locale];
-  }
-
-  if (slug.includes("first-trimester")) {
-    return {
-      en: "First trimester",
-      "zh-CN": "孕早期",
-      es: "Primer trimestre",
-    }[locale];
-  }
-
-  if (slug.includes("third-trimester")) {
-    return {
-      en: "Third trimester",
-      "zh-CN": "孕晚期",
-      es: "Tercer trimestre",
-    }[locale];
-  }
-
-  return {
-    en: "Calories",
-    "zh-CN": "热量规划",
-    es: "Calorias",
-  }[locale];
 }
 
 export async function generateMetadata({
@@ -160,7 +121,7 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
                       {pageCopy.blogPublishedEyebrow}
                     </p>
                     <span className="rounded-full bg-[rgba(10,114,239,0.08)] px-3 py-1 text-xs font-semibold text-[#0a72ef]">
-                      {getGuideTopicLabel(page.slug, locale)}
+                      {getGuideTopic(page.slug, locale).label}
                     </span>
                   </div>
                   <h2 className="mt-4 text-2xl font-semibold tracking-[-0.06em]">
