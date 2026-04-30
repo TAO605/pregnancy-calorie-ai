@@ -198,11 +198,15 @@ This is suitable for MVP iteration, not production durability.
 - The repo has known encoding risk in parts of the older global i18n copy. Prefer adding scoped copy files for new localized text instead of broad edits in corrupted dictionaries.
 - Some routes contain `[locale]`; on Windows PowerShell, use `-LiteralPath` when reading those files.
 - Do not assume dashboard or admin routes are public. Dashboard requires an authenticated session, and admin has a separate protected flow.
-- `GPT-5.5` medium reasoning is the default fit for ongoing feature completion and product polish. Switch to high or higher only for live Firebase integration, security/privacy review, launch readiness review, or major architecture changes.
+- Use `GPT-5.4` low for tiny copy, CSS, or file-location tasks.
+- Use `GPT-5.4` medium for editorial content, documentation, and focused UI polish.
+- Use `GPT-5.5` medium as the default for product work across calculator, AI, dashboard, admin, API validation, SEO, and i18n.
+- Use `GPT-5.5` high for auth/session issues, Firebase mode work, AI context/history, local persistence edge cases, and analytics attribution debugging.
+- Use `GPT-5.5` xhigh for launch readiness, security/privacy, medical/legal review, durable backend migration, and broad architecture changes.
 
 ## Next Recommended Work
 
-- expand localized editorial content coverage
-- instrument weekly review entry points and saved-context conversion all the way into retained tracking behavior
+- continue expanding localized editorial content beyond the current three published guides per locale
+- deepen analytics around weekly review entry points and saved-context conversion into retained tracking behavior
 - compare sign-in source with later dashboard, meal, and weight retention quality
 - move prototype persistence to a durable backend when product iteration stabilizes

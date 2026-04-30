@@ -14,6 +14,7 @@ Implemented areas:
 - admin analytics, content editing, guideline editing, and user activity views
 - local JSON persistence for MVP/demo data
 - health check, security headers, API rate limiting, and safer local file writes
+- localized editorial content seed coverage with three published guides per supported locale
 
 ## Verification
 
@@ -77,7 +78,15 @@ Before production launch:
 
 ## Model Tier Guidance
 
-Continue using `GPT-5.5` medium reasoning for feature completion, UI polish, API hardening, documentation, and QA work.
+Default to `GPT-5.5` medium reasoning for ongoing product development. Use lower-cost tiers only when the change is clearly scoped and low risk.
+
+Recommended routing:
+
+- `GPT-5.4` low: quick lookups, small copy edits, simple file location questions, and tiny CSS/text changes.
+- `GPT-5.4` medium: localized editorial content, README/QA/HANDOFF updates, focused UI polish, and simple analytics copy or display changes.
+- `GPT-5.5` medium: default feature work across calculator, result pages, AI assistant, dashboard, admin, API validation, SEO, and i18n.
+- `GPT-5.5` high: auth/session bugs, Firebase demo/live mode, AI assistant context/history, local persistence edge cases, and analytics attribution debugging.
+- `GPT-5.5` xhigh: production readiness review, security/privacy review, medical/legal boundary review, durable backend migration, and broad architecture changes.
 
 Switch to high or higher reasoning for:
 
