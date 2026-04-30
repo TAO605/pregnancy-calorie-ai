@@ -31,6 +31,46 @@ function formatDate(value: string, locale: string) {
   }).format(new Date(value));
 }
 
+function getGuideTopicLabel(slug: string, locale: Locale) {
+  if (slug.includes("weight")) {
+    return {
+      en: "Weight trend",
+      "zh-CN": "体重趋势",
+      es: "Tendencia de peso",
+    }[locale];
+  }
+
+  if (slug.includes("fiber") || slug.includes("hydration")) {
+    return {
+      en: "Fiber and hydration",
+      "zh-CN": "纤维和补水",
+      es: "Fibra e hidratacion",
+    }[locale];
+  }
+
+  if (slug.includes("first-trimester")) {
+    return {
+      en: "First trimester",
+      "zh-CN": "孕早期",
+      es: "Primer trimestre",
+    }[locale];
+  }
+
+  if (slug.includes("third-trimester")) {
+    return {
+      en: "Third trimester",
+      "zh-CN": "孕晚期",
+      es: "Tercer trimestre",
+    }[locale];
+  }
+
+  return {
+    en: "Calories",
+    "zh-CN": "热量规划",
+    es: "Calorias",
+  }[locale];
+}
+
 export async function generateMetadata({
   params,
 }: BlogIndexPageProps): Promise<Metadata> {
@@ -115,9 +155,14 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {pages.map((page) => (
                 <article key={page.id} className="surface-card rounded-[1.8rem] p-7">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-                    {pageCopy.blogPublishedEyebrow}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                      {pageCopy.blogPublishedEyebrow}
+                    </p>
+                    <span className="rounded-full bg-[rgba(10,114,239,0.08)] px-3 py-1 text-xs font-semibold text-[#0a72ef]">
+                      {getGuideTopicLabel(page.slug, locale)}
+                    </span>
+                  </div>
                   <h2 className="mt-4 text-2xl font-semibold tracking-[-0.06em]">
                     {page.title}
                   </h2>
