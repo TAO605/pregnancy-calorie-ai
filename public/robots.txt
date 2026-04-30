@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /en/auth/sign-in
+Disallow: /en/dashboard
+Disallow: /en/dashboard/meals
+Disallow: /en/dashboard/profile
+Disallow: /en/dashboard/weight
+Disallow: /zh-CN/auth/sign-in
+Disallow: /zh-CN/dashboard
+Disallow: /zh-CN/dashboard/meals
+Disallow: /zh-CN/dashboard/profile
+Disallow: /zh-CN/dashboard/weight
+Disallow: /es/auth/sign-in
+Disallow: /es/dashboard
+Disallow: /es/dashboard/meals
+Disallow: /es/dashboard/profile
+Disallow: /es/dashboard/weight
+
+Sitemap: https://pregnancy-calorie-ai.vercel.app/sitemap.xml

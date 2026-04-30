@@ -12,6 +12,14 @@
 
 # testing
 /coverage
+/.qa/
+
+# local runtime data
+/data/analytics-events.jsonl
+/data/demo-user-data.json
+/data/guideline-overrides.json
+/data/user-activity.json
+/data/*.tmp
 
 # next.js
 /.next/
@@ -32,6 +40,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
