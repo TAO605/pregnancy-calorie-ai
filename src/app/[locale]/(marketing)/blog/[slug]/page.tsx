@@ -7,7 +7,10 @@ import { ContentPageViewTracker } from "@/components/content/content-page-view-t
 import { JsonLd } from "@/components/seo/json-ld";
 import { MarketingShell } from "@/components/site/marketing-shell";
 import { getContentPageBySlug, getPublishedContentPages } from "@/lib/content/content-store";
-import { getGuideTopic } from "@/lib/content/guide-topic";
+import {
+  getGuideTopic,
+  getGuideTopicRelatednessScore,
+} from "@/lib/content/guide-topic";
 import { buildBlogAiPrompt } from "@/lib/i18n/blog-ai-prompt";
 import { getBlogToolCtaCopy } from "@/lib/i18n/blog-tool-cta-copy";
 import { getDictionary } from "@/lib/i18n/copy";
@@ -73,6 +76,17 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const page = await getContentPageBySlug(locale, slug);
   const relatedPages = (await getPublishedContentPages(locale))
     .filter((item) => item.slug !== slug)
+    .sort((left, right) => {
+      const scoreDelta =
+        getGuideTopicRelatednessScore(slug, right.slug) -
+        getGuideTopicRelatednessScore(slug, left.slug);
+
+      if (scoreDelta !== 0) {
+        return scoreDelta;
+      }
+
+      return left.updatedAt < right.updatedAt ? 1 : -1;
+    })
     .slice(0, 2);
 
   if (!page) {

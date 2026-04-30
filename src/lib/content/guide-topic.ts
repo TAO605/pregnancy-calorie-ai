@@ -13,6 +13,14 @@ type GuideTopic = {
   keywords: string[];
 };
 
+const adjacentTopicKeys: Record<GuideTopicKey, GuideTopicKey[]> = {
+  calories: ["first_trimester", "third_trimester", "weight_trend"],
+  fiber_hydration: ["calories", "third_trimester", "first_trimester"],
+  first_trimester: ["calories", "fiber_hydration", "weight_trend"],
+  third_trimester: ["calories", "fiber_hydration", "weight_trend"],
+  weight_trend: ["calories", "third_trimester", "first_trimester"],
+};
+
 const topicCopy: Record<GuideTopicKey, Record<Locale, Omit<GuideTopic, "key">>> = {
   calories: {
     en: {
@@ -113,4 +121,23 @@ export function getGuideTopic(slug: string, locale: Locale): GuideTopic {
     key,
     ...topicCopy[key][locale],
   };
+}
+
+export function getGuideTopicRelatednessScore(currentSlug: string, candidateSlug: string) {
+  const currentKey = getGuideTopicKey(currentSlug);
+  const candidateKey = getGuideTopicKey(candidateSlug);
+
+  if (currentKey === candidateKey) {
+    return 3;
+  }
+
+  if (adjacentTopicKeys[currentKey].includes(candidateKey)) {
+    return 2;
+  }
+
+  if (candidateKey === "calories") {
+    return 1;
+  }
+
+  return 0;
 }
