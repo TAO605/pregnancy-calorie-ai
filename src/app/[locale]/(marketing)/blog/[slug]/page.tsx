@@ -151,7 +151,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <MarketingShell locale={locale} dictionary={dictionary}>
-      <ContentPageViewTracker locale={locale} slug={slug} />
+      <ContentPageViewTracker
+        locale={locale}
+        slug={slug}
+        guideTopic={guideTopic.key}
+        guideTopicLabel={guideTopic.label}
+      />
       <JsonLd data={[articleSchema, breadcrumbSchema]} />
 
       <section className="app-container py-12 md:py-18">
@@ -212,7 +217,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   locale={locale}
                   source="blog_article_tool_cta"
                   className="cta-secondary mt-5 inline-flex text-sm"
-                  metadata={{ slug }}
+                  metadata={{
+                    slug,
+                    guideTopic: guideTopic.key,
+                    guideTopicLabel: guideTopic.label,
+                  }}
                 >
                   {toolCtaCopy.cards.ai.cta}
                 </TrackedAiEntryLink>
@@ -249,7 +258,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   locale={locale}
                   source="blog_article_footer"
                   className="cta-secondary"
-                  metadata={{ slug }}
+                  metadata={{
+                    slug,
+                    guideTopic: guideTopic.key,
+                    guideTopicLabel: guideTopic.label,
+                  }}
                 >
                   {dictionary.nav.aiAssistant}
                 </TrackedAiEntryLink>

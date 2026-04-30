@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 
-type GuideTopicKey =
+export type GuideTopicKey =
   | "calories"
   | "fiber_hydration"
   | "first_trimester"

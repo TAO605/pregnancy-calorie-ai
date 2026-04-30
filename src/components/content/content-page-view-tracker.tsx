@@ -5,11 +5,15 @@ import { useEffect } from "react";
 type ContentPageViewTrackerProps = {
   locale: string;
   slug: string;
+  guideTopic?: string;
+  guideTopicLabel?: string;
 };
 
 export function ContentPageViewTracker({
   locale,
   slug,
+  guideTopic,
+  guideTopicLabel,
 }: ContentPageViewTrackerProps) {
   useEffect(() => {
     const storageKey = `nd:content-viewed:${locale}:${slug}`;
@@ -34,11 +38,13 @@ export function ContentPageViewTracker({
         locale,
         metadata: {
           slug,
+          guideTopic: guideTopic ?? null,
+          guideTopicLabel: guideTopicLabel ?? null,
         },
       }),
       keepalive: true,
     });
-  }, [locale, slug]);
+  }, [guideTopic, guideTopicLabel, locale, slug]);
 
   return null;
 }
