@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { getGuideTopic } from "@/lib/content/guide-topic";
+import {
+  getGuideTopic,
+  guideTopicKeys,
+  type GuideTopicKey,
+} from "@/lib/content/guide-topic";
 import { getAdminCopy } from "@/lib/i18n/admin-copy";
 import { locales, type Locale } from "@/lib/i18n/config";
 import type { ContentPage } from "@/types/content";
@@ -29,21 +33,33 @@ function createBlankPage(locale: Locale): ContentPage {
 function getTopicPreviewCopy(locale: Locale) {
   if (locale === "zh-CN") {
     return {
+      allTopicsLabel: "\u5168\u90e8\u4e3b\u9898",
+      filterLabel: "\u6309\u4e3b\u9898\u7b5b\u9009",
       label: "\u63a8\u65ad\u4e3b\u9898",
       hint: "\u6839\u636e slug \u81ea\u52a8\u5f52\u7c7b\uff0c\u7528\u4e8e blog \u6807\u7b7e\u3001\u7ed3\u6784\u5316\u6570\u636e\u548c analytics\u3002",
+      visibleCount: (visible: number, total: number) =>
+        `\u5f53\u524d\u663e\u793a ${visible} / ${total} \u7bc7\u5185\u5bb9`,
     };
   }
 
   if (locale === "es") {
     return {
+      allTopicsLabel: "Todos los temas",
+      filterLabel: "Filtrar por tema",
       label: "Tema inferido",
       hint: "Se calcula desde el slug para etiquetas del blog, datos estructurados y analitica.",
+      visibleCount: (visible: number, total: number) =>
+        `Mostrando ${visible} de ${total} paginas`,
     };
   }
 
   return {
+    allTopicsLabel: "All topics",
+    filterLabel: "Filter by topic",
     label: "Inferred topic",
     hint: "Derived from the slug for blog badges, structured data, and analytics.",
+    visibleCount: (visible: number, total: number) =>
+      `Showing ${visible} of ${total} pages`,
   };
 }
 
@@ -53,7 +69,18 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
   const [pages, setPages] = useState<ContentPage[]>(initialPages);
   const [draft, setDraft] = useState<ContentPage>(createBlankPage(locale));
   const [message, setMessage] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState<GuideTopicKey | "all">("all");
   const [isSaving, setIsSaving] = useState(false);
+  const visiblePages = pages.filter((page) => {
+    if (selectedTopic === "all") {
+      return true;
+    }
+
+    const pageLocale = locales.includes(page.locale as Locale)
+      ? (page.locale as Locale)
+      : locale;
+    return getGuideTopic(page.slug, pageLocale).key === selectedTopic;
+  });
 
   function resetDraft() {
     setDraft(createBlankPage(locale));
@@ -217,7 +244,53 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
         </div>
       </article>
 
-      {pages.map((page) => (
+      <section className="surface-card rounded-[1.8rem] p-6">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+              {topicPreviewCopy.filterLabel}
+            </p>
+            <p className="mt-2 text-sm text-muted">
+              {topicPreviewCopy.visibleCount(visiblePages.length, pages.length)}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                selectedTopic === "all"
+                  ? "bg-[rgb(10,114,239)] text-white shadow-[0_16px_40px_rgba(10,114,239,0.2)]"
+                  : "bg-white/88 text-muted shadow-border hover:bg-white"
+              }`}
+              onClick={() => setSelectedTopic("all")}
+            >
+              {topicPreviewCopy.allTopicsLabel}
+            </button>
+            {guideTopicKeys.map((topicKey) => {
+              const guideTopic = getGuideTopic(topicKey, locale);
+              const isActive = selectedTopic === topicKey;
+
+              return (
+                <button
+                  key={topicKey}
+                  type="button"
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    isActive
+                      ? "bg-[rgb(10,114,239)] text-white shadow-[0_16px_40px_rgba(10,114,239,0.2)]"
+                      : "bg-white/88 text-muted shadow-border hover:bg-white"
+                  }`}
+                  onClick={() => setSelectedTopic(topicKey)}
+                >
+                  {guideTopic.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {visiblePages.map((page) => (
         <article key={page.id} className="surface-card rounded-[1.8rem] p-8">
           <div className="flex items-start justify-between gap-4">
             <div>

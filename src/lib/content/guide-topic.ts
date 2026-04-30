@@ -7,6 +7,14 @@ export type GuideTopicKey =
   | "third_trimester"
   | "weight_trend";
 
+export const guideTopicKeys: readonly GuideTopicKey[] = [
+  "calories",
+  "fiber_hydration",
+  "first_trimester",
+  "third_trimester",
+  "weight_trend",
+];
+
 type GuideTopic = {
   key: GuideTopicKey;
   label: string;
