@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { getGuideTopic } from "@/lib/content/guide-topic";
 import { getAdminCopy } from "@/lib/i18n/admin-copy";
 import { locales, type Locale } from "@/lib/i18n/config";
 import type { ContentPage } from "@/types/content";
@@ -25,8 +26,30 @@ function createBlankPage(locale: Locale): ContentPage {
   };
 }
 
+function getTopicPreviewCopy(locale: Locale) {
+  if (locale === "zh-CN") {
+    return {
+      label: "\u63a8\u65ad\u4e3b\u9898",
+      hint: "\u6839\u636e slug \u81ea\u52a8\u5f52\u7c7b\uff0c\u7528\u4e8e blog \u6807\u7b7e\u3001\u7ed3\u6784\u5316\u6570\u636e\u548c analytics\u3002",
+    };
+  }
+
+  if (locale === "es") {
+    return {
+      label: "Tema inferido",
+      hint: "Se calcula desde el slug para etiquetas del blog, datos estructurados y analitica.",
+    };
+  }
+
+  return {
+    label: "Inferred topic",
+    hint: "Derived from the slug for blog badges, structured data, and analytics.",
+  };
+}
+
 export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
   const copy = getAdminCopy(locale);
+  const topicPreviewCopy = getTopicPreviewCopy(locale);
   const [pages, setPages] = useState<ContentPage[]>(initialPages);
   const [draft, setDraft] = useState<ContentPage>(createBlankPage(locale));
   const [message, setMessage] = useState("");
@@ -34,6 +57,27 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
 
   function resetDraft() {
     setDraft(createBlankPage(locale));
+  }
+
+  function renderTopicPreview(page: ContentPage) {
+    const pageLocale = locales.includes(page.locale as Locale)
+      ? (page.locale as Locale)
+      : locale;
+    const guideTopic = getGuideTopic(page.slug, pageLocale);
+
+    return (
+      <div className="rounded-[1.2rem] bg-[rgba(10,114,239,0.06)] px-4 py-3 shadow-border">
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+            {topicPreviewCopy.label}
+          </p>
+          <span className="rounded-full bg-[rgba(10,114,239,0.1)] px-3 py-1 text-xs font-semibold text-[#0a72ef]">
+            {guideTopic.label}
+          </span>
+        </div>
+        <p className="mt-2 text-xs leading-5 text-muted">{topicPreviewCopy.hint}</p>
+      </div>
+    );
   }
 
   async function savePage(page: ContentPage, isNew: boolean) {
@@ -116,7 +160,12 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
             <select
               className="field-input"
               value={draft.locale}
-              onChange={(event) => setDraft((current) => ({ ...current, locale: event.target.value }))}
+              onChange={(event) =>
+                setDraft((current) => ({
+                  ...current,
+                  locale: event.target.value as Locale,
+                }))
+              }
             >
               {locales.map((item) => (
                 <option key={item} value={item}>
@@ -144,6 +193,7 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
               <option value="published">{copy.contentEditor.statusLabels.published}</option>
             </select>
           </div>
+          {renderTopicPreview(draft)}
           <input
             className="field-input"
             value={draft.title}
@@ -207,7 +257,9 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
                 onChange={(event) =>
                   setPages((current) =>
                     current.map((item) =>
-                      item.id === page.id ? { ...item, locale: event.target.value } : item,
+                      item.id === page.id
+                        ? { ...item, locale: event.target.value as Locale }
+                        : item,
                     ),
                   )
                 }
@@ -246,6 +298,7 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
                 <option value="published">{copy.contentEditor.statusLabels.published}</option>
               </select>
             </div>
+            {renderTopicPreview(page)}
             <input
               className="field-input"
               value={page.title}
