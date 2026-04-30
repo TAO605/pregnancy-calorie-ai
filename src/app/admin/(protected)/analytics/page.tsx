@@ -26,6 +26,42 @@ function buildRangeHref(range: AnalyticsRange) {
   return `/admin/analytics?range=${range}`;
 }
 
+function getGuideTopicAnalyticsCopy(locale: string) {
+  if (locale === "zh-CN") {
+    return {
+      title: "\u5185\u5bb9\u4e3b\u9898\u8868\u73b0",
+      body: "\u6309\u6307\u5357\u4e3b\u9898\u67e5\u770b\u5185\u5bb9\u6d4f\u89c8\u548c\u4ece\u6587\u7ae0\u8fdb\u5165 AI \u7684\u70b9\u51fb\u3002",
+      empty: "\u8fd8\u6ca1\u6709\u5e26\u4e3b\u9898\u7684\u5185\u5bb9\u4e8b\u4ef6\u3002\u6253\u5f00\u4e00\u7bc7\u6307\u5357\u6216\u70b9\u51fb\u6587\u7ae0\u91cc\u7684 AI CTA \u540e\u4f1a\u51fa\u73b0\u3002",
+      views: "\u6d4f\u89c8",
+      aiClicks: "AI \u70b9\u51fb",
+      aiEntryRate: "AI \u8fdb\u5165\u7387",
+      rateEmpty: "\u65e0\u6d4f\u89c8",
+    };
+  }
+
+  if (locale === "es") {
+    return {
+      title: "Rendimiento por tema",
+      body: "Compara vistas de guias y clics hacia IA por tema editorial.",
+      empty: "Aun no hay eventos de contenido con tema. Abre una guia o usa un CTA de IA dentro de un articulo.",
+      views: "Vistas",
+      aiClicks: "Clics IA",
+      aiEntryRate: "Tasa hacia IA",
+      rateEmpty: "Sin vistas",
+    };
+  }
+
+  return {
+    title: "Guide topic performance",
+    body: "Compare guide views and article-to-AI clicks by editorial topic.",
+    empty: "No guide topic events yet. Open a guide or use an article AI CTA to populate this section.",
+    views: "Views",
+    aiClicks: "AI clicks",
+    aiEntryRate: "AI entry rate",
+    rateEmpty: "No views",
+  };
+}
+
 export default async function AdminAnalyticsPage({
   searchParams,
 }: AdminAnalyticsPageProps) {
@@ -36,6 +72,7 @@ export default async function AdminAnalyticsPage({
   const currentRange = parseAnalyticsRange(query.range);
   const copy = getAdminCopy(locale);
   const retentionCopy = getAdminRetentionCtaCopy(locale);
+  const guideTopicCopy = getGuideTopicAnalyticsCopy(locale);
   const [overview, userOverview] = await Promise.all([
     getAnalyticsOverview({ range: currentRange }),
     getAdminUserActivityOverview(),
@@ -171,6 +208,62 @@ export default async function AdminAnalyticsPage({
             <p className="mt-3 text-sm leading-7 text-muted">{metric.detail}</p>
           </article>
         ))}
+      </section>
+
+      <section className="surface-card rounded-[1.8rem] p-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+            {guideTopicCopy.title}
+          </p>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
+            {guideTopicCopy.body}
+          </p>
+        </div>
+
+        <div className="mt-6 grid gap-4 xl:grid-cols-2">
+          {overview.guideTopicBreakdown.length === 0 ? (
+            <div className="rounded-[1.2rem] bg-white/88 p-4 shadow-border">
+              <p className="text-sm text-muted">{guideTopicCopy.empty}</p>
+            </div>
+          ) : (
+            overview.guideTopicBreakdown.map((item) => (
+              <article
+                key={item.topic}
+                className="rounded-[1.3rem] bg-white/88 p-5 shadow-border"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <p className="text-base font-semibold tracking-[-0.03em]">
+                    {item.label}
+                  </p>
+                  <p className="text-sm font-medium text-muted">
+                    {guideTopicCopy.aiEntryRate}:{" "}
+                    {item.aiEntryRate === null
+                      ? guideTopicCopy.rateEmpty
+                      : `${item.aiEntryRate}%`}
+                  </p>
+                </div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[1.1rem] bg-[rgba(10,114,239,0.06)] p-4 shadow-border">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      {guideTopicCopy.views}
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold tracking-[-0.05em]">
+                      {item.views}
+                    </p>
+                  </div>
+                  <div className="rounded-[1.1rem] bg-[rgba(255,122,89,0.08)] p-4 shadow-border">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      {guideTopicCopy.aiClicks}
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold tracking-[-0.05em]">
+                      {item.aiEntryClicks}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))
+          )}
+        </div>
       </section>
 
       <section className="surface-card rounded-[1.8rem] p-8">

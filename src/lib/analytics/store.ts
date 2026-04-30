@@ -1,6 +1,7 @@
 import { appendFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
+import type { GuideTopicKey } from "@/lib/content/guide-topic";
 import {
   analyticsAiEntryBreakdownKeys,
   analyticsAiChatSourceKeys,
@@ -104,6 +105,13 @@ type AnalyticsOverview = {
     clicks: number;
     share: number | null;
   }>;
+  guideTopicBreakdown: Array<{
+    topic: GuideTopicKey | "unknown";
+    label: string;
+    views: number;
+    aiEntryClicks: number;
+    aiEntryRate: number | null;
+  }>;
   totalEvents: number;
   recentEvents: AnalyticsEvent[];
 };
@@ -135,6 +143,14 @@ const analyticsRangeDayCount: Record<Exclude<AnalyticsRange, "all">, number> = {
   "7d": 7,
   "30d": 30,
 };
+
+const guideTopicKeys: readonly GuideTopicKey[] = [
+  "calories",
+  "fiber_hydration",
+  "first_trimester",
+  "third_trimester",
+  "weight_trend",
+];
 
 async function ensureAnalyticsFile() {
   await mkdir(path.dirname(analyticsFilePath), { recursive: true });
@@ -345,6 +361,45 @@ function getRetentionPromptDestination(
   return "unknown";
 }
 
+function getGuideTopicKeyFromEvent(event: AnalyticsEvent): GuideTopicKey | "unknown" | null {
+  if (
+    event.name !== "content_page_viewed" &&
+    event.name !== "ai_entry_clicked"
+  ) {
+    return null;
+  }
+
+  const metadataGuideTopic = event.metadata?.guideTopic;
+  if (
+    typeof metadataGuideTopic === "string" &&
+    (guideTopicKeys as readonly string[]).includes(metadataGuideTopic)
+  ) {
+    return metadataGuideTopic as GuideTopicKey;
+  }
+
+  if (
+    event.name === "content_page_viewed" ||
+    event.metadata?.source === "blog_article_tool_cta" ||
+    event.metadata?.source === "blog_article_footer"
+  ) {
+    return "unknown";
+  }
+
+  return null;
+}
+
+function getGuideTopicLabelFromEvent(
+  event: AnalyticsEvent,
+  topic: GuideTopicKey | "unknown",
+) {
+  const metadataGuideTopicLabel = event.metadata?.guideTopicLabel;
+  if (typeof metadataGuideTopicLabel === "string" && metadataGuideTopicLabel.length > 0) {
+    return metadataGuideTopicLabel;
+  }
+
+  return topic;
+}
+
 export function isAnalyticsRange(value: string): value is AnalyticsRange {
   return (analyticsRanges as readonly string[]).includes(value);
 }
@@ -414,6 +469,10 @@ export async function getAnalyticsOverview({
   const retentionPromptDestinationMap = new Map<
     AnalyticsRetentionPromptDestinationBreakdownKey,
     number
+  >();
+  const guideTopicMap = new Map<
+    GuideTopicKey | "unknown",
+    { label: string; views: number; aiEntryClicks: number }
   >();
   const aiSourcePromptOriginMap = new Map<
     AnalyticsAiChatSourceKey,
@@ -560,6 +619,27 @@ export async function getAnalyticsOverview({
         retentionPromptDestination,
         (retentionPromptDestinationMap.get(retentionPromptDestination) ?? 0) + 1,
       );
+    }
+
+    const guideTopic = getGuideTopicKeyFromEvent(event);
+    if (guideTopic) {
+      const currentGuideTopic = guideTopicMap.get(guideTopic) ?? {
+        label: getGuideTopicLabelFromEvent(event, guideTopic),
+        views: 0,
+        aiEntryClicks: 0,
+      };
+
+      currentGuideTopic.label = getGuideTopicLabelFromEvent(event, guideTopic);
+
+      if (event.name === "content_page_viewed") {
+        currentGuideTopic.views += 1;
+      }
+
+      if (event.name === "ai_entry_clicked") {
+        currentGuideTopic.aiEntryClicks += 1;
+      }
+
+      guideTopicMap.set(guideTopic, currentGuideTopic);
     }
   }
 
@@ -822,6 +902,25 @@ export async function getAnalyticsOverview({
 
       return left.destination.localeCompare(right.destination);
     });
+  const guideTopicBreakdown = Array.from(guideTopicMap.entries())
+    .map(([topic, counts]) => ({
+      topic,
+      label: counts.label,
+      views: counts.views,
+      aiEntryClicks: counts.aiEntryClicks,
+      aiEntryRate:
+        counts.views > 0 ? Math.round((counts.aiEntryClicks / counts.views) * 100) : null,
+    }))
+    .sort((left, right) => {
+      const leftTotal = left.views + left.aiEntryClicks;
+      const rightTotal = right.views + right.aiEntryClicks;
+
+      if (rightTotal !== leftTotal) {
+        return rightTotal - leftTotal;
+      }
+
+      return left.topic.localeCompare(right.topic);
+    });
 
   return {
     counts,
@@ -840,6 +939,7 @@ export async function getAnalyticsOverview({
     retentionPromptSurfaceBreakdown,
     retentionPromptStateBreakdown,
     retentionPromptDestinationBreakdown,
+    guideTopicBreakdown,
     totalEvents: events.length,
     recentEvents: events.slice(-10).reverse(),
   };
