@@ -2,7 +2,9 @@
 
 ## 1. Product Summary
 
-`Pregnancy Calorie AI` is a multilingual AI tool site for pregnant users who want a fast calorie estimate, a clearer explanation layer, and a lightweight way to keep returning with saved context.
+`Pregnancy Calorie AI` is being rebuilt as a focused AI tool site for pregnant users who want a fast calorie estimate and a clear, safe explanation layer.
+
+The new primary MVP starts with a Chinese single-page experience on `/`: users enter age, height, weight, pregnancy week/stage, and activity level, then receive a daily calorie range, pregnancy extra-calorie estimate, protein/water references, and AI-style interpretation.
 
 The product starts as an SEO-friendly pregnancy calorie calculator and extends into:
 
@@ -12,7 +14,7 @@ The product starts as an SEO-friendly pregnancy calorie calculator and extends i
 - a meal logging workflow
 - an admin system for guideline packs, content, and analytics
 
-This document reflects the current MVP already implemented in the repo and defines the next-stage product direction.
+This document now treats the previous multilingual dashboard/admin product as legacy infrastructure. The rebuild direction is to validate the root calculator experience first, then decide which legacy modules to retain, simplify, or remove.
 
 ## 2. Problem
 

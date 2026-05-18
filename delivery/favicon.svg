@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AI Pregnancy Calorie Calculator favicon</title>
+  <desc id="desc">Minimal berry magenta pregnancy belly and calorie flame icon.</desc>
+  <rect width="512" height="512" rx="112" fill="#ffffff"/>
+  <g fill="none" stroke="#9c2760" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M232 70c-93 36-154 126-154 226 0 106 67 194 169 231" stroke-width="44"/>
+    <path d="M252 444c101-24 174-108 181-209 6-88-40-162-116-199" stroke-width="44"/>
+  </g>
+  <path fill="#9c2760" d="M329 132c56 53 78 104 69 157-11 64-62 108-127 108-63 0-116-43-125-105-8-55 24-110 91-166 0 39 15 70 45 93 32-24 47-53 47-87z"/>
+  <path fill="#ffffff" d="M302 267c22 25 29 48 24 68-6 24-27 41-54 41s-49-17-53-42c-4-24 9-48 39-74 4 17 14 30 29 39 12-10 18-21 15-32z"/>
+</svg>

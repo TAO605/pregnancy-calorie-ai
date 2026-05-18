@@ -1,0 +1,6 @@
+.vercel
+.env*
+.chrome-qa-profile/
+.vercel-dev*.log
+
+.env*.local

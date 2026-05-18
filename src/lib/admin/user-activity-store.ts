@@ -99,8 +99,18 @@ export type AdminUserActivityOverview = {
     source: AnalyticsSignUpSourceBreakdownKey;
     savedProfiles: number;
     activeTrackingUsers: number;
+    dashboardViews: number;
+    aiChats: number;
+    trackingLogs: number;
+    weightLogs: number;
+    mealLogs: number;
     trackingRate: number | null;
     shareOfSavedProfiles: number | null;
+    averageDashboardViews: number | null;
+    averageAiChats: number | null;
+    averageTrackingLogs: number | null;
+    averageWeightLogs: number | null;
+    averageMealLogs: number | null;
   }>;
 };
 
@@ -386,7 +396,15 @@ export async function getAdminUserActivityOverview(): Promise<AdminUserActivityO
   ).length;
   const signUpSourceRetentionMap = new Map<
     AnalyticsSignUpSourceBreakdownKey,
-    { savedProfiles: number; activeTrackingUsers: number }
+    {
+      savedProfiles: number;
+      activeTrackingUsers: number;
+      dashboardViews: number;
+      aiChats: number;
+      trackingLogs: number;
+      weightLogs: number;
+      mealLogs: number;
+    }
   >();
 
   const localeMap = new Map<
@@ -417,12 +435,23 @@ export async function getAdminUserActivityOverview(): Promise<AdminUserActivityO
       const currentRetention = signUpSourceRetentionMap.get(source) ?? {
         savedProfiles: 0,
         activeTrackingUsers: 0,
+        dashboardViews: 0,
+        aiChats: 0,
+        trackingLogs: 0,
+        weightLogs: 0,
+        mealLogs: 0,
       };
 
       currentRetention.savedProfiles += 1;
       if (record.status === "active_tracking") {
         currentRetention.activeTrackingUsers += 1;
       }
+      currentRetention.dashboardViews += record.dashboardViewCount;
+      currentRetention.aiChats += record.aiChatCount;
+      currentRetention.weightLogs += record.weightLogCount;
+      currentRetention.mealLogs += record.mealLogCount;
+      currentRetention.trackingLogs +=
+        record.weightLogCount + record.mealLogCount;
 
       signUpSourceRetentionMap.set(source, currentRetention);
     }
@@ -433,19 +462,48 @@ export async function getAdminUserActivityOverview(): Promise<AdminUserActivityO
       source,
       savedProfiles: current.savedProfiles,
       activeTrackingUsers: current.activeTrackingUsers,
+      dashboardViews: current.dashboardViews,
+      aiChats: current.aiChats,
+      trackingLogs: current.trackingLogs,
+      weightLogs: current.weightLogs,
+      mealLogs: current.mealLogs,
       trackingRate:
         current.savedProfiles > 0
           ? toPercent(current.activeTrackingUsers / current.savedProfiles)
           : null,
       shareOfSavedProfiles:
         savedProfiles > 0 ? toPercent(current.savedProfiles / savedProfiles) : null,
+      averageDashboardViews:
+        current.savedProfiles > 0
+          ? Math.round((current.dashboardViews / current.savedProfiles) * 10) / 10
+          : null,
+      averageAiChats:
+        current.savedProfiles > 0
+          ? Math.round((current.aiChats / current.savedProfiles) * 10) / 10
+          : null,
+      averageTrackingLogs:
+        current.savedProfiles > 0
+          ? Math.round((current.trackingLogs / current.savedProfiles) * 10) / 10
+          : null,
+      averageWeightLogs:
+        current.savedProfiles > 0
+          ? Math.round((current.weightLogs / current.savedProfiles) * 10) / 10
+          : null,
+      averageMealLogs:
+        current.savedProfiles > 0
+          ? Math.round((current.mealLogs / current.savedProfiles) * 10) / 10
+          : null,
     }))
     .sort((left, right) => {
       if (right.savedProfiles !== left.savedProfiles) {
         return right.savedProfiles - left.savedProfiles;
       }
 
-      return right.activeTrackingUsers - left.activeTrackingUsers;
+      if (right.activeTrackingUsers !== left.activeTrackingUsers) {
+        return right.activeTrackingUsers - left.activeTrackingUsers;
+      }
+
+      return right.trackingLogs - left.trackingLogs;
     });
 
   return {

@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Nurture Daily",
-    template: "%s | Nurture Daily",
+    default: "AI孕期热量计算器",
+    template: "%s | AI孕期热量计算器",
   },
   description:
-    "An AI pregnancy calorie calculator with explainable results, guideline-aware nutrition guidance, and multilingual entry points.",
+    "输入年龄、身高、体重、孕周和活动水平，快速获得孕期每日热量范围、蛋白质和饮水参考。",
 };
 
 export default function RootLayout({

@@ -32,7 +32,7 @@ export function buildWeightWeeklyReviewPrompt(
   const sourceLabel = input.guidelineSource?.trim() || "the saved guideline";
 
   if (locale === "zh-CN") {
-    return `请基于我最近一周的体重记录做一次复盘。当前孕周是第 ${weekLabel} 周，保存的热量目标是 ${targetLabel}，最近 7 天里共保存了 ${input.trackedEntries} 条体重记录，最近一次体重是 ${latestWeightLabel}，近 7 天体重变化约为 ${weeklyDeltaLabel}，这一周的体重区间大约是 ${weeklyRangeLabel}，参考规则来源是 ${sourceLabel}。请告诉我：1）这组趋势是否稳定；2）我更应该优先继续记录、调整摄入，还是重新计算；3）什么变化更值得尽快问医生或营养师。`;
+    return `\u8bf7\u57fa\u4e8e\u6211\u6700\u8fd1\u4e00\u5468\u7684\u4f53\u91cd\u8bb0\u5f55\u505a\u4e00\u6b21\u590d\u76d8\u3002\u5f53\u524d\u5b55\u5468\u662f\u7b2c ${weekLabel} \u5468\uff0c\u4fdd\u5b58\u7684\u70ed\u91cf\u76ee\u6807\u662f ${targetLabel}\uff0c\u6700\u8fd1 7 \u5929\u91cc\u5171\u4fdd\u5b58\u4e86 ${input.trackedEntries} \u6761\u4f53\u91cd\u8bb0\u5f55\uff0c\u6700\u8fd1\u4e00\u6b21\u4f53\u91cd\u662f ${latestWeightLabel}\uff0c\u8fd1 7 \u5929\u4f53\u91cd\u53d8\u5316\u7ea6\u4e3a ${weeklyDeltaLabel}\uff0c\u8fd9\u4e00\u5468\u7684\u4f53\u91cd\u533a\u95f4\u5927\u7ea6\u662f ${weeklyRangeLabel}\uff0c\u53c2\u8003\u89c4\u5219\u6765\u6e90\u662f ${sourceLabel}\u3002\u8bf7\u544a\u8bc9\u6211\uff1a1\uff09\u8fd9\u7ec4\u8d8b\u52bf\u662f\u5426\u7a33\u5b9a\uff1b2\uff09\u6211\u66f4\u5e94\u8be5\u4f18\u5148\u7ee7\u7eed\u8bb0\u5f55\u3001\u8c03\u6574\u6444\u5165\uff0c\u8fd8\u662f\u91cd\u65b0\u8ba1\u7b97\uff1b3\uff09\u4ec0\u4e48\u53d8\u5316\u66f4\u503c\u5f97\u5c3d\u5feb\u95ee\u533b\u751f\u6216\u8425\u517b\u5e08\u3002`;
   }
 
   if (locale === "es") {

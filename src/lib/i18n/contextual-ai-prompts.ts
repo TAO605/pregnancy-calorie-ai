@@ -11,7 +11,7 @@ export function buildOverviewAiPrompt(
   input: MealAiPromptInput,
 ) {
   if (locale === "zh-CN") {
-    return `我今天的目标是 ${input.targetCalories} kcal，已经记录了 ${input.loggedCalories} kcal，还差 ${input.remainingCalories} kcal。接下来一餐和加餐怎么安排更稳妥？`;
+    return `\u6211\u4eca\u5929\u7684\u76ee\u6807\u662f ${input.targetCalories} kcal\uff0c\u5df2\u7ecf\u8bb0\u5f55\u4e86 ${input.loggedCalories} kcal\uff0c\u8fd8\u5dee ${input.remainingCalories} kcal\u3002\u63a5\u4e0b\u6765\u4e00\u9910\u548c\u52a0\u9910\u600e\u4e48\u5b89\u6392\u66f4\u7a33\u59a5\uff1f`;
   }
 
   if (locale === "es") {
@@ -26,7 +26,7 @@ export function buildMealsAiPrompt(
   input: MealAiPromptInput,
 ) {
   if (locale === "zh-CN") {
-    return `我今天目标 ${input.targetCalories} kcal，目前已记录 ${input.loggedCalories} kcal，还差 ${input.remainingCalories} kcal。请按早餐、午餐、晚餐和加餐的思路帮我调整今天后面的饮食。`;
+    return `\u6211\u4eca\u5929\u76ee\u6807\u662f ${input.targetCalories} kcal\uff0c\u76ee\u524d\u5df2\u8bb0\u5f55 ${input.loggedCalories} kcal\uff0c\u8fd8\u5dee ${input.remainingCalories} kcal\u3002\u8bf7\u6309\u65e9\u9910\u3001\u5348\u9910\u3001\u665a\u9910\u548c\u52a0\u9910\u7684\u601d\u8def\u5e2e\u6211\u8c03\u6574\u4eca\u5929\u540e\u9762\u7684\u996e\u98df\u3002`;
   }
 
   if (locale === "es") {
@@ -46,7 +46,7 @@ export function buildResultAiPrompt(
   const sourceLabel = input.source?.trim() || "the current guideline";
 
   if (locale === "zh-CN") {
-    return `我这次计算结果是 ${input.recommendedCalories} kcal，参考来源是 ${sourceLabel}。请帮我把这一天拆成三餐和加餐，并告诉我每餐的大致思路。`;
+    return `\u6211\u8fd9\u6b21\u8ba1\u7b97\u7ed3\u679c\u662f ${input.recommendedCalories} kcal\uff0c\u53c2\u8003\u6765\u6e90\u662f ${sourceLabel}\u3002\u8bf7\u5e2e\u6211\u628a\u8fd9\u4e00\u5929\u62c6\u6210\u4e09\u9910\u548c\u52a0\u9910\uff0c\u5e76\u544a\u8bc9\u6211\u6bcf\u9910\u7684\u5927\u81f4\u601d\u8def\u3002`;
   }
 
   if (locale === "es") {

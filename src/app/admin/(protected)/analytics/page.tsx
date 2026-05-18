@@ -1,5 +1,10 @@
 import Link from "next/link";
 
+import {
+  getRecentAdminAuditEvents,
+  type AdminAuditAction,
+  type AdminAuditResourceType,
+} from "@/lib/admin/audit-store";
 import { getAdminUserActivityOverview } from "@/lib/admin/user-activity-store";
 import {
   analyticsRanges,
@@ -62,6 +67,144 @@ function getGuideTopicAnalyticsCopy(locale: string) {
   };
 }
 
+function getWeeklyReviewAnalyticsCopy(locale: string) {
+  if (locale === "zh-CN") {
+    return {
+      title: "\u5468\u56de\u987e AI \u8f6c\u5316",
+      body: "\u5355\u72ec\u68c0\u67e5\u4eea\u8868\u76d8\u3001\u4f53\u91cd\u548c\u996e\u98df\u5468\u56de\u987e\u5165\u53e3\uff0c\u770b\u5b83\u4eec\u662f\u53ea\u5e26\u6765\u70b9\u51fb\uff0c\u8fd8\u662f\u80fd\u8f6c\u6210\u5e26\u4e0a\u4e0b\u6587\u7684 AI \u5bf9\u8bdd\u548c\u8ffd\u95ee\u3002",
+      empty: "\u8fd8\u6ca1\u6709\u5468\u56de\u987e\u5165\u53e3\u4e8b\u4ef6\u3002\u4ece\u4eea\u8868\u76d8\u3001\u4f53\u91cd\u6216\u996e\u98df\u5468\u56de\u987e CTA \u8fdb\u5165 AI \u5e76\u63d0\u95ee\u540e\u4f1a\u51fa\u73b0\u3002",
+      conversionRate: "\u70b9\u51fb\u5230\u5bf9\u8bdd",
+      contextRate: "\u4e0a\u4e0b\u6587\u8986\u76d6",
+      entryClicks: "\u5165\u53e3\u70b9\u51fb",
+      chatStarts: "AI \u5bf9\u8bdd",
+      followUps: "\u8ffd\u95ee\u6d88\u606f",
+      sessionsWithFollowUp: "\u6709\u8ffd\u95ee\u7684\u4f1a\u8bdd",
+      emptyRate: "\u6682\u65e0\u6570\u636e",
+    };
+  }
+
+  if (locale === "es") {
+    return {
+      title: "Conversion de revisiones semanales",
+      body: "Aisla las entradas semanales del dashboard, peso y comidas para ver si solo generan clics o si producen chats con contexto y seguimientos.",
+      empty: "Todavia no hay eventos de revision semanal. Entra a IA desde un CTA semanal de dashboard, peso o comidas y envia una pregunta.",
+      conversionRate: "Clic a chat",
+      contextRate: "Cobertura de contexto",
+      entryClicks: "Clics de entrada",
+      chatStarts: "Chats IA",
+      followUps: "Mensajes de seguimiento",
+      sessionsWithFollowUp: "Sesiones con seguimiento",
+      emptyRate: "Sin datos",
+    };
+  }
+
+  return {
+    title: "Weekly review AI conversion",
+    body: "Isolate dashboard, weight, and meal weekly-review entry points to see whether they only create clicks or produce context-backed AI chats and follow-ups.",
+    empty: "No weekly review entry events yet. Start AI from a dashboard, weight, or meal weekly-review CTA and submit a question.",
+    conversionRate: "Click to chat",
+    contextRate: "Context coverage",
+    entryClicks: "Entry clicks",
+    chatStarts: "AI chats",
+    followUps: "Follow-up messages",
+    sessionsWithFollowUp: "Sessions with follow-up",
+    emptyRate: "No data yet",
+  };
+}
+
+function getSignUpRetentionQualityCopy(locale: string) {
+  if (locale === "zh-CN") {
+    return {
+      engagementTitle: "\u540e\u7eed\u8d28\u91cf",
+      dashboardViews: "\u4eea\u8868\u76d8\u8bbf\u95ee",
+      aiChats: "AI \u5bf9\u8bdd",
+      trackingLogs: "\u8ffd\u8e2a\u8bb0\u5f55",
+      weightLogs: "\u4f53\u91cd\u8bb0\u5f55",
+      mealLogs: "\u996e\u98df\u8bb0\u5f55",
+      averagePrefix: "\u4eba\u5747",
+    };
+  }
+
+  if (locale === "es") {
+    return {
+      engagementTitle: "Calidad posterior",
+      dashboardViews: "Vistas dashboard",
+      aiChats: "Chats IA",
+      trackingLogs: "Registros",
+      weightLogs: "Registros de peso",
+      mealLogs: "Registros de comidas",
+      averagePrefix: "Prom.",
+    };
+  }
+
+  return {
+    engagementTitle: "Downstream quality",
+    dashboardViews: "Dashboard views",
+    aiChats: "AI chats",
+    trackingLogs: "Tracking logs",
+    weightLogs: "Weight logs",
+    mealLogs: "Meal logs",
+    averagePrefix: "Avg.",
+  };
+}
+
+function getAdminAuditCopy(locale: string) {
+  if (locale === "zh-CN") {
+    return {
+      title: "\u6700\u8fd1\u7ba1\u7406\u5458\u53d8\u66f4",
+      body: "\u8ffd\u8e2a\u5185\u5bb9\u9875\u548c\u89c4\u5219\u5305\u7684\u6700\u8fd1\u4fdd\u5b58\u64cd\u4f5c\uff0c\u7528\u4e8e\u672c\u5730 MVP \u9636\u6bb5\u7684\u57fa\u7840\u53ef\u8ffd\u6eaf\u6027\u3002",
+      empty: "\u8fd8\u6ca1\u6709\u7ba1\u7406\u5458\u53d8\u66f4\u8bb0\u5f55\u3002\u4fdd\u5b58\u5185\u5bb9\u9875\u6216\u89c4\u5219\u5305\u540e\u4f1a\u51fa\u73b0\u5728\u8fd9\u91cc\u3002",
+      actionLabel: "\u52a8\u4f5c",
+      resourceLabel: "\u8d44\u6e90",
+      actionLabels: {
+        content_page_saved: "\u5185\u5bb9\u9875\u5df2\u4fdd\u5b58",
+        content_page_published: "\u5185\u5bb9\u9875\u5df2\u53d1\u5e03",
+        guideline_pack_updated: "\u89c4\u5219\u5305\u5df2\u66f4\u65b0",
+      } satisfies Record<AdminAuditAction, string>,
+      resourceTypeLabels: {
+        content_page: "\u5185\u5bb9\u9875",
+        guideline_pack: "\u89c4\u5219\u5305",
+      } satisfies Record<AdminAuditResourceType, string>,
+    };
+  }
+
+  if (locale === "es") {
+    return {
+      title: "Cambios admin recientes",
+      body: "Rastrea guardados recientes de contenido y paquetes de guia para una auditabilidad basica durante el MVP local.",
+      empty: "Todavia no hay cambios admin. Guarda contenido o paquetes de guia para llenar esta vista.",
+      actionLabel: "Accion",
+      resourceLabel: "Recurso",
+      actionLabels: {
+        content_page_saved: "Pagina guardada",
+        content_page_published: "Pagina publicada",
+        guideline_pack_updated: "Paquete actualizado",
+      } satisfies Record<AdminAuditAction, string>,
+      resourceTypeLabels: {
+        content_page: "Pagina de contenido",
+        guideline_pack: "Paquete de guia",
+      } satisfies Record<AdminAuditResourceType, string>,
+    };
+  }
+
+  return {
+    title: "Recent admin changes",
+    body: "Track recent content-page and guideline-pack saves for baseline auditability during the local MVP phase.",
+    empty: "No admin changes yet. Save content or guideline packs to populate this view.",
+    actionLabel: "Action",
+    resourceLabel: "Resource",
+    actionLabels: {
+      content_page_saved: "Content page saved",
+      content_page_published: "Content page published",
+      guideline_pack_updated: "Guideline pack updated",
+    } satisfies Record<AdminAuditAction, string>,
+    resourceTypeLabels: {
+      content_page: "Content page",
+      guideline_pack: "Guideline pack",
+    } satisfies Record<AdminAuditResourceType, string>,
+  };
+}
+
 export default async function AdminAnalyticsPage({
   searchParams,
 }: AdminAnalyticsPageProps) {
@@ -73,9 +216,13 @@ export default async function AdminAnalyticsPage({
   const copy = getAdminCopy(locale);
   const retentionCopy = getAdminRetentionCtaCopy(locale);
   const guideTopicCopy = getGuideTopicAnalyticsCopy(locale);
-  const [overview, userOverview] = await Promise.all([
+  const weeklyReviewCopy = getWeeklyReviewAnalyticsCopy(locale);
+  const signUpRetentionQualityCopy = getSignUpRetentionQualityCopy(locale);
+  const adminAuditCopy = getAdminAuditCopy(locale);
+  const [overview, userOverview, adminAuditEvents] = await Promise.all([
     getAnalyticsOverview({ range: currentRange }),
     getAdminUserActivityOverview(),
+    getRecentAdminAuditEvents(),
   ]);
   const rangeOptions = analyticsRanges.map((range) => ({
     value: range,
@@ -405,6 +552,83 @@ export default async function AdminAnalyticsPage({
                       {copy.analytics.aiQualityRiskLabel}: {item.riskEscalations}
                     </p>
                   </div>
+                </div>
+              </article>
+            ))
+          )}
+        </div>
+      </section>
+
+      <section className="surface-card rounded-[1.8rem] p-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+            {weeklyReviewCopy.title}
+          </p>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
+            {weeklyReviewCopy.body}
+          </p>
+        </div>
+
+        <div className="mt-6 grid gap-4 xl:grid-cols-3">
+          {overview.weeklyReviewEntryBreakdown.length === 0 ? (
+            <div className="rounded-[1.2rem] bg-white/88 p-4 shadow-border">
+              <p className="text-sm text-muted">{weeklyReviewCopy.empty}</p>
+            </div>
+          ) : (
+            overview.weeklyReviewEntryBreakdown.map((item) => (
+              <article
+                key={item.source}
+                className="rounded-[1.3rem] bg-white/88 p-5 shadow-border"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <p className="text-base font-semibold tracking-[-0.03em]">
+                    {copy.analytics.aiSourceLabels[item.source]}
+                  </p>
+                  <p className="text-sm font-medium text-muted">
+                    {weeklyReviewCopy.conversionRate}:{" "}
+                    {item.conversionRate === null
+                      ? weeklyReviewCopy.emptyRate
+                      : `${item.conversionRate}%`}
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[1.1rem] bg-[rgba(10,114,239,0.06)] p-4 shadow-border">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      {weeklyReviewCopy.entryClicks}
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold tracking-[-0.05em]">
+                      {item.entryClicks}
+                    </p>
+                  </div>
+                  <div className="rounded-[1.1rem] bg-white p-4 shadow-border">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      {weeklyReviewCopy.chatStarts}
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold tracking-[-0.05em]">
+                      {item.chatStarts}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-[1.1rem] bg-[rgba(28,160,98,0.1)] p-4 shadow-border">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-sm font-medium text-muted">
+                      {weeklyReviewCopy.contextRate}
+                    </p>
+                    <p className="text-sm font-semibold">
+                      {item.contextRate === null
+                        ? weeklyReviewCopy.emptyRate
+                        : `${item.contextRate}%`}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-sm text-muted">
+                    {weeklyReviewCopy.followUps}: {item.followUpMessages}
+                  </p>
+                  <p className="mt-1 text-sm text-muted">
+                    {weeklyReviewCopy.sessionsWithFollowUp}:{" "}
+                    {item.sessionsWithFollowUp}
+                  </p>
                 </div>
               </article>
             ))
@@ -986,7 +1210,7 @@ export default async function AdminAnalyticsPage({
                   </p>
                 </div>
 
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="mt-4 grid gap-3 xl:grid-cols-3">
                   <div className="rounded-[1.1rem] bg-[rgba(10,114,239,0.06)] p-4 shadow-border">
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
                       {copy.analytics.signUpRetentionSavedProfilesLabel}
@@ -1009,8 +1233,84 @@ export default async function AdminAnalyticsPage({
                         : `${item.trackingRate}%`}
                     </p>
                   </div>
+
+                  <div className="rounded-[1.1rem] bg-[rgba(255,122,89,0.08)] p-4 shadow-border">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      {signUpRetentionQualityCopy.engagementTitle}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold tracking-[-0.02em]">
+                      {signUpRetentionQualityCopy.dashboardViews}:{" "}
+                      {item.averageDashboardViews === null
+                        ? copy.analytics.signUpRetentionShareEmpty
+                        : `${signUpRetentionQualityCopy.averagePrefix} ${item.averageDashboardViews}`}
+                    </p>
+                    <p className="mt-2 text-sm text-muted">
+                      {signUpRetentionQualityCopy.aiChats}:{" "}
+                      {item.averageAiChats === null
+                        ? copy.analytics.signUpRetentionShareEmpty
+                        : `${signUpRetentionQualityCopy.averagePrefix} ${item.averageAiChats}`}
+                    </p>
+                    <p className="mt-1 text-sm text-muted">
+                      {signUpRetentionQualityCopy.trackingLogs}:{" "}
+                      {item.averageTrackingLogs === null
+                        ? copy.analytics.signUpRetentionShareEmpty
+                        : `${signUpRetentionQualityCopy.averagePrefix} ${item.averageTrackingLogs}`}
+                    </p>
+                    <p className="mt-1 text-xs text-muted">
+                      {signUpRetentionQualityCopy.weightLogs}:{" "}
+                      {item.averageWeightLogs === null
+                        ? copy.analytics.signUpRetentionShareEmpty
+                        : `${signUpRetentionQualityCopy.averagePrefix} ${item.averageWeightLogs}`}{" "}
+                      | {signUpRetentionQualityCopy.mealLogs}:{" "}
+                      {item.averageMealLogs === null
+                        ? copy.analytics.signUpRetentionShareEmpty
+                        : `${signUpRetentionQualityCopy.averagePrefix} ${item.averageMealLogs}`}
+                    </p>
+                  </div>
                 </div>
               </article>
+            ))
+          )}
+        </div>
+      </section>
+
+      <section className="surface-card rounded-[1.8rem] p-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+            {adminAuditCopy.title}
+          </p>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
+            {adminAuditCopy.body}
+          </p>
+        </div>
+
+        <div className="mt-6 grid gap-3">
+          {adminAuditEvents.length === 0 ? (
+            <div className="rounded-[1.2rem] bg-white/88 p-4 shadow-border">
+              <p className="text-sm text-muted">{adminAuditCopy.empty}</p>
+            </div>
+          ) : (
+            adminAuditEvents.map((event) => (
+              <div key={event.id} className="rounded-[1.2rem] bg-white/88 p-4 shadow-border">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold tracking-[-0.02em]">
+                      {event.summary}
+                    </p>
+                    <p className="mt-2 text-xs text-muted">
+                      {adminAuditCopy.actionLabel}:{" "}
+                      {adminAuditCopy.actionLabels[event.action]} |{" "}
+                      {adminAuditCopy.resourceLabel}:{" "}
+                      {adminAuditCopy.resourceTypeLabels[event.resourceType]} /{" "}
+                      {event.resourceId}
+                      {event.locale ? ` / ${event.locale}` : ""}
+                    </p>
+                  </div>
+                  <p className="text-xs text-muted">
+                    {formatTimestamp(event.createdAt, locale)}
+                  </p>
+                </div>
+              </div>
             ))
           )}
         </div>

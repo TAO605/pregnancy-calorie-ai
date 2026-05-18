@@ -26,7 +26,7 @@ export function buildMealWeeklyReviewPrompt(
   const sourceLabel = input.guidelineSource?.trim() || "the saved guideline";
 
   if (locale === "zh-CN") {
-    return `请基于我最近一周的饮食记录做一次复盘。当前孕周是第 ${weekLabel} 周，保存的热量目标是 ${targetLabel}，最近 7 天里有 ${input.trackedDays} 天记录了饮食，有记录日期的平均摄入约为 ${averageLabel}，这一周共保存了 ${input.totalEntries} 条饮食记录，最常出现的进食锚点是 ${mealTypeLabel}，参考规则来源是 ${sourceLabel}。请告诉我：1）这一周的饮食节奏是否稳定；2）我更应该优先补记录、调整餐次结构，还是重新计算目标；3）接下来 3 天最实用的调整建议是什么。`;
+    return `\u8bf7\u57fa\u4e8e\u6211\u6700\u8fd1\u4e00\u5468\u7684\u996e\u98df\u8bb0\u5f55\u505a\u4e00\u6b21\u590d\u76d8\u3002\u5f53\u524d\u5b55\u5468\u662f\u7b2c ${weekLabel} \u5468\uff0c\u4fdd\u5b58\u7684\u70ed\u91cf\u76ee\u6807\u662f ${targetLabel}\uff0c\u6700\u8fd1 7 \u5929\u91cc\u6709 ${input.trackedDays} \u5929\u8bb0\u5f55\u4e86\u996e\u98df\uff0c\u6709\u8bb0\u5f55\u65e5\u671f\u7684\u5e73\u5747\u6444\u5165\u7ea6\u4e3a ${averageLabel}\uff0c\u8fd9\u4e00\u5468\u5171\u4fdd\u5b58\u4e86 ${input.totalEntries} \u6761\u996e\u98df\u8bb0\u5f55\uff0c\u6700\u5e38\u51fa\u73b0\u7684\u8fdb\u98df\u951a\u70b9\u662f ${mealTypeLabel}\uff0c\u53c2\u8003\u89c4\u5219\u6765\u6e90\u662f ${sourceLabel}\u3002\u8bf7\u544a\u8bc9\u6211\uff1a1\uff09\u8fd9\u4e00\u5468\u7684\u996e\u98df\u8282\u594f\u662f\u5426\u7a33\u5b9a\uff1b2\uff09\u6211\u66f4\u5e94\u8be5\u4f18\u5148\u8865\u8bb0\u5f55\u3001\u8c03\u6574\u9910\u6b21\u7ed3\u6784\uff0c\u8fd8\u662f\u91cd\u65b0\u8ba1\u7b97\u76ee\u6807\uff1b3\uff09\u63a5\u4e0b\u6765 3 \u5929\u6700\u5b9e\u7528\u7684\u8c03\u6574\u5efa\u8bae\u662f\u4ec0\u4e48\u3002`;
   }
 
   if (locale === "es") {

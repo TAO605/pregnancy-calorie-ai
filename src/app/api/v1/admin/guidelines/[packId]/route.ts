@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logAdminAuditEvent } from "@/lib/admin/audit-store";
 import { hasAuthenticatedAdminSession } from "@/lib/auth/admin-session";
 import { updateGuidelinePack } from "@/lib/calculator/guideline-store";
 import { withNoStoreHeaders } from "@/lib/http/no-store";
@@ -68,6 +69,18 @@ export async function PUT(request: Request, context: RouteContext) {
   }
 
   const nextPack = await updateGuidelinePack(parsedPackId.data, payload.data);
+  await logAdminAuditEvent({
+    action: "guideline_pack_updated",
+    resourceType: "guideline_pack",
+    resourceId: nextPack.id,
+    summary: `Updated guideline pack: ${nextPack.displayName}`,
+    metadata: {
+      countryCode: nextPack.countryCode,
+      trimester1Calories: nextPack.trimesterCalories.t1,
+      trimester2Calories: nextPack.trimesterCalories.t2,
+      trimester3Calories: nextPack.trimesterCalories.t3,
+    },
+  });
 
   return NextResponse.json(nextPack, withNoStoreHeaders());
 }

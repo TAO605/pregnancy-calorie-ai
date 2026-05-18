@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logAdminAuditEvent } from "@/lib/admin/audit-store";
 import { logAnalyticsEvent } from "@/lib/analytics/store";
 import { hasAuthenticatedAdminSession } from "@/lib/auth/admin-session";
 import { getContentPageById, upsertContentPage } from "@/lib/content/content-store";
@@ -61,6 +62,20 @@ export async function PUT(request: Request, context: RouteContext) {
     const page = await upsertContentPage({
       id: pageId,
       ...payload.data,
+    });
+    await logAdminAuditEvent({
+      action:
+        page.status === "published" && previousPage?.status !== "published"
+          ? "content_page_published"
+          : "content_page_saved",
+      resourceType: "content_page",
+      resourceId: page.id,
+      summary: `Saved content page: ${page.title}`,
+      locale: page.locale,
+      metadata: {
+        slug: page.slug,
+        status: page.status,
+      },
     });
 
     if (page.status === "published" && previousPage?.status !== "published") {

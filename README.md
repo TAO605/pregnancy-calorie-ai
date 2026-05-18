@@ -1,14 +1,16 @@
 # Pregnancy Calorie AI
 
-A multilingual Next.js product prototype for pregnancy calorie estimation, AI nutrition follow-up, saved profile context, meal logging, weight tracking, and lightweight admin operations.
+A rebuilt Next.js AI tool-site prototype for pregnancy calorie estimation. The new primary experience is a Chinese single-page calculator on `/` with instant calorie ranges, AI-style interpretation, nutrition references, and medical-safety boundaries.
 
 ## What This Project Is
 
-This repo implements an AI tool site with three connected layers:
+This repo is being rebuilt around a simpler AI tool-site direction:
 
-- acquisition: localized marketing pages and a pregnancy calorie calculator
-- activation: explainable result pages and a guarded AI assistant
-- retention: saved profiles, meal logs, weight trends, and dashboard workflows
+- primary acquisition: a focused Chinese landing page at `/`
+- activation: an interactive pregnancy calorie calculator with AI-style explanation
+- trust: clear non-diagnostic medical boundaries and next-step guidance
+
+The previous multilingual dashboard/admin system still exists in the codebase for now, but the current product direction is to rebuild from the root experience first and clean up legacy routes after the new MVP stabilizes.
 
 The product currently supports:
 
@@ -38,13 +40,14 @@ The product currently supports:
 - analytics overview
 - AI session source, prompt-origin, and saved sign-in source breakdowns
 - retention CTA click mix across guest-save and signed-in continue-tracking prompts
+- sign-in-source downstream quality split by dashboard, AI chat, weight logs, and meal logs
 - user activity overview
 - guideline editor
 - content editor
 
 ### Persistence
 
-- local JSON files for admin-side content, analytics, and user activity
+- local JSON files for admin-side content, analytics, admin audit logs, and user activity
 - local JSON persistence for demo signed-in user data
 - local prototype storage for anonymous session and fallback user flows
 - optional Firebase sign-in path when environment variables are configured
@@ -75,7 +78,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-The root route redirects to `/en`.
+The root route now renders the rebuilt Chinese AI pregnancy calorie calculator directly.
 
 ## Validation
 
@@ -88,6 +91,7 @@ npm run verify
 Equivalent manual gates:
 
 ```bash
+npm run check:prompts
 npm run lint
 npm run build
 ```
@@ -95,17 +99,25 @@ npm run build
 Current verified baseline:
 
 - `npm run verify`
+- `npm run smoke:prod`
 - `npm run lint`
 - `npm run build`
 
-Use this as the minimum acceptance gate after every product or API change.
+Use `npm run verify` as the minimum acceptance gate after every product or API change. Use `npm run smoke:prod` before handoff or deployment candidates to validate the rebuilt root calculator page, legacy public pages, auth gates, demo cookies, admin sign-in, protected admin analytics rendering, sign-in-source downstream quality rendering with weight/meal log splits, content/guideline admin audit rendering, analytics event quality checks, malformed JSON handling for calculator/events APIs, sensitive API cache headers, rate-limit headers, crawler controls, calculator output, and AI escalation output.
+
+The production smoke seeds a weekly-review AI entry click plus context-backed follow-up chats so the admin weekly-review conversion module is tested with real conversion, context, and follow-up data instead of only checking that the section renders.
+
+`npm run check:prompts` is included in `verify`; it prevents localized AI prompt files from regressing into mojibake and checks generated `zh-CN` prompt output for result, overview, meal, weight, weekly-review, and blog AI entry paths.
 
 ## Delivery Readiness Notes
 
 The current MVP is suitable for local demo and stakeholder review:
 
+- rebuilt `/` route renders a new Chinese AI pregnancy calorie calculator tool-site experience
 - calculator, result, AI assistant, sign-in, dashboard, meal tracking, weight tracking, admin analytics, content editing, and guideline editing are wired
 - non-critical analytics/user-activity writes are best-effort so they do not block calculator, AI, sign-in, or content publishing flows
+- analytics event validation rejects unknown event names and nested metadata objects before they pollute local event storage
+- admin audit validation rejects unknown action/resource types and strips nested metadata before rendering recent admin changes
 - API routes return clear `400` responses for malformed JSON and validation failures
 - dashboard forms surface saving, success, and failure states instead of failing silently
 
@@ -188,8 +200,9 @@ For multi-instance production, replace the in-memory rate limiter with Redis, an
 The prototype writes local operational data under [data](D:/pregnancy-calorie-ai/data):
 
 - `content-pages.json` can be kept as editable demo content seed data.
-- `guideline-overrides.json`, `analytics-events.jsonl`, `demo-user-data.json`, and `user-activity.json` are local runtime files and are ignored by git.
+- `guideline-overrides.json`, `analytics-events.jsonl`, `admin-audit.jsonl`, `demo-user-data.json`, and `user-activity.json` are local runtime files and are ignored by git.
 - `*.tmp` files under `data/` are temporary atomic-write artifacts and should not remain after successful writes.
+- `npm run smoke:prod` temporarily saves a smoke-only content page, then restores the original `content-pages.json` contents before finishing.
 
 This is suitable for MVP iteration, not production durability.
 
@@ -206,7 +219,7 @@ This is suitable for MVP iteration, not production durability.
 
 ## Next Recommended Work
 
-- continue expanding localized editorial content beyond the current three published guides per locale
-- deepen analytics around weekly review entry points and saved-context conversion into retained tracking behavior
-- compare sign-in source with later dashboard, meal, and weight retention quality
+- continue expanding localized editorial content beyond the current four published guides per locale
+- deepen analytics around saved-context conversion into retained tracking behavior beyond the current weekly-review click-to-chat and follow-up coverage
+- compare sign-in source with later retained tracking behavior beyond the current dashboard, AI, meal, and weight quality split
 - move prototype persistence to a durable backend when product iteration stabilizes

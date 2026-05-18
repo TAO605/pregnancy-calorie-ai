@@ -1,0 +1,148 @@
+﻿--- batch twitter.com,youtube.com,pinterest.com ---
+Skip to main content
+Bulk Ahrefs DR Checker – Domain Rating in bulk
+Home
+DA Checker
+DR Checker
+TF Checker
+SEO Tools
+Blog
+Contact
+Upgrade
+Sign in
+Bulk Ahrefs DR Checker
+
+Check Ahrefs Domain Rating, URL Rating and referring domains in bulk. Free: 3 sites at a time (9 total without login). Sign in for 30 domains per 12h; upgrade for 3000/month.
+
+Enter Domains (Max 3 per run, 3 runs = 9 sites total)
+Check Domain Rating
+Reset
+Results (3 domains)
+Cards
+Complete Details
+CSV
+Clear
+twitter.com
+98
+DR
+80
+URL RATING
+10331633
+REF DOMAINS
+youtube.com
+99
+DR
+4
+URL RATING
+18948619
+REF DOMAINS
+pinterest.com
+97
+DR
+8
+URL RATING
+2777690
+REF DOMAINS
+
+Domain authority plays a major role in search engine visibility. One of the most widely used metrics to evaluate website strength is Ahrefs Domain Rating (DR). It measures the strength of a website's backlink profile on a scale from 0 to 100.
+
+For SEO professionals, marketers, and website owners, checking DR helps determine whether a domain has enough authority to rank in search engines or provide valuable backlinks.
+
+However, manually checking domain rating for hundreds of websites can be slow and inefficient.
+
+The Bulk Ahrefs DR Checker on dachecker.io solves this problem by allowing users to analyze multiple domains simultaneously and retrieve critical SEO metrics such as:
+
+Domain Rating
+Domain Rank
+Backlinks
+Referring Domains
+Organic Traffic
+Keyword Data
+Traffic Value
+
+This makes it easier to evaluate website authority, analyze competitors, and discover high value backlink opportunities.
+
+What Is Ahrefs Domain Rating (DR)?
+
+Domain Rating DR is a metric that estimates the overall strength of a domain's backlink profile.
+
+It is calculated based on:
+
+Number of referring domains
+Quality of backlinks
+Authority of linking websites
+Link distributio
+--- batch medium.com,reddit.com,github.com ---
+Skip to main content
+New: Bulk URL Opener & Index Checker Added!
+Home
+DA Checker
+DR Checker
+TF Checker
+SEO Tools
+Blog
+Contact
+Upgrade
+Sign in
+Bulk Ahrefs DR Checker
+
+Check Ahrefs Domain Rating, URL Rating and referring domains in bulk. Free: 3 sites at a time (9 total without login). Sign in for 30 domains per 12h; upgrade for 3000/month.
+
+Enter Domains (Max 3 per run, 3 runs = 9 sites total)
+Check Domain Rating
+Reset
+Results (3 domains)
+Cards
+Complete Details
+CSV
+Clear
+medium.com
+94
+DR
+68
+URL RATING
+912545
+REF DOMAINS
+reddit.com
+95
+DR
+37
+URL RATING
+1434648
+REF DOMAINS
+github.com
+97
+DR
+60
+URL RATING
+2236632
+REF DOMAINS
+
+Domain authority plays a major role in search engine visibility. One of the most widely used metrics to evaluate website strength is Ahrefs Domain Rating (DR). It measures the strength of a website's backlink profile on a scale from 0 to 100.
+
+For SEO professionals, marketers, and website owners, checking DR helps determine whether a domain has enough authority to rank in search engines or provide valuable backlinks.
+
+However, manually checking domain rating for hundreds of websites can be slow and inefficient.
+
+The Bulk Ahrefs DR Checker on dachecker.io solves this problem by allowing users to analyze multiple domains simultaneously and retrieve critical SEO metrics such as:
+
+Domain Rating
+Domain Rank
+Backlinks
+Referring Domains
+Organic Traffic
+Keyword Data
+Traffic Value
+
+This makes it easier to evaluate website authority, analyze competitors, and discover high value backlink opportunities.
+
+What Is Ahrefs Domain Rating (DR)?
+
+Domain Rating DR is a metric that estimates the overall strength of a domain's backlink profile.
+
+It is calculated based on:
+
+Number of referring domains
+Quality of backlinks
+Authority of linking websites
+Link distribution across 

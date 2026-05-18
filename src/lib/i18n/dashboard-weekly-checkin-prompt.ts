@@ -31,7 +31,7 @@ export function buildDashboardWeeklyCheckInPrompt(
   const sourceLabel = input.guidelineSource?.trim() || "the saved guideline";
 
   if (locale === "zh-CN") {
-    return `请基于我最近一周的孕期记录做一次复盘。当前孕周是第 ${weekLabel} 周，保存的热量目标是 ${targetLabel}，最近 7 天里有 ${input.trackedMealDays} 天记录了饮食，有记录日期的平均摄入约为 ${averageLabel}，最近一次体重是 ${weightLabel}，近期体重变化是 ${trendLabel}，参考规则来源是 ${sourceLabel}。请告诉我：1）这一周的节奏是否稳定；2）接下来更值得优先调整的是饮食结构、记录频率还是重新计算；3）什么情况下我应该去问医生或营养师。`;
+    return `\u8bf7\u57fa\u4e8e\u6211\u6700\u8fd1\u4e00\u5468\u7684\u5b55\u671f\u8bb0\u5f55\u505a\u4e00\u6b21\u590d\u76d8\u3002\u5f53\u524d\u5b55\u5468\u662f\u7b2c ${weekLabel} \u5468\uff0c\u4fdd\u5b58\u7684\u70ed\u91cf\u76ee\u6807\u662f ${targetLabel}\uff0c\u6700\u8fd1 7 \u5929\u91cc\u6709 ${input.trackedMealDays} \u5929\u8bb0\u5f55\u4e86\u996e\u98df\uff0c\u6709\u8bb0\u5f55\u65e5\u671f\u7684\u5e73\u5747\u6444\u5165\u7ea6\u4e3a ${averageLabel}\uff0c\u6700\u8fd1\u4e00\u6b21\u4f53\u91cd\u662f ${weightLabel}\uff0c\u8fd1\u671f\u4f53\u91cd\u53d8\u5316\u662f ${trendLabel}\uff0c\u53c2\u8003\u89c4\u5219\u6765\u6e90\u662f ${sourceLabel}\u3002\u8bf7\u544a\u8bc9\u6211\uff1a1\uff09\u8fd9\u4e00\u5468\u7684\u8282\u594f\u662f\u5426\u7a33\u5b9a\uff1b2\uff09\u63a5\u4e0b\u6765\u66f4\u503c\u5f97\u4f18\u5148\u8c03\u6574\u7684\u662f\u996e\u98df\u7ed3\u6784\u3001\u8bb0\u5f55\u9891\u7387\u8fd8\u662f\u91cd\u65b0\u8ba1\u7b97\uff1b3\uff09\u4ec0\u4e48\u60c5\u51b5\u4e0b\u6211\u5e94\u8be5\u53bb\u95ee\u533b\u751f\u6216\u8425\u517b\u5e08\u3002`;
   }
 
   if (locale === "es") {

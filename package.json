@@ -7,7 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "verify": "npm run lint && npm run build"
+    "check:prompts": "node scripts/check-prompts.mjs",
+    "ops:weekly": "node scripts/ops-weekly-check.mjs",
+    "test:subscription": "node scripts/subscription-smoke-test.mjs",
+    "smoke:prod": "node scripts/smoke-production.mjs",
+    "test:jest": "jest --runInBand",
+    "test:unit": "jest --runInBand tests/unit",
+    "test:integration": "jest --runInBand tests/integration",
+    "test:e2e": "start-server-and-test \"node scripts/serve-delivery.mjs\" http://127.0.0.1:4173 \"cypress run --spec cypress/e2e/full-flow.cy.js\"",
+    "test:visual": "start-server-and-test \"node scripts/serve-delivery.mjs\" http://127.0.0.1:4173 \"node scripts/run-visual-tests.mjs\"",
+    "quality:gate": "node scripts/run-quality-gate.mjs",
+    "prepare": "node scripts/install-git-hooks.mjs",
+    "verify": "npm run check:prompts && npm run lint && npm run build && npm run quality:gate"
   },
   "dependencies": {
     "firebase": "^12.12.1",
@@ -17,12 +28,18 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@percy/cli": "^1.31.13",
+    "@percy/cypress": "^3.1.8",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^15.15.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "jest": "^30.4.2",
+    "playwright": "^1.59.1",
+    "start-server-and-test": "^3.0.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

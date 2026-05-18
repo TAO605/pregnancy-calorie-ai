@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -13,9 +14,12 @@
 # testing
 /coverage
 /.qa/
+/cypress/screenshots/
+/cypress/videos/
 
 # local runtime data
 /data/analytics-events.jsonl
+/data/admin-audit.jsonl
 /data/demo-user-data.json
 /data/guideline-overrides.json
 /data/user-activity.json
@@ -37,6 +41,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+static-server.log
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*

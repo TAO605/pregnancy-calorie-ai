@@ -40,6 +40,16 @@ type AnalyticsOverview = {
     chatStarts: number;
     conversionRate: number | null;
   }>;
+  weeklyReviewEntryBreakdown: Array<{
+    source: AnalyticsAiChatSourceKey;
+    entryClicks: number;
+    chatStarts: number;
+    conversionRate: number | null;
+    contextBackedChats: number;
+    contextRate: number | null;
+    followUpMessages: number;
+    sessionsWithFollowUp: number;
+  }>;
   aiSourceQualityBreakdown: Array<{
     source: AnalyticsAiChatSourceKey;
     chatStarts: number;
@@ -150,6 +160,12 @@ const guideTopicKeys: readonly GuideTopicKey[] = [
   "first_trimester",
   "third_trimester",
   "weight_trend",
+];
+
+const weeklyReviewAiSources: readonly AnalyticsAiEntryBreakdownKey[] = [
+  "dashboard_weekly_checkin",
+  "dashboard_weight_weekly_review",
+  "dashboard_meals_weekly_review",
 ];
 
 async function ensureAnalyticsFile() {
@@ -673,6 +689,50 @@ export async function getAnalyticsOverview({
 
       return right.chatStarts - left.chatStarts;
     });
+  const weeklyReviewEntryBreakdown = weeklyReviewAiSources
+    .map((source) => {
+      const entryClicks = aiEntryBreakdownMap.get(source) ?? 0;
+      const chatStarts = aiChatSourceMap.get(source) ?? 0;
+      const contextBackedChats = aiChatContextMap.get(source) ?? 0;
+      const sessionValues = Array.from(aiSessionMap.get(source)?.values() ?? []);
+      const followUpMessages = sessionValues.reduce(
+        (sum, session) => sum + session.followUpMessages,
+        0,
+      );
+      const sessionsWithFollowUp = sessionValues.filter(
+        (session) => session.followUpMessages > 0,
+      ).length;
+
+      return {
+        source,
+        entryClicks,
+        chatStarts,
+        conversionRate:
+          entryClicks > 0 ? Math.round((chatStarts / entryClicks) * 100) : null,
+        contextBackedChats,
+        contextRate:
+          chatStarts > 0 ? Math.round((contextBackedChats / chatStarts) * 100) : null,
+        followUpMessages,
+        sessionsWithFollowUp,
+      };
+    })
+    .filter(
+      (item) =>
+        item.entryClicks > 0 ||
+        item.chatStarts > 0 ||
+        item.contextBackedChats > 0 ||
+        item.followUpMessages > 0,
+    )
+    .sort((left, right) => {
+      const leftWeight = left.entryClicks + left.chatStarts + left.followUpMessages;
+      const rightWeight = right.entryClicks + right.chatStarts + right.followUpMessages;
+
+      if (rightWeight !== leftWeight) {
+        return rightWeight - leftWeight;
+      }
+
+      return left.source.localeCompare(right.source);
+    });
   const aiSourceQualityBreakdown = Array.from(
     new Set<AnalyticsAiChatSourceKey>([
       ...Array.from(aiChatSourceMap.keys()),
@@ -930,6 +990,7 @@ export async function getAnalyticsOverview({
       .map(([source, count]) => ({ source, count }))
       .sort((left, right) => right.count - left.count),
     aiSourceConversionBreakdown,
+    weeklyReviewEntryBreakdown,
     aiSourceQualityBreakdown,
     aiSourceSessionDepthBreakdown,
     aiSessionResumeBreakdown,
