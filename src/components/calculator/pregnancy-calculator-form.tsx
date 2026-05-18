@@ -13,6 +13,7 @@ import {
 import { getOrCreateAnonymousSessionId } from "@/lib/demo/demo-store";
 import type { Dictionary } from "@/lib/i18n/copy";
 import type { Locale } from "@/lib/i18n/config";
+import { getDefaultUnitsForLocale } from "@/lib/i18n/locale-formatting";
 import {
   calculatorInputSchema,
   normalizeCalculatorInput,
@@ -38,7 +39,7 @@ type FormState = {
   countryCode: string;
 };
 
-const defaultsByLocale: Record<Locale, FormState> = {
+const defaultsByLocale: Record<string, FormState> = {
   en: {
     age: "31",
     height: "65",
@@ -75,10 +76,115 @@ const defaultsByLocale: Record<Locale, FormState> = {
     pregnancyType: "singleton",
     countryCode: "ES",
   },
+  fr: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "FR",
+  },
+  de: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "DE",
+  },
+  pt: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "PT",
+  },
+  it: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "IT",
+  },
+  ru: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "RU",
+  },
+  ar: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "SA",
+  },
+  ja: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "JP",
+  },
+  ko: {
+    age: "30",
+    height: "165",
+    heightUnit: "cm",
+    prePregnancyWeight: "58",
+    currentWeight: "62",
+    weightUnit: "kg",
+    gestationalWeek: "22",
+    activityLevel: "moderate",
+    pregnancyType: "singleton",
+    countryCode: "KR",
+  },
 };
 
 function buildDefaultFormState(locale: Locale): FormState {
-  return { ...defaultsByLocale[locale] };
+  const fallback = defaultsByLocale.en;
+  const defaults = defaultsByLocale[locale] ?? fallback;
+  const localizedUnits = getDefaultUnitsForLocale(locale);
+
+  return {
+    ...defaults,
+    heightUnit: localizedUnits.heightUnit,
+    weightUnit: localizedUnits.weightUnit,
+    countryCode: localizedUnits.countryCode,
+  };
 }
 
 function mapProfileToFormState(profile: UserProfile): FormState {
@@ -380,8 +486,15 @@ export function PregnancyCalculatorForm({
           >
             <option value="US">United States</option>
             <option value="GB">United Kingdom</option>
-            <option value="CN">China</option>
             <option value="ES">Spain</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="PT">Portugal</option>
+            <option value="IT">Italy</option>
+            <option value="RU">Russia</option>
+            <option value="SA">Saudi Arabia</option>
+            <option value="JP">Japan</option>
+            <option value="KR">South Korea</option>
           </select>
         </div>
       </div>

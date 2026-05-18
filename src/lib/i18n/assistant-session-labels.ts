@@ -96,22 +96,24 @@ const copy: Record<Locale, AssistantSessionLabelsCopy> = {
 };
 
 export function getAssistantSessionLabelsCopy(locale: Locale): AssistantSessionLabelsCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }
 
 export function getAssistantSessionSourceLabel(
   locale: Locale,
   source: AnalyticsAiChatSourceKey,
 ) {
-  return copy[locale].sourceValues[source] ?? copy[locale].sourceValues.unknown;
+  const labels = copy[locale] ?? copy.en;
+  return labels.sourceValues[source] ?? labels.sourceValues.unknown;
 }
 
 export function getAssistantSessionPromptOriginLabel(
   locale: Locale,
   promptOrigin: AnalyticsAiPromptOrigin,
 ) {
+  const labels = copy[locale] ?? copy.en;
   return (
-    copy[locale].promptOriginValues[promptOrigin] ??
-    copy[locale].promptOriginValues.manual_submit
+    labels.promptOriginValues[promptOrigin] ??
+    labels.promptOriginValues.manual_submit
   );
 }

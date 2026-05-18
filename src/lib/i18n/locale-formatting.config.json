@@ -1,0 +1,112 @@
+{
+  "en": {
+    "bcp47": "en-US",
+    "numberLocale": "en-US",
+    "groupSeparator": ",",
+    "decimalSeparator": ".",
+    "dateFormat": "MM/DD/YYYY",
+    "unitSystem": "both",
+    "heightUnit": "in",
+    "weightUnit": "lb",
+    "countryCode": "US"
+  },
+  "es": {
+    "bcp47": "es",
+    "numberLocale": "de-DE",
+    "groupSeparator": ".",
+    "decimalSeparator": ",",
+    "dateFormat": "DD/MM/YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "ES"
+  },
+  "fr": {
+    "bcp47": "fr",
+    "numberLocale": "fr-FR",
+    "groupSeparator": " ",
+    "decimalSeparator": ",",
+    "dateFormat": "DD/MM/YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "FR"
+  },
+  "de": {
+    "bcp47": "de",
+    "numberLocale": "de-DE",
+    "groupSeparator": ".",
+    "decimalSeparator": ",",
+    "dateFormat": "DD.MM.YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "DE"
+  },
+  "pt": {
+    "bcp47": "pt",
+    "numberLocale": "de-DE",
+    "groupSeparator": ".",
+    "decimalSeparator": ",",
+    "dateFormat": "DD/MM/YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "PT"
+  },
+  "it": {
+    "bcp47": "it",
+    "numberLocale": "it-IT",
+    "groupSeparator": ".",
+    "decimalSeparator": ",",
+    "dateFormat": "DD/MM/YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "IT"
+  },
+  "ru": {
+    "bcp47": "ru",
+    "numberLocale": "ru-RU",
+    "groupSeparator": " ",
+    "decimalSeparator": ",",
+    "dateFormat": "DD.MM.YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "RU"
+  },
+  "ar": {
+    "bcp47": "ar",
+    "numberLocale": "en-US",
+    "groupSeparator": ",",
+    "decimalSeparator": ".",
+    "dateFormat": "DD/MM/YYYY",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "SA"
+  },
+  "ja": {
+    "bcp47": "ja",
+    "numberLocale": "ja-JP",
+    "groupSeparator": ",",
+    "decimalSeparator": ".",
+    "dateFormat": "YYYY/MM/DD",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "JP"
+  },
+  "ko": {
+    "bcp47": "ko",
+    "numberLocale": "ko-KR",
+    "groupSeparator": ",",
+    "decimalSeparator": ".",
+    "dateFormat": "YYYY.MM.DD",
+    "unitSystem": "metric",
+    "heightUnit": "cm",
+    "weightUnit": "kg",
+    "countryCode": "KR"
+  }
+}

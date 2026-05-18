@@ -234,5 +234,5 @@ const copy: Record<Locale, MealWeeklyReviewCopy> = {
 };
 
 export function getMealWeeklyReviewCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

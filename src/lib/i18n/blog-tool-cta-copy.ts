@@ -100,5 +100,5 @@ const copy: Record<Locale, BlogToolCtaCopy> = {
 };
 
 export function getBlogToolCtaCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

@@ -12,6 +12,7 @@ import { hasAuthenticatedServerSession } from "@/lib/auth/server-session";
 import { getPublishedContentPages } from "@/lib/content/content-store";
 import { getDictionary } from "@/lib/i18n/copy";
 import { isLocale, type Locale } from "@/lib/i18n/config";
+import { formatLocalizedCalories } from "@/lib/i18n/locale-formatting";
 import { getMarketingPageCopy } from "@/lib/i18n/marketing-page-copy";
 import { getResultPageCopy } from "@/lib/i18n/result-page-copy";
 import { getSaveProgressPromptCopy } from "@/lib/i18n/save-progress-prompt-copy";
@@ -132,6 +133,7 @@ export default async function ResultPage({
 
           {result ? (
             <CalorieResultCard
+              locale={locale}
               calories={result.calories}
               min={result.min}
               max={result.max}
@@ -211,7 +213,7 @@ export default async function ResultPage({
                   </p>
                   <p className="mt-4 text-base leading-7 text-muted">
                     {resultCopy.explanation.formatExtraCaloriesBody(
-                      explanationResult.extraCalories,
+                      formatLocalizedCalories(explanationResult.extraCalories, locale),
                       explanationResult.trimester,
                     )}
                   </p>

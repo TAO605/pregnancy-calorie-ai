@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AI孕期热量计算器",
-    template: "%s | AI孕期热量计算器",
+    default: "AI Pregnancy Calorie Calculator",
+    template: "%s | AI Pregnancy Calorie Calculator",
   },
   description:
-    "输入年龄、身高、体重、孕周和活动水平，快速获得孕期每日热量范围、蛋白质和饮水参考。",
+    "Estimate pregnancy calorie needs with trimester-aware guidance, clear nutrition context, and AI follow-up support.",
 };
 
 export default function RootLayout({

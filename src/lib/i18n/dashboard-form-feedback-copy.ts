@@ -32,5 +32,5 @@ const copy: Record<Locale, DashboardFormFeedbackCopy> = {
 };
 
 export function getDashboardFormFeedbackCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

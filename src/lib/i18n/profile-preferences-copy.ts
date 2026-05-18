@@ -88,11 +88,11 @@ function fallbackPreferenceLabel(value: string) {
 }
 
 export function getProfilePreferencesCopy(locale: Locale): ProfilePreferencesCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }
 
 export function getDietPreferenceLabel(locale: Locale, value: string) {
-  const localized = copy[locale].options[value as DietPreferenceOptionId];
+  const localized = (copy[locale] ?? copy.en).options[value as DietPreferenceOptionId];
   return localized ?? fallbackPreferenceLabel(value);
 }
 

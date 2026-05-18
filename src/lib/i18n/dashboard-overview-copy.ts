@@ -165,5 +165,5 @@ const copy: Record<Locale, DashboardOverviewCopy> = {
 };
 
 export function getDashboardOverviewCopy(locale: Locale): DashboardOverviewCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

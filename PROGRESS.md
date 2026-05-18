@@ -4,6 +4,8 @@
 
 - Defined the permanent multilingual maintenance process in `docs/MULTILINGUAL_MAINTENANCE.md`. The process locks English as the single source of truth, requires all production translations to use the configured DeepL API secret `DEEPL_AUTH_KEY`, forbids direct edits to non-English locale files, requires incremental key-only translation updates, and mandates `npm run quality:gate` plus GitHub Actions `Quality Gate` before deployment.
 - Documented monthly multilingual maintenance and emergency rollback rules for affected language folders/routes, with English fallback and DeepL-only re-translation before redeploying.
+- Implemented the functional B-path localization layer for the Next.js app without hand-writing new translations: expanded supported locales to `en`, `es`, `fr`, `de`, `pt`, `it`, `ru`, `ar`, `ja`, and `ko`; added centralized locale formatting rules and helpers for dates, numbers, calories, ranges, heights, weights, and default units; wired formatted calorie/range output into the result card; added Arabic RTL shell behavior; updated the language switcher labels to native language names; and kept untranslated TS copy paths on English fallback so missing language text cannot break layouts.
+- Added `date-fns` and `numeral` as requested localization dependencies, plus `tests/unit/locale-formatting.test.cjs` to lock the required number, date, and unit-format table. Updated ESLint ignores/overrides so generated QA browser caches and existing CommonJS delivery/test files do not block verification. Validation passed with `npm run verify`, including prompt encoding, lint, Next.js build, Jest, 10-language Cypress E2E, and visual checks; the latest quality-gate report is `.qa/reports/quality-gate-report.json`.
 
 ## 2026-05-06
 

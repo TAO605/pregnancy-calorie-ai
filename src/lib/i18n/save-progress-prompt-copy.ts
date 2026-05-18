@@ -137,5 +137,5 @@ const copy: Record<Locale, SaveProgressPromptCopy> = {
 };
 
 export function getSaveProgressPromptCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

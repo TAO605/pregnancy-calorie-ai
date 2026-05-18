@@ -17,5 +17,5 @@ const copy: Record<Locale, AuthEntryCopy> = {
 };
 
 export function getAuthEntryCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

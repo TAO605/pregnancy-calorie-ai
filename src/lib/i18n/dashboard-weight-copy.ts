@@ -83,5 +83,5 @@ const copy: Record<Locale, DashboardWeightCopy> = {
 };
 
 export function getDashboardWeightCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

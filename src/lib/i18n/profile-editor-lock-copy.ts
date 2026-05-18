@@ -7,5 +7,5 @@ const copy: Record<Locale, string> = {
 };
 
 export function getProfileEditorLockCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

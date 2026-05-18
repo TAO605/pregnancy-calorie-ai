@@ -237,5 +237,5 @@ const copy: Record<Locale, DashboardMealsCopy> = {
 };
 
 export function getDashboardMealsCopy(locale: Locale): DashboardMealsCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }
