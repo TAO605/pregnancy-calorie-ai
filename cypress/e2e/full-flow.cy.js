@@ -30,6 +30,9 @@ describe("AI Pregnancy Calorie Calculator full localized flow", () => {
         expect(doc.querySelectorAll("script").length).to.be.greaterThan(0);
       });
 
+      cy.get("#metricUnitButton").click();
+      cy.get("#heightUnitButton").should("contain.text", "cm");
+      cy.get("#weightUnitButton").should("contain.text", "kg");
       cy.get("#heightInput").clear().type("165");
       cy.get("#weightInput").clear().type("65");
       chooseOption("week", "Week 24");
