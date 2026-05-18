@@ -71,6 +71,7 @@
 - [x] Simplify currency UX by removing the currency switcher from the homepage navigation while keeping automatic currency detection and cookie-based price updates; keep manual switching on Pricing and the Premium checkout-entry page.
 - [x] Recreate `public/locales/en/common.json` from current English static page text and generate 9 DeepL-only translated `common.json` files for `es`, `fr`, `de`, `pt`, `it`, `ru`, `ar`, `ja`, and `ko` without modifying HTML/CSS/JS/layout files.
 - [x] Add an automated quality gate with Jest unit/integration tests, Cypress E2E flows, Percy-compatible visual tests, local pre-commit hook, GitHub Actions workflow, and generated `.qa/reports/quality-gate-report.json`.
+- [x] Define and document the permanent multilingual maintenance process, including English-first updates, DeepL-only incremental translation, monthly checks, rollback rules, and quality-gate requirements.
 
 ## Next Tasks
 
