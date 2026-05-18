@@ -26,7 +26,10 @@ export function buildMarketingMetadata({
     : path;
   const languages = languageAlternates
     ? Object.fromEntries(
-        locales.map((item) => [item, `${SITE_URL}/${item}${localizedPath}`]),
+        [
+          ...locales.map((item) => [item, `${SITE_URL}/${item}${localizedPath}`]),
+          ["x-default", `${SITE_URL}/en${localizedPath}`],
+        ],
       )
     : undefined;
 

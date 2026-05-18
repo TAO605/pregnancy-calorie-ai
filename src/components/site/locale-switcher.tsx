@@ -10,10 +10,17 @@ type LocaleSwitcherProps = {
   className?: string;
 };
 
-const localeLabels: Record<Locale, string> = {
-  en: "EN",
-  "zh-CN": "\u4e2d\u6587",
-  es: "ES",
+const localeLabels: Record<string, string> = {
+  en: "English",
+  es: "Español",
+  fr: "Français",
+  de: "Deutsch",
+  pt: "Português",
+  it: "Italiano",
+  ru: "Русский",
+  ar: "العربية",
+  ja: "日本語",
+  ko: "한국어",
 };
 
 function swapLocaleInPath(path: string, targetLocale: Locale) {
@@ -59,7 +66,7 @@ export function LocaleSwitcherFallback({ locale, className }: LocaleSwitcherProp
         className ?? ""
       }`}
     >
-      <span className="rounded-full bg-[#171717] px-3 py-1.5 text-xs font-semibold tracking-[0.08em] text-white">
+      <span className="rounded-full bg-[#171717] px-3 py-1.5 text-xs font-semibold text-white">
         {localeLabels[locale]}
       </span>
     </div>
@@ -84,7 +91,8 @@ export function LocaleSwitcher({ locale, className }: LocaleSwitcherProps) {
           <Link
             key={targetLocale}
             href={buildLocaleHref(pathname, params, locale, targetLocale)}
-            className={`rounded-full px-3 py-1.5 text-xs font-semibold tracking-[0.08em] transition ${
+            hrefLang={targetLocale}
+            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
               active
                 ? "bg-[#171717] text-white"
                 : "text-muted hover:bg-white hover:text-foreground"

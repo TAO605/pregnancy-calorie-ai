@@ -58,5 +58,5 @@ const copy: Record<Locale, AssistantPanelCopy> = {
 };
 
 export function getAssistantPanelCopy(locale: Locale): AssistantPanelCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

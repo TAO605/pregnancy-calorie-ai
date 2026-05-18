@@ -9,7 +9,7 @@ import {
   type GuideTopicKey,
 } from "@/lib/content/guide-topic";
 import { getAdminCopy } from "@/lib/i18n/admin-copy";
-import { locales, type Locale } from "@/lib/i18n/config";
+import { isLocale, locales, type Locale } from "@/lib/i18n/config";
 import type { ContentPage } from "@/types/content";
 
 type ContentEditorProps = {
@@ -76,9 +76,7 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
       return true;
     }
 
-    const pageLocale = locales.includes(page.locale as Locale)
-      ? (page.locale as Locale)
-      : locale;
+    const pageLocale = isLocale(page.locale) ? page.locale : locale;
     return getGuideTopic(page.slug, pageLocale).key === selectedTopic;
   });
 
@@ -87,9 +85,7 @@ export function ContentEditor({ initialPages, locale }: ContentEditorProps) {
   }
 
   function renderTopicPreview(page: ContentPage) {
-    const pageLocale = locales.includes(page.locale as Locale)
-      ? (page.locale as Locale)
-      : locale;
+    const pageLocale = isLocale(page.locale) ? page.locale : locale;
     const guideTopic = getGuideTopic(page.slug, pageLocale);
 
     return (

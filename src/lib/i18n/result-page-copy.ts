@@ -23,7 +23,7 @@ type ResultPageCopy = {
     eyebrow: string;
     title: string;
     extraCaloriesTitle: string;
-    formatExtraCaloriesBody: (extraCalories: number, trimester: number) => string;
+    formatExtraCaloriesBody: (extraCalories: number | string, trimester: number) => string;
     sourceTitle: string;
     formatSourceBody: (source: string) => string;
     bmiTitle: string;
@@ -335,5 +335,5 @@ const copy: Record<Locale, ResultPageCopy> = {
 };
 
 export function getResultPageCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

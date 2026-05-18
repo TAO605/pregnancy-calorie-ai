@@ -281,5 +281,5 @@ const copy: Record<Locale, DashboardWeeklyCheckInCopy> = {
 };
 
 export function getDashboardWeeklyCheckInCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

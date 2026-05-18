@@ -1266,5 +1266,5 @@ const copy: Record<Locale, AdminCopy> = {
 };
 
 export function getAdminCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

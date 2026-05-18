@@ -113,5 +113,5 @@ const copy: Record<Locale, SavedCalculationCopy> = {
 };
 
 export function getSavedCalculationCopy(locale: Locale): SavedCalculationCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

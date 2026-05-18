@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { locales } from "@/lib/i18n/config";
+
 export const calculatorInputSchema = z.object({
   age: z.coerce.number().min(16).max(55),
   height: z.coerce.number().gt(0),
@@ -11,7 +13,7 @@ export const calculatorInputSchema = z.object({
   activityLevel: z.enum(["sedentary", "light", "moderate", "active"]),
   pregnancyType: z.enum(["singleton", "multiple"]),
   countryCode: z.string().trim().min(2).max(3),
-  locale: z.enum(["en", "zh-CN", "es"]),
+  locale: z.enum(locales),
 });
 
 export type CalculatorInput = z.infer<typeof calculatorInputSchema>;

@@ -262,5 +262,5 @@ const copy: Record<Locale, WeightWeeklyReviewCopy> = {
 };
 
 export function getWeightWeeklyReviewCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

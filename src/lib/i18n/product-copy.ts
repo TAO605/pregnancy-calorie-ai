@@ -344,5 +344,5 @@ const copy: Record<Locale, ProductCopy> = {
 };
 
 export function getProductCopy(locale: Locale): ProductCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

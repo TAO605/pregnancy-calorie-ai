@@ -7,6 +7,7 @@ import { hasAuthenticatedServerSession } from "@/lib/auth/server-session";
 import type { Dictionary } from "@/lib/i18n/copy";
 import type { Locale } from "@/lib/i18n/config";
 import { getAuthEntryCopy } from "@/lib/i18n/auth-entry-copy";
+import { isRtlLocale } from "@/lib/i18n/config";
 import { getMarketingPageCopy } from "@/lib/i18n/marketing-page-copy";
 
 type MarketingShellProps = {
@@ -23,6 +24,7 @@ export async function MarketingShell({
   const pageCopy = getMarketingPageCopy(locale);
   const authEntryCopy = getAuthEntryCopy(locale);
   const isSignedIn = await hasAuthenticatedServerSession();
+  const isRtl = isRtlLocale(locale);
   const navItems = [
     {
       href: `/${locale}/tools/pregnancy-calorie-calculator`,
@@ -43,10 +45,10 @@ export async function MarketingShell({
   ];
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col" dir={isRtl ? "rtl" : "ltr"}>
       <header className="sticky top-0 z-20 border-b border-black/5 bg-white/80 backdrop-blur-xl">
         <div className="app-container py-4">
-          <div className="flex items-center justify-between gap-6">
+          <div className={`flex items-center justify-between gap-6 ${isRtl ? "flex-row-reverse" : ""}`}>
             <Link href={`/${locale}`} className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#171717] text-sm font-semibold text-white">
                 ND
@@ -59,12 +61,12 @@ export async function MarketingShell({
               </div>
             </Link>
 
-            <div className="flex items-center gap-3">
+            <div className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
               <Suspense fallback={<LocaleSwitcherFallback locale={locale} className="shrink-0" />}>
                 <LocaleSwitcher locale={locale} className="shrink-0" />
               </Suspense>
 
-              <nav className="hidden items-center gap-2 md:flex">
+              <nav className={`hidden items-center gap-2 md:flex ${isRtl ? "flex-row-reverse" : ""}`}>
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
@@ -85,7 +87,7 @@ export async function MarketingShell({
             </div>
           </div>
 
-          <nav className="mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden">
+          <nav className={`mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden ${isRtl ? "flex-row-reverse" : ""}`}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -111,7 +113,7 @@ export async function MarketingShell({
       <footer className="border-t border-black/5 bg-white/70 py-6 backdrop-blur-xl">
         <div className="app-container flex flex-col gap-3 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <p>{dictionary.brand.tagline}</p>
-          <div className="flex gap-4">
+          <div className={`flex gap-4 ${isRtl ? "flex-row-reverse" : ""}`}>
             <Link href={`/${locale}/tools/pregnancy-calorie-calculator`}>
               {dictionary.nav.calculator}
             </Link>

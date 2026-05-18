@@ -56,5 +56,5 @@ const copy: Record<Locale, AssistantHistoryCopy> = {
 };
 
 export function getAssistantHistoryCopy(locale: Locale): AssistantHistoryCopy {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

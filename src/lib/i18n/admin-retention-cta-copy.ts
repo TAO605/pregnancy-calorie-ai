@@ -133,5 +133,5 @@ const copy: Record<Locale, AdminRetentionCtaCopy> = {
 };
 
 export function getAdminRetentionCtaCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }
