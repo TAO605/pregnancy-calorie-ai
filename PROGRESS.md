@@ -1,5 +1,10 @@
 # Progress
 
+## 2026-05-18
+
+- Defined the permanent multilingual maintenance process in `docs/MULTILINGUAL_MAINTENANCE.md`. The process locks English as the single source of truth, requires all production translations to use the configured DeepL API secret `DEEPL_AUTH_KEY`, forbids direct edits to non-English locale files, requires incremental key-only translation updates, and mandates `npm run quality:gate` plus GitHub Actions `Quality Gate` before deployment.
+- Documented monthly multilingual maintenance and emergency rollback rules for affected language folders/routes, with English fallback and DeepL-only re-translation before redeploying.
+
 ## 2026-05-06
 
 - Added local AI-style pregnancy calorie guidance to `delivery/index.html`.
