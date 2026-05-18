@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">AI Pregnancy Calorie Calculator square logo</title>
+  <desc id="desc">Minimal berry magenta pregnancy belly and calorie flame mark.</desc>
+  <rect width="1024" height="1024" fill="none"/>
+  <g fill="none" stroke="#9c2760" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M496 132c-171 47-289 194-305 363-17 190 94 350 272 421" stroke-width="58"/>
+    <path d="M508 918c235-28 411-207 427-429 14-194-104-352-278-392" stroke-width="58"/>
+    <path d="M387 249c85 66 148 148 185 250" stroke-width="45"/>
+    <path d="M575 660c-75 32-159 34-236 4" stroke-width="45"/>
+  </g>
+  <path fill="#9c2760" d="M705 246c93 82 131 168 119 257-15 108-100 184-207 184-105 0-193-74-207-178-12-94 43-186 158-280-2 65 23 117 76 154 51-38 72-86 61-137z"/>
+  <path fill="#fff" d="M662 474c36 39 48 76 42 108-8 41-43 70-87 70s-80-30-86-70c-7-38 15-77 66-120 4 30 19 51 43 65 22-17 30-34 22-53z" opacity=".96"/>
+</svg>

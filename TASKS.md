@@ -1,0 +1,83 @@
+# Tasks
+
+## Current Round
+
+- [x] Generate the Tailwind CSS v3 mobile-first English single-function pregnancy calorie calculator.
+- [x] Fix first-screen layout so the six V12 input rows and the calculate button remain visible without changing calculator logic.
+- [x] Add a real same-domain Vercel AI proxy for pregnancy guidance instead of relying only on the local fallback template.
+- [x] Regenerate `delivery/index.html` as a standalone V12 mobile-first single-function HTML tool with strict six-row input layout, local AI fallback/cache, share/save actions, and commercial footer slots.
+- [x] Align AI guidance generation with the US obstetric dietitian + pregnancy exercise guide prompt: parameter-anchored English modules for diet, exercise, and pregnancy tips.
+- [x] Tighten the V12 input density guard: 16px input padding, 24px row gaps, 56px rows, 48px unit controls without increasing row height, and 375px first-screen fit.
+- [x] Add retention UX without disturbing the core flow: user-triggered `Customize My Tips`, `Weekly Update`, and touch-friendly copy/save/share result actions.
+- [x] Make AI API integration explicit and directly configurable: visible live/local status, `GET /api/pregnancy-guidance` health check, OpenAI/Claude/OpenAI-compatible env vars, and setup docs.
+- [x] Make live API mandatory by default and add `delivery/setup-ai-api.ps1` so non-technical setup is reduced to pasting an API key locally.
+- [x] Configure and verify the production RKAPI OpenAI-compatible `gpt-5.5` integration through the same-domain pregnancy guidance endpoint.
+- [x] Run full local pre-launch QA, fix live AI timeout for `gpt-5.5`, deploy a clean production package, and verify production API output.
+- [x] Run final production-wide QA, tighten first-screen layout for larger mobile viewports, redeploy, and verify production layout/API again.
+- [x] Add bottom compliance navigation plus six independent legal/site pages, update sitemap, deploy, and verify production links/layout.
+- [x] Repair `Customize My Tips` with a mobile textarea modal, Cancel/Generate actions, six multi-select quick tags, and AI regeneration from the saved six base inputs plus custom context.
+- [x] Make `Customize My Tips` force a realtime GPT request with no cache/template fallback, while preserving previous AI content on request failure.
+- [x] Replace the empty `Weekly Update` behavior with a confirmation modal, editable week/weight fields, recalculation, saved input update, and live GPT regeneration for the updated week.
+- [x] Complete the `Weekly Update` UX loop with strict week/weight validation, full-screen loading, disabled buttons, success/error notice popups, smooth result scrolling, and verified Copy/Save compatibility through updated result state.
+- [x] Upgrade `Share Result` for overseas users with native Web Share, an 8-platform international fallback modal, current-result share text, branded result image generation, and 1200x630 social preview metadata.
+- [x] Add the unified Pregnancy Calorie Calculator logo and favicon assets, embed them in the homepage header, favicon tags, OG metadata, and branded result image canvas without changing calculator or AI behavior.
+- [x] Run comprehensive local and production QA after logo/favicon integration, redeploy production, and verify static pages, assets, layout, AI API, Customize, Weekly Update, Save/Share, SEO, and secret-scan coverage.
+- [x] Rename the public website brand to `AI Pregnancy Calorie Calculator` across homepage metadata, schema, footer branding, legal pages, share branding, and the horizontal logo asset.
+- [x] Repair `Share Result` with clearer native-share feedback, an 8-platform international fallback, official platform URLs, Copy Full Share Content fallback, current-result share text, and verified logo-branded image generation.
+- [x] Tighten `Share Result` feedback copy, Chinese replacement comments, native-share cancel/failure handling, and automatic clipboard fallback without changing non-share functionality.
+- [x] Rebuild only `Save Result Image` generation with an html2canvas-based 800px adaptive-height result image, clean typography, complete de-duplicated AI tips, brand bar, loading/success/error feedback, and mobile verification.
+- [x] Add a full automatic `Save Result Image` audit loop with pre-save result validation, blocked keyword/content checks, safe fallback AI tips, post-render validation, and download interception on invalid output.
+- [x] Mark and verify Facebook/TikTok in the existing 8-platform share panel order, with matching icons, copy fallback, and platform launch URLs.
+- [x] Change `Share Result` entry behavior to open the built-in 8-platform modal directly so Facebook and TikTok are visible instead of relying on the Windows native share sheet.
+- [x] Add an operations workflow document for customer feedback intake, iteration, urgent incident handling, verification, Vercel preview/production deployment, rollback, and maintenance.
+- [x] Harden the AI personalized content audit loop with stronger prompt boundaries, blocked technical keywords, per-section user-data matching, mismatch detection, safe fallback replacement, and linked save-image audit verification.
+- [x] Add a Codex autonomous operations flow plus a read-only weekly check script for local/production health, AI audit markers, Save/Share markers, assets, legal pages, and production AI health.
+- [x] Deploy the Google English independent site to Vercel production and verify the canonical domain, AI endpoint, robots, sitemap, favicon, OG cover, and legal pages.
+- [x] Add and deploy the Google Search Console verification meta tag for the production homepage.
+- [x] Add a non-blocking front-end-only login/sign-up UI entry and modal to `delivery/index.html` without changing calculator, GPT, Save, Share, SEO, or guest usage behavior.
+- [x] Add Vercel Serverless auth backend for register/login/logout/session/password reset with Vercel Postgres, bcrypt password hashing, HttpOnly cookies, and connect the existing auth UI to the APIs.
+- [x] Re-scope the account work back to login/register only by removing history/account-settings additions and verifying guest calculator, GPT, Save/Share markers, and mobile layout remain intact.
+- [x] Add forgot-password and account recovery flow with Resend email delivery, 24-hour reset links, token verification, password reset landing page, and mobile-safe UI switching.
+- [x] Add optional Stripe Premium subscription scaffolding with non-blocking homepage entry points, Premium plan page, Vercel Serverless subscription APIs, subscription status fields, setup docs, and smoke-test script while preserving the free calculator flow.
+- [x] Re-scope Premium to an isolated `/premium` page, keep homepage changes to only the Account modal and result-page bottom entry, move subscription state out of auth responses, remove duplicate `premium.html`, and add `/premium` to sitemap.
+- [x] Tighten the front-end calorie formula to explicitly follow IOM 2009 trimester extras, apply BMI-based BMR adjustment, and display the complete calculation process.
+- [x] Replace trimester-only pregnancy extra calories with a 1-42 week smooth calorie curve, add four-week prediction output, and show fetal development milestones in the result page.
+- [x] Upgrade daily macro targets to percentage-based gram ranges with pregnancy protein addition, food examples, fetal-development roles, and vegetarian/gestational-diabetes/high-blood-pressure adaptations.
+- [x] Add deterministic daily meal plan examples: three full-day plans with breakfast, lunch, dinner, two snacks, calories, protein, key nutrients, substitutions, and ingredient pregnancy-safety grades.
+- [x] Upgrade meal planning to a personalized one-day plan with diet type, allergies, budget, cooking difficulty, culture style, five eating moments, pregnancy-safe notes, and per-meal replacement.
+- [x] Add unit-system UX: region-based metric/imperial presets, top input-area kg/cm vs lbs/in switching, live conversion hints, dual-unit result references, and saved default unit memory.
+- [x] Add a natural-language pregnancy nutrition Q&A module that answers in exactly three short sentences using the user's current week, BMI, calorie target, and meal preferences.
+- [x] Add automatic unit recognition for typed height/weight entries such as `120斤` and `5英尺4英寸`, with conversion confirmation and dual-unit result references.
+- [x] Add a post-calculation plain-English result explanation card with three short sections, doctor talking points, bold emphasis, and FAQ links.
+- [x] Add a warm encouragement-first result experience with a 20svh hero, normal-range weight visualization, every-seventh-use positive quote, friendlier wording, and a hide-numbers encouragement mode.
+- [x] Add an AI-style weekly weight gain tracker with local weekly records, trend chart, IOM guide range comparison, and encouraging analysis.
+- [x] Add prioritized core numbers plus three short personalized adjustment suggestions based on BMI, pregnancy week, activity level, pregnancy type, and special diet context.
+- [x] Replace the result explanation with a strict three-sentence, week-specific, warm plain-English interpretation that avoids formula jargon and gives one same-day action.
+- [x] Add a compact AI pregnancy nutrition weekly report with Monday refresh, weight/calorie/macro/next-week focus, three cheerful personalized suggestions, and one-click share/copy.
+- [x] Complete WorldFirst/Stripe reapplication compliance cleanup with project-specific Privacy Policy, Terms of Service, homepage business explanation, subscription entry, and application guide.
+- [x] Complete Google SEO indexability and YMYL E-E-A-T optimization for the seven public pages, including robots, sitemap, page metadata, content depth, internal links, schema, WebP assets, and GSC action docs.
+- [x] Complete full-site semantic HTML and structured data cleanup for the seven public pages, including `en-US` language tags, `main > article` shells, labeled navigation, link titles, image alt validation, homepage FAQ/Organization JSON-LD, and visible AI-generated content disclosure.
+- [x] Add a WorldFirst/Stripe review-ready product display and purchase flow surface with `/pricing.html`, visible monthly/annual subscription cards, homepage paid CTA, Pricing/Get Started navigation, pricing FAQ content, sitemap entry, and production verification.
+- [x] Strengthen the WorldFirst/Stripe storefront review surface with detailed plan benefits, service scope, direct pricing CTAs, real-style user reviews, 30-day refund wording, unified top navigation, updated Terms pricing/refund rules, and Stripe checkout button wiring.
+- [x] Add an independent Refund Policy page for payment review, wire `/refund-policy`, add footer links, add guarantee links near purchase CTAs, update sitemap, and verify desktop/mobile rendering.
+- [x] Fix the pregnancy nutrition Q&A submit button label and status sentence, then verify desktop/mobile question submission.
+- [x] Add a reusable homepage language switcher in the desktop nav, mobile hamburger menu, and footer quick links with 10 language options, cookie persistence, localized URL rewrites, and Arabic RTL handling.
+- [x] Add multilingual SEO hreflang/canonical coverage for 10 languages across public pages, generate clean localized static URLs, and rebuild the sitemap with reciprocal alternate clusters.
+- [x] Localize visible SEO content for the non-English page set so language URLs are no longer English duplicate shells.
+- [x] Harden multilingual SEO canonical/sitemap/link-switching rules: self canonical URLs, bare English homepage canonical, 100-entry xhtml sitemap, robots sitemap reference, real anchor-based language options, and no browser-language auto-redirect.
+- [x] Regenerate all 90 non-English SEO static pages through the DeepL Free API using header-based authentication, preserving reciprocal hreflang, self canonicals, JSON-LD, RTL Arabic, and mobile-safe layout.
+- [x] Refine the homepage language switcher UI: 16px globe icon, transparent nav-style button, #666666/default and #9d4edd hover colors, integrated auth/nav spacing, footer language selector moved below Quick Links at the right edge, and RTL/mobile layout checks.
+- [x] Add global multi-currency display support: remove all RMB symbols, default to USD, add Vercel country-to-currency detection, daily exchange-rate API fallback, cookie/manual currency switching, USD charge disclaimers, and keep Stripe checkout charging through USD Price IDs.
+- [x] Simplify currency UX by removing the currency switcher from the homepage navigation while keeping automatic currency detection and cookie-based price updates; keep manual switching on Pricing and the Premium checkout-entry page.
+- [x] Recreate `public/locales/en/common.json` from current English static page text and generate 9 DeepL-only translated `common.json` files for `es`, `fr`, `de`, `pt`, `it`, `ru`, `ar`, `ja`, and `ko` without modifying HTML/CSS/JS/layout files.
+- [x] Add an automated quality gate with Jest unit/integration tests, Cypress E2E flows, Percy-compatible visual tests, local pre-commit hook, GitHub Actions workflow, and generated `.qa/reports/quality-gate-report.json`.
+
+## Next Tasks
+
+- [x] Restore localized delivery routes (`/es`, `/fr`, `/de`, `/pt`, `/it`, `/ru`, `/ar`, `/ja`, `/ko` plus pricing/about/contact children) so the new quality gate can pass.
+- [ ] Blocked: Complete the English-only rollback cleanup by removing multilingual switcher links, hreflang/sitemap references, and related browser code after explicit permission to modify HTML/JS/sitemap files.
+- [ ] Blocked: Continue promotion keyword research after the user enables Chrome remote debugging for `web-access` so Semrush mirror data can be queried without fabricating search volume or KD values.
+- [ ] Re-run `node scripts\ops-weekly-check.mjs` from a network that permits outbound HTTPS to `aipregnancycaloriecalculator.online` so the 12 production endpoint checks can complete.
+- [ ] Configure Stripe test/live environment variables in Vercel, create Stripe Price IDs, register the production webhook, redeploy, and run `npm run test:subscription`.
+- [ ] Complete Google Search Console verification, submit `https://aipregnancycaloriecalculator.online/sitemap.xml`, and request indexing for the homepage.
+- [ ] Replace placeholder contact email before production launch.
