@@ -218,5 +218,5 @@ const copy: Record<Locale, MarketingPageCopy> = {
 };
 
 export function getMarketingPageCopy(locale: Locale) {
-  return copy[locale];
+  return copy[locale] ?? copy.en;
 }

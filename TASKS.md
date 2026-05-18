@@ -72,6 +72,7 @@
 - [x] Recreate `public/locales/en/common.json` from current English static page text and generate 9 DeepL-only translated `common.json` files for `es`, `fr`, `de`, `pt`, `it`, `ru`, `ar`, `ja`, and `ko` without modifying HTML/CSS/JS/layout files.
 - [x] Add an automated quality gate with Jest unit/integration tests, Cypress E2E flows, Percy-compatible visual tests, local pre-commit hook, GitHub Actions workflow, and generated `.qa/reports/quality-gate-report.json`.
 - [x] Define and document the permanent multilingual maintenance process, including English-first updates, DeepL-only incremental translation, monthly checks, rollback rules, and quality-gate requirements.
+- [x] Implement functional 10-language localization infrastructure in the Next.js app: supported locale routing, localized number/date/unit format rules, RTL Arabic shell handling, language-switcher labels, calculator locale validation, and format regression tests.
 
 ## Next Tasks
 
