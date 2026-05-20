@@ -109,6 +109,7 @@
 - [x] Enable global all-features-free mode with one environment switch: hide all visible paid entries across languages, redirect pricing/premium routes, keep Stripe/subscription code dormant but intact, preserve early-user free eligibility for future paid-mode restoration, and verify with build plus full quality gate.
 - [x] Complete Stage 3 free-mode paid-entry cleanup: hide residual paid links/currency notes/legal paid copy across generated delivery pages, redirect pricing/premium/refund-policy routes by locale, regenerate all localized delivery pages, and verify 100 browser page/route checks plus build and full quality gate.
 - [x] Complete Stage 4 SEO-safe 301 redirect expansion: permanently redirect pricing, premium, refund policy, checkout, billing, and subscription result routes to the correct language homepage when free mode is enabled, with local redirect checks, build, and full quality gate.
+- [x] Complete Stage 5 sitemap exclusion logic: exclude all paid/free-mode redirect routes from `next-sitemap`, rebuild sitemaps, and verify generated sitemap files contain no paid URLs.
 
 ## Next Tasks
 

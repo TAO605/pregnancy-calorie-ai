@@ -48,3 +48,13 @@ Representative local no-follow redirect checks passed for 14 routes:
 - Jest: 332/332 passed
 - Cypress E2E: 59/59 passed
 - Visual checks: 10/10 passed
+
+## Stage 5 Sitemap Check
+
+Updated `next-sitemap.config.js` free-mode exclusions and reran `npm run build`.
+
+Scanned generated sitemap outputs for paid URL markers:
+
+- `public/sitemap.xml`: no matches
+- `public/robots.txt`: no matches
+- `delivery/sitemap.xml`: no matches

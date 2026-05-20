@@ -4,7 +4,21 @@ module.exports = {
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,
-  exclude: ['/api/*'],
+  exclude: [
+    '/api/*',
+    ...(process.env.NEXT_PUBLIC_ALL_FEATURES_FREE === 'true'
+      ? [
+          '/pricing',
+          '/premium',
+          '/refund-policy',
+          '/checkout',
+          '/checkout/*',
+          '/billing',
+          '/subscription-success',
+          '/subscription-canceled',
+        ]
+      : []),
+  ],
   alternateRefs: [
     {
       href: 'https://aipregnancycaloriecalculator.online/es',
