@@ -43,9 +43,9 @@ function injectHtmlFlag(html, enabled) {
 
 function paidRouteDestination(pathname) {
   const normalized = pathname.replace(/\\/g, "/").toLowerCase();
-  const match = normalized.match(/(?:^|\/)(es|fr|de|pt|it|ru|ar|ja|ko)\/(?:pricing|premium)\/index\.html$/);
+  const match = normalized.match(/(?:^|\/)(es|fr|de|pt|it|ru|ar|ja|ko)\/(?:pricing|premium|refund-policy)\/index\.html$/);
   if (match) return `/${match[1]}/`;
-  if (/(?:^|\/)(pricing|premium)(?:\.html|\/index\.html)$/.test(normalized)) return "/";
+  if (/(?:^|\/)(pricing|premium|refund-policy)(?:\.html|\/index\.html)$/.test(normalized)) return "/";
   return null;
 }
 
@@ -60,23 +60,71 @@ html[data-all-features-free="true"] .premium-manage-button,
 html[data-all-features-free="true"] .plan-card,
 html[data-all-features-free="true"] .pricing-grid,
 html[data-all-features-free="true"] .pricing-currency-row,
+html[data-all-features-free="true"] .guarantee,
+html[data-all-features-free="true"] .guarantee-note,
+html[data-all-features-free="true"] [data-usd-charge-note],
 html[data-all-features-free="true"] [data-checkout-plan],
 html[data-all-features-free="true"] a[href*="/pricing"],
 html[data-all-features-free="true"] a[href*="pricing.html"],
 html[data-all-features-free="true"] a[href*="/premium"],
-html[data-all-features-free="true"] a[href*="premium.html"] {
+html[data-all-features-free="true"] a[href*="premium.html"],
+html[data-all-features-free="true"] a[href*="/refund-policy"],
+html[data-all-features-free="true"] a[href*="refund-policy.html"] {
   display: none !important;
 }
 </style>`;
+  const copyGuard = `<script id="all-features-free-paid-copy-guard">
+(function(){
+  if (document.documentElement.dataset.allFeaturesFree !== "true") return;
+  function prunePaidCopy(){
+    var paidPattern = /\\b(Pricing|Premium|Subscribe|subscription|checkout|Unlock|Upgrade|Buy Now|Start Free Trial|Stripe|billing|payment|paid|price|prices|refund|money-back|charged in USD)\\b|\\$7\\.99|\\$79\\.99|\\b(Precios?|suscripci[oó]n|facturaci[oó]n|pago|reembolso)\\b|\\b(Prix|abonnement|facturation|paiement|remboursement)\\b|\\b(Preis|Preise|Abonnement|Zahlung|R[üu]ckerstattung|Erstattung)\\b|\\b(Pre[cç]os?|assinatura|faturamento|pagamento|reembolso)\\b|\\b(Prezzi?|abbonamento|fatturazione|pagamento|rimborso)\\b|подпис|оплат|плат[её]ж|возврат|премиум|цены|الأسعار|الاشتراك|الدفع|الفواتير|استرداد|返金|価格|料金|支払い|サブスクリプション|プレミアム|환불|가격|요금|결제|구독|프리미엄/i;
+    var selectors = [
+      "p",
+      "li",
+      "a",
+      "button",
+      "h2",
+      "h3",
+      "small",
+      ".currency-note",
+      ".support-card",
+      ".guarantee",
+      ".guarantee-note",
+      ".premium-result-card",
+      ".subscription-teaser",
+      ".premium-account-badge",
+      ".premium-upgrade-button",
+      ".premium-manage-button"
+    ].join(",");
+    document.querySelectorAll(selectors).forEach(function(element){
+      var text = (element.innerText || element.textContent || "").trim();
+      if (text && paidPattern.test(text)) element.hidden = true;
+    });
+    document.querySelectorAll("input[placeholder], textarea[placeholder]").forEach(function(element){
+      var placeholder = element.getAttribute("placeholder") || "";
+      if (!paidPattern.test(placeholder)) return;
+      element.setAttribute("placeholder", placeholder.replace(/\\bBilling,?\\s*/i, "").replace(/\\bsubscription,?\\s*/i, "").replace(/\\bpayment,?\\s*/i, "").replace(/\\s{2,}/g, " ").replace(/^,\\s*/, "").trim());
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", prunePaidCopy, { once: true });
+  else prunePaidCopy();
+}());
+</script>`;
   const redirect = redirectTarget
     ? `<script id="all-features-free-paid-route-redirect">(function(){if(document.documentElement.dataset.allFeaturesFree==="true"){window.location.replace("${redirectTarget}");}}());</script>`
     : "";
-  const block = `${guard}${redirect}`;
+  const block = `${guard}${copyGuard}${redirect}`;
 
   if (html.includes('id="all-features-free-guard"')) {
     html = html.replace(/<style id="all-features-free-guard">[\s\S]*?<\/style>/, guard);
   } else {
     html = html.replace("</head>", `${block}\n</head>`);
+  }
+
+  if (html.includes('id="all-features-free-paid-copy-guard"')) {
+    html = html.replace(/<script id="all-features-free-paid-copy-guard">[\s\S]*?<\/script>/, copyGuard);
+  } else {
+    html = html.replace("</head>", `${copyGuard}\n</head>`);
   }
 
   if (redirect && html.includes('id="all-features-free-paid-route-redirect"')) {
@@ -116,7 +164,7 @@ for (const file of listHtmlFiles(deliveryDir)) {
 const sitemapFile = path.join(deliveryDir, "sitemap.xml");
 if (enabled && fs.existsSync(sitemapFile)) {
   const before = fs.readFileSync(sitemapFile, "utf8");
-  const after = before.replace(/\s*<url>[\s\S]*?<loc>[^<]*(?:\/pricing|\/premium)[^<]*<\/loc>[\s\S]*?<\/url>/gi, "");
+  const after = before.replace(/\s*<url>[\s\S]*?<loc>[^<]*(?:\/pricing|\/premium|\/refund-policy)[^<]*<\/loc>[\s\S]*?<\/url>/gi, "");
   if (after !== before) {
     fs.writeFileSync(sitemapFile, after, "utf8");
     changed += 1;

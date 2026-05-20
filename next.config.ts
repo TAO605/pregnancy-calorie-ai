@@ -46,12 +46,22 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/refund-policy",
+        destination: "/",
+        permanent: true,
+      },
+      {
         source: "/:locale/pricing",
         destination: "/:locale",
         permanent: true,
       },
       {
         source: "/:locale/premium",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/:locale/refund-policy",
         destination: "/:locale",
         permanent: true,
       },

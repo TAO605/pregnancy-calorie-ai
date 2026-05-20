@@ -1,4 +1,4 @@
-const PAID_ROUTE_PATTERN = /^\/(?:[a-z]{2}\/)?(?:pricing|premium)(?:\/|\.html)?$/i;
+const PAID_ROUTE_PATTERN = /^\/(?:[a-z]{2}\/)?(?:pricing|premium|refund-policy)(?:\/|\.html)?$/i;
 
 export const config = {
   matcher: [
@@ -6,10 +6,14 @@ export const config = {
     "/pricing.html",
     "/premium",
     "/premium.html",
+    "/refund-policy",
+    "/refund-policy.html",
     "/:locale/pricing",
     "/:locale/pricing.html",
     "/:locale/premium",
-    "/:locale/premium.html"
+    "/:locale/premium.html",
+    "/:locale/refund-policy",
+    "/:locale/refund-policy.html"
   ]
 };
 
@@ -28,4 +32,3 @@ export default function middleware(request) {
   const destinationPath = /^[a-z]{2}$/i.test(first) ? `/${first}/` : "/";
   return Response.redirect(new URL(destinationPath, request.url), 301);
 }
-
