@@ -1,8 +1,13 @@
 "use client";
 
-import { startTransition, useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import {
+  getDailyActivities,
+  getPregnancyTypes,
+  getPregnancyWeeks,
+} from "@/components/calculator/constants";
 import { syncUserActivitySnapshot } from "@/lib/admin/client-user-activity";
 import { getClientSessionUser } from "@/lib/auth/client-session";
 import {
@@ -213,6 +218,9 @@ export function PregnancyCalculatorForm({
   const [form, setForm] = useState<FormState>(() => buildDefaultFormState(locale));
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const pregnancyWeeks = useMemo(() => getPregnancyWeeks(labels), [labels, locale]);
+  const pregnancyTypes = useMemo(() => getPregnancyTypes(labels), [labels, locale]);
+  const dailyActivities = useMemo(() => getDailyActivities(labels), [labels, locale]);
 
   useEffect(() => {
     let alive = true;
@@ -388,12 +396,20 @@ export function PregnancyCalculatorForm({
           <input
             id="gestationalWeek"
             type="number"
+            list="gestationalWeekOptions"
             min={1}
             max={42}
             className="field-input"
             value={form.gestationalWeek}
             onChange={(event) => updateField("gestationalWeek", event.target.value)}
           />
+          <datalist id="gestationalWeekOptions">
+            {pregnancyWeeks.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </datalist>
         </div>
       </div>
 
@@ -515,10 +531,11 @@ export function PregnancyCalculatorForm({
               )
             }
           >
-            <option value="sedentary">{labels.sedentary}</option>
-            <option value="light">{labels.light}</option>
-            <option value="moderate">{labels.moderate}</option>
-            <option value="active">{labels.active}</option>
+            {dailyActivities.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
         <div className="grid gap-2">
@@ -536,8 +553,11 @@ export function PregnancyCalculatorForm({
               )
             }
           >
-            <option value="singleton">{labels.singleton}</option>
-            <option value="multiple">{labels.multiple}</option>
+            {pregnancyTypes.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>

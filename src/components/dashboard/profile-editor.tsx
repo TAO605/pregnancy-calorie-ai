@@ -1,9 +1,14 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 
 import { syncUserActivitySnapshot } from "@/lib/admin/client-user-activity";
 import { getClientSessionUser } from "@/lib/auth/client-session";
+import {
+  getDailyActivities,
+  getPregnancyTypes,
+  getPregnancyWeeks,
+} from "@/components/calculator/constants";
 import { PROFILE_UPDATED_EVENT } from "@/lib/data/profile-events";
 import { readUserProfile, writeUserProfile } from "@/lib/data/user-data";
 import {
@@ -31,6 +36,18 @@ export function ProfileEditor({ locale, copy }: ProfileEditorProps) {
   const feedbackCopy = getDashboardFormFeedbackCopy(locale);
   const preferencesCopy = getProfilePreferencesCopy(locale);
   const emailLockCopy = getProfileEditorLockCopy(locale);
+  const pregnancyWeeks = useMemo(
+    () => getPregnancyWeeks(copy.profileFields),
+    [copy.profileFields, locale],
+  );
+  const pregnancyTypes = useMemo(
+    () => getPregnancyTypes(copy.profileFields),
+    [copy.profileFields, locale],
+  );
+  const dailyActivities = useMemo(
+    () => getDailyActivities(copy.profileFields),
+    [copy.profileFields, locale],
+  );
 
   useEffect(() => {
     let alive = true;
@@ -201,10 +218,18 @@ export function ProfileEditor({ locale, copy }: ProfileEditorProps) {
             <input
               id="gestationalWeek"
               type="number"
+              list="profileGestationalWeekOptions"
               className="field-input"
               value={profile.gestationalWeek}
               onChange={(event) => update("gestationalWeek", Number(event.target.value))}
             />
+            <datalist id="profileGestationalWeekOptions">
+              {pregnancyWeeks.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </datalist>
           </div>
         </div>
 
@@ -261,8 +286,11 @@ export function ProfileEditor({ locale, copy }: ProfileEditorProps) {
                 update("pregnancyType", event.target.value as UserProfile["pregnancyType"])
               }
             >
-              <option value="singleton">{copy.profileFields.singleton}</option>
-              <option value="multiple">{copy.profileFields.multiple}</option>
+              {pregnancyTypes.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
           <div className="grid gap-2">
@@ -277,10 +305,11 @@ export function ProfileEditor({ locale, copy }: ProfileEditorProps) {
                 update("activityLevel", event.target.value as ActivityLevel)
               }
             >
-              <option value="sedentary">{copy.profileFields.sedentary}</option>
-              <option value="light">{copy.profileFields.light}</option>
-              <option value="moderate">{copy.profileFields.moderate}</option>
-              <option value="active">{copy.profileFields.active}</option>
+              {dailyActivities.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
         </div>
