@@ -51,6 +51,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/checkout/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/billing",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/subscription-success",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/subscription-canceled",
+        destination: "/",
+        permanent: true,
+      },
+      {
         source: "/:locale/pricing",
         destination: "/:locale",
         permanent: true,
@@ -62,6 +82,26 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:locale/refund-policy",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/:locale/checkout/:path*",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/:locale/billing",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/:locale/subscription-success",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/:locale/subscription-canceled",
         destination: "/:locale",
         permanent: true,
       },

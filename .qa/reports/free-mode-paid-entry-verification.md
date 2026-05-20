@@ -22,9 +22,24 @@ With `NEXT_PUBLIC_ALL_FEATURES_FREE=true`, these routes redirect to the matching
 - `/pricing`
 - `/premium`
 - `/refund-policy`
+- `/checkout/:path*`
+- `/billing`
+- `/subscription-success`
+- `/subscription-canceled`
 - `/{locale}/pricing`
 - `/{locale}/premium`
 - `/{locale}/refund-policy`
+- `/{locale}/checkout/:path*`
+- `/{locale}/billing`
+- `/{locale}/subscription-success`
+- `/{locale}/subscription-canceled`
+
+## Stage 4 Redirect Check
+
+Representative local no-follow redirect checks passed for 14 routes:
+
+- English paid routes return `301 Location: /`
+- Arabic paid routes return `301 Location: /ar/`
 
 ## Validation
 

@@ -55,7 +55,7 @@ function resolveRequestPath(requestUrl) {
 
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url || "/", "http://127.0.0.1").pathname;
-  const paidRoute = pathname.match(/^\/(?:(es|fr|de|pt|it|ru|ar|ja|ko)\/)?(?:pricing|premium|refund-policy)(?:\/|\.html)?$/i);
+  const paidRoute = pathname.match(/^\/(?:(es|fr|de|pt|it|ru|ar|ja|ko)\/)?(?:(?:pricing|premium|refund-policy|billing|subscription-success|subscription-canceled)(?:\/|\.html)?|checkout(?:\/.*)?)$/i);
   if (allFeaturesFree && paidRoute) {
     res.writeHead(301, { Location: paidRoute[1] ? `/${paidRoute[1]}/` : "/" });
     res.end();

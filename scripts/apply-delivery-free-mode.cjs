@@ -43,9 +43,9 @@ function injectHtmlFlag(html, enabled) {
 
 function paidRouteDestination(pathname) {
   const normalized = pathname.replace(/\\/g, "/").toLowerCase();
-  const match = normalized.match(/(?:^|\/)(es|fr|de|pt|it|ru|ar|ja|ko)\/(?:pricing|premium|refund-policy)\/index\.html$/);
+  const match = normalized.match(/(?:^|\/)(es|fr|de|pt|it|ru|ar|ja|ko)\/(?:pricing|premium|refund-policy|billing|subscription-success|subscription-canceled|checkout)(?:\/|\/index\.html|$)/);
   if (match) return `/${match[1]}/`;
-  if (/(?:^|\/)(pricing|premium|refund-policy)(?:\.html|\/index\.html)$/.test(normalized)) return "/";
+  if (/(?:^|\/)(pricing|premium|refund-policy|billing|subscription-success|subscription-canceled|checkout)(?:\.html|\/index\.html|\/|$)/.test(normalized)) return "/";
   return null;
 }
 
@@ -69,7 +69,11 @@ html[data-all-features-free="true"] a[href*="pricing.html"],
 html[data-all-features-free="true"] a[href*="/premium"],
 html[data-all-features-free="true"] a[href*="premium.html"],
 html[data-all-features-free="true"] a[href*="/refund-policy"],
-html[data-all-features-free="true"] a[href*="refund-policy.html"] {
+html[data-all-features-free="true"] a[href*="refund-policy.html"],
+html[data-all-features-free="true"] a[href*="/checkout"],
+html[data-all-features-free="true"] a[href*="/billing"],
+html[data-all-features-free="true"] a[href*="/subscription-success"],
+html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
   display: none !important;
 }
 </style>`;
@@ -164,7 +168,7 @@ for (const file of listHtmlFiles(deliveryDir)) {
 const sitemapFile = path.join(deliveryDir, "sitemap.xml");
 if (enabled && fs.existsSync(sitemapFile)) {
   const before = fs.readFileSync(sitemapFile, "utf8");
-  const after = before.replace(/\s*<url>[\s\S]*?<loc>[^<]*(?:\/pricing|\/premium|\/refund-policy)[^<]*<\/loc>[\s\S]*?<\/url>/gi, "");
+  const after = before.replace(/\s*<url>[\s\S]*?<loc>[^<]*(?:\/pricing|\/premium|\/refund-policy|\/checkout|\/billing|\/subscription-success|\/subscription-canceled)[^<]*<\/loc>[\s\S]*?<\/url>/gi, "");
   if (after !== before) {
     fs.writeFileSync(sitemapFile, after, "utf8");
     changed += 1;

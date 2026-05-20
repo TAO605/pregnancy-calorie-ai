@@ -1,4 +1,4 @@
-const PAID_ROUTE_PATTERN = /^\/(?:[a-z]{2}\/)?(?:pricing|premium|refund-policy)(?:\/|\.html)?$/i;
+const PAID_ROUTE_PATTERN = /^\/(?:[a-z]{2}\/)?(?:(?:pricing|premium|refund-policy|billing|subscription-success|subscription-canceled)(?:\/|\.html)?|checkout(?:\/.*)?)$/i;
 
 export const config = {
   matcher: [
@@ -8,12 +8,20 @@ export const config = {
     "/premium.html",
     "/refund-policy",
     "/refund-policy.html",
+    "/checkout/:path*",
+    "/billing",
+    "/subscription-success",
+    "/subscription-canceled",
     "/:locale/pricing",
     "/:locale/pricing.html",
     "/:locale/premium",
     "/:locale/premium.html",
     "/:locale/refund-policy",
-    "/:locale/refund-policy.html"
+    "/:locale/refund-policy.html",
+    "/:locale/checkout/:path*",
+    "/:locale/billing",
+    "/:locale/subscription-success",
+    "/:locale/subscription-canceled"
   ]
 };
 
