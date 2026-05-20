@@ -26,7 +26,7 @@ module.exports = async function handler(request, response) {
       return sendJson(response, 403, {
         ok: false,
         allFeaturesFree: true,
-        error: "All features are currently free. Checkout is disabled."
+        error: "Payment system is temporarily disabled"
       });
     }
     const user = await getSessionUser(request);

@@ -58,3 +58,13 @@ Scanned generated sitemap outputs for paid URL markers:
 - `public/sitemap.xml`: no matches
 - `public/robots.txt`: no matches
 - `delivery/sitemap.xml`: no matches
+
+## Stage 6 Paid API Check
+
+Payment provider scan found Stripe subscription routes under `delivery/api/subscription` and no PayPal route files.
+
+With `NEXT_PUBLIC_ALL_FEATURES_FREE=true`, direct handler checks returned `403` with `Payment system is temporarily disabled` for:
+
+- `create-checkout-session`
+- `create-portal-session`
+- `webhook`
