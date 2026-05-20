@@ -8,6 +8,7 @@ function normalizeSubscriptionStatus(value) {
 }
 
 function isEarlyFreeUser(row) {
+  if (row && row.is_early_user === true) return true;
   const cutoff = process.env.EARLY_FREE_CUTOFF_DATE;
   if (!row || !row.created_at || !cutoff) return false;
   const createdAt = new Date(row.created_at);
@@ -94,18 +95,29 @@ function publicSubscription(row) {
 async function ensureSubscriptionSchema() {
   if (subscriptionSchemaReady) return;
   await ensureAuthSchema();
-  // 中文注释：订阅字段只在订阅模块初始化，避免污染原有登录/注册/找回密码逻辑。
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS subscription_status TEXT NOT NULL DEFAULT 'free'`;
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS subscription_plan TEXT`;
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS subscription_expires_at TIMESTAMPTZ`;
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT`;
+  await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS is_early_user BOOLEAN NOT NULL DEFAULT FALSE`;
+  const cutoff = process.env.EARLY_FREE_CUTOFF_DATE;
+  const cutoffAt = cutoff ? new Date(cutoff) : null;
+  if (cutoffAt && Number.isFinite(cutoffAt.getTime())) {
+    await sql`
+      UPDATE pcc_users
+      SET is_early_user = TRUE,
+          updated_at = NOW()
+      WHERE is_early_user = FALSE
+        AND created_at <= ${cutoffAt.toISOString()}
+    `;
+  }
   subscriptionSchemaReady = true;
 }
 
 async function getSubscriptionUserById(userId) {
   await ensureSubscriptionSchema();
   const result = await sql`
-    SELECT id, email, created_at, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
+    SELECT id, email, created_at, is_early_user, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
     FROM pcc_users
     WHERE id = ${userId}
     LIMIT 1
@@ -124,7 +136,7 @@ async function updateUserSubscription(userId, subscription) {
         stripe_customer_id = COALESCE(${subscription.stripeCustomerId || null}, stripe_customer_id),
         updated_at = NOW()
     WHERE id = ${userId}
-    RETURNING id, email, created_at, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
+    RETURNING id, email, created_at, is_early_user, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
   `;
   return result.rows[0] || null;
 }
@@ -140,7 +152,7 @@ async function updateUserSubscriptionByStripeCustomer(stripeCustomerId, subscrip
         stripe_customer_id = ${stripeCustomerId},
         updated_at = NOW()
     WHERE stripe_customer_id = ${stripeCustomerId}
-    RETURNING id, email, created_at, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
+    RETURNING id, email, created_at, is_early_user, subscription_status, subscription_plan, subscription_expires_at, stripe_customer_id
   `;
   return result.rows[0] || null;
 }

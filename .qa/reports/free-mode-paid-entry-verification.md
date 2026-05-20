@@ -68,3 +68,30 @@ With `NEXT_PUBLIC_ALL_FEATURES_FREE=true`, direct handler checks returned `403` 
 - `create-checkout-session`
 - `create-portal-session`
 - `webhook`
+
+## Stage 7 Early User Persistence Check
+
+Implemented permanent early-user access persistence for the Vercel Postgres auth/subscription path:
+
+- `pcc_users.is_early_user BOOLEAN NOT NULL DEFAULT FALSE` is created and safely added for existing tables.
+- New registrations during `NEXT_PUBLIC_ALL_FEATURES_FREE=true` persist `is_early_user=true`.
+- `checkSubscription(row)` still grants global free-mode access first, then grants Premium to persisted early users when free mode is later disabled.
+- `EARLY_FREE_CUTOFF_DATE` remains as a compatibility fallback and can be idempotently backfilled into `is_early_user`.
+- Public auth/subscription responses expose `isEarlyUser` / `earlyFreeUser` for verification.
+
+Targeted Jest coverage passed for:
+
+- Free-mode registration writes `is_early_user=true`.
+- Paid-mode registration writes `is_early_user=false`.
+- Persisted early users stay Premium after free mode is off.
+- Cutoff-era users stay Premium through the legacy fallback.
+- Ordinary free users continue through the original subscription path.
+
+Final validation after Stage 7:
+
+- `npm run test:jest -- tests/unit/early-user-access.test.cjs`: 5/5 passed
+- `npm run build`: passed
+- `npm run quality:gate`: passed
+- Jest: 337/337 passed
+- Cypress E2E: 59/59 passed
+- Visual checks: 10/10 passed

@@ -111,6 +111,7 @@
 - [x] Complete Stage 4 SEO-safe 301 redirect expansion: permanently redirect pricing, premium, refund policy, checkout, billing, and subscription result routes to the correct language homepage when free mode is enabled, with local redirect checks, build, and full quality gate.
 - [x] Complete Stage 5 sitemap exclusion logic: exclude all paid/free-mode redirect routes from `next-sitemap`, rebuild sitemaps, and verify generated sitemap files contain no paid URLs.
 - [x] Complete Stage 6 paid API disablement: guard all Stripe-facing subscription API routes in free mode with 403 responses before Stripe logic can run, then verify directly plus build and full quality gate.
+- [x] Complete Stage 7 early-user permanent premium persistence: add `is_early_user` to the Vercel Postgres auth schema, write the flag during free-mode registration, honor persisted/cutoff early users in subscription checks after paid mode returns, and verify with targeted Jest, build, and full quality gate.
 
 ## Next Tasks
 
