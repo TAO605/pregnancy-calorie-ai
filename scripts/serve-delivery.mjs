@@ -21,6 +21,7 @@ if (fs.existsSync(envFile)) {
 }
 
 const allFeaturesFree = process.env.NEXT_PUBLIC_ALL_FEATURES_FREE === "true";
+const supportedLanguages = new Set(["en", "es", "fr", "de", "pt", "it", "ru", "ar", "ja", "ko"]);
 
 const types = {
   ".html": "text/html; charset=utf-8",
@@ -90,6 +91,15 @@ async function handleLocalPregnancyGuidance(req, res) {
   }
 
   const payload = await readJsonBody(req).catch(() => ({}));
+  const lang = String((payload && (payload.lang || payload.language || payload.locale)) || "en")
+    .toLowerCase()
+    .split("-")[0];
+  if (!supportedLanguages.has(lang)) {
+    return sendJson(res, 400, {
+      error: "Unsupported language",
+      supportedLanguages: Array.from(supportedLanguages)
+    });
+  }
   if (payload && payload.requestMode === "nutrition-qa") {
     const week = Number(payload.inputs && payload.inputs.week) || 24;
     const target = Number(payload.result && payload.result.target) || 2200;

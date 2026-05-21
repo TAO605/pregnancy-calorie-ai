@@ -121,6 +121,9 @@
 - [x] Change height/weight conversion hint wording from equality to approximate copy (`≈ 68 inches`, Arabic `≈ 68 بوصة`), keep live updates while typing, regenerate localized delivery pages, and verify all configured languages across mobile/tablet/desktop.
 - [x] Complete deployment-readiness validation for the height/weight input fix: PC/mobile input checks, Arabic RTL checks, LTR checks, in-app browser spot check, production start smoke check, build, and full quality gate.
 - [x] Fix language-switch stale content cleanup: refresh result-page runtime static copy on language changes, clear old-language AI/QA generated output without new API calls, isolate AI cache by language, regenerate localized delivery pages, and verify preview-style language switching.
+- [x] Lock language-switch memo dependencies and runtime stale-content guards for input, dropdown, navigation/footer, buttons, and form-label surfaces.
+- [x] Finish AI-generated content language-switch cleanup: clear stale AssistantPanel state on `locale` changes, show localized `ai.language_switched` prompts in AI cards and nutrition Q&A after delivery language switches, preserve zero extra AI requests, and verify with targeted Jest, build, quality gate, and browser checks.
+- [x] Add global/API language-pollution guards: pass `lang: currentLanguage` to delivery AI requests, validate supported languages in the delivery AI endpoint and local static server, make AI system prompts language-specific instead of English-only, add Cypress stale-AI cleanup tests, and verify build plus full quality gate.
 
 ## Next Tasks
 

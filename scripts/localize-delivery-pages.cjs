@@ -196,6 +196,7 @@ const runtimeCopyKeys = [
   "ai.exerciseTitle",
   "ai.tipsTitle",
   "ai.languageInstruction",
+  "ai.language_switched",
   "ai.disclaimer",
   "mealPlan.title",
   "mealPlan.summary",
@@ -372,7 +373,18 @@ function setHeadMeta(html, target, prefix) {
 
 function injectRuntimeLanguageCopy(html, lang, target) {
   const blockMatch = html.match(new RegExp(`${lang}: \\{[\\s\\S]*?\\n\\s*\\}`));
-  const existingBlock = blockMatch ? blockMatch[0] : "";
+  let existingBlock = blockMatch ? blockMatch[0] : "";
+  let output = html;
+  if (existingBlock) {
+    for (const key of runtimeCopyKeys) {
+      if (typeof target[key] !== "string" || !existingBlock.includes(`"${key}"`)) continue;
+      const keyPattern = new RegExp(`("${escapeRegExp(key)}"\\s*:\\s*)"(?:\\\\.|[^"\\\\])*"`);
+      existingBlock = existingBlock.replace(keyPattern, (_match, prefix) => {
+        return `${prefix}${JSON.stringify(target[key])}`;
+      });
+    }
+    output = output.replace(blockMatch[0], existingBlock);
+  }
   const additions = {};
   for (const key of runtimeCopyKeys) {
     if (typeof target[key] === "string" && !existingBlock.includes(`"${key}"`)) additions[key] = target[key];
@@ -380,13 +392,13 @@ function injectRuntimeLanguageCopy(html, lang, target) {
   for (const [key, value] of Object.entries(target)) {
     if (key.startsWith("phrase.") && typeof value === "string" && !existingBlock.includes(`"${key}"`)) additions[key] = value;
   }
-  if (!Object.keys(additions).length) return html;
+  if (!Object.keys(additions).length) return output;
   const serialized = JSON.stringify(additions, null, 8)
     .replace(/^{\n/, "")
     .replace(/\n}$/, "");
   const pattern = new RegExp(`(${lang}: \\{[\\s\\S]*?)(\\n\\s*\\})`);
-  if (!pattern.test(html)) return html;
-  return html.replace(pattern, (match, before, after) => {
+  if (!pattern.test(output)) return output;
+  return output.replace(pattern, (match, before, after) => {
     const needsComma = /,\s*$/.test(before.trim()) ? "" : ",";
     return `${before}${needsComma}\n        ${serialized}${after}`;
   });

@@ -1,7 +1,7 @@
 {
   "endpoint": "https://api-free.deepl.com/v2/translate",
   "source_lang": "EN",
-  "total_values": 1146,
+  "total_values": 1147,
   "calls": [
     {
       "lang": "es",
@@ -3374,5 +3374,27 @@
       "ja_ko_attached_kcal_glossary_fix": true,
       "timestamp": "2026-05-20T04:13:49.362Z"
     }
+  },
+  "ai_language_switched_update": {
+    "timestamp": "2026-05-21T06:58:11.304Z",
+    "endpoint": "https://api-free.deepl.com/v2/translate",
+    "source_lang": "EN",
+    "key_count": 1,
+    "key_start": "ai.language_switched",
+    "key_end": "ai.language_switched",
+    "target_languages": [
+      "es",
+      "fr",
+      "de",
+      "pt",
+      "it",
+      "ru",
+      "ar",
+      "ja",
+      "ko"
+    ],
+    "status": "locale_values_added_without_runtime_smoke_key",
+    "auth_method": "not executed in this local shell",
+    "note": "DEEPL_AUTH_KEY was not present in the local shell for a live smoke call; locale files contain the new language-switch prompt and the CI smoke test still requires DEEPL_AUTH_KEY."
   }
 }
