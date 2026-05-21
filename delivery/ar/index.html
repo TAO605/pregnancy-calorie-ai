@@ -1492,6 +1492,13 @@
       padding-right: 0;
     }
 
+    .has-unit {
+      flex-wrap: wrap;
+      row-gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
     .input-container {
       position: relative;
       width: 100%;
@@ -1549,21 +1556,7 @@
       height: 100%;
       opacity: 0;
       cursor: text;
-    }
-
-    .input-content .conversion-text,
-    .unit-inline-control .unit-conversion-hint {
-      min-width: 0;
-      flex: 1 1 auto;
-      order: 2;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.2;
-      text-align: right;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      unicode-bidi: isolate;
+      z-index: 999;
     }
 
     .unit-label,
@@ -1614,13 +1607,6 @@
       order: 1;
     }
 
-    html[dir="rtl"] .input-content .conversion-text,
-    html[dir="rtl"] .unit-inline-control .unit-conversion-hint {
-      order: 2;
-      direction: rtl;
-      text-align: right;
-    }
-
     html[dir="rtl"] .input-content .input-value,
     html[dir="rtl"] .input-content .input-value-field,
     html[dir="rtl"] .unit-inline-control .v12-number {
@@ -1631,6 +1617,29 @@
     html[dir="rtl"] .has-unit .input-value {
       text-align: right;
       direction: ltr;
+    }
+
+    .unit-conversion {
+      flex: 0 0 100%;
+      min-width: 0;
+      margin-top: 4px;
+      margin-right: 16px;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.25;
+      text-align: right;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      unicode-bidi: isolate;
+    }
+
+    html[dir="rtl"] .unit-inline-control .unit-conversion-hint,
+    html[dir="rtl"] .unit-conversion {
+      direction: rtl;
+      text-align: left;
+      margin-right: 0;
+      margin-left: 16px;
     }
 
     .select-value {
@@ -3845,10 +3854,10 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
                   <span id="heightDisplayValue" class="input-value" aria-hidden="true">165</span>
                   <input id="heightInput" class="v12-number hidden-input" type="text" inputmode="decimal" min="120" max="220" step="0.1" value="165" autocomplete="off" aria-label="Height">
                 </span>
-                <span id="heightConversionHint" class="unit-conversion-hint conversion-text" dir="auto">165 سم = 65 بوصة</span>
                 <button id="heightUnitButton" class="unit-button unit-label tap" type="button" aria-label="Switch height unit">cm</button>
               </span>
             </span>
+            <span id="heightConversionHint" class="unit-conversion-hint unit-conversion conversion-text" dir="auto">≈ 65 inches</span>
           </label>
 
           <label class="v12-input-row has-unit input-container" for="weightInput">
@@ -3859,10 +3868,10 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
                   <span id="weightDisplayValue" class="input-value" aria-hidden="true">60</span>
                   <input id="weightInput" class="v12-number hidden-input" type="text" inputmode="decimal" min="35" max="180" step="0.1" value="60" autocomplete="off" aria-label="Pre-pregnancy weight">
                 </span>
-                <span id="weightConversionHint" class="unit-conversion-hint conversion-text" dir="auto">60 كجم = 132 رطلاً</span>
                 <button id="weightUnitButton" class="unit-button unit-label tap" type="button" aria-label="Switch weight unit">kg</button>
               </span>
             </span>
+            <span id="weightConversionHint" class="unit-conversion-hint unit-conversion conversion-text" dir="auto">≈ 132 lbs</span>
           </label>
 
           <button class="v12-input-row" type="button" data-open-choice="week" aria-haspopup="dialog">
@@ -6552,6 +6561,12 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
       return formatUnit(value, "in", { decimals });
     }
 
+    function formatLengthInConversion(value, decimals = 0) {
+      if (currentLanguage === "ar") return formatLengthIn(value, decimals);
+      const unit = Math.abs(Number(value)) === 1 ? "inch" : "inches";
+      return formatNumber(currentLanguage, value, { decimals }) + " " + unit;
+    }
+
     function formatWeightInputDisplay(value, unit) {
       return unit === "kg" ? formatWeightKg(value) : formatWeightLb(value, 1);
     }
@@ -7307,9 +7322,9 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
       const heightCm = toCm();
       const heightIn = heightCm / 2.54;
       const converted = state.heightUnit === "cm"
-        ? formatLengthIn(heightIn, 0)
+        ? formatLengthInConversion(heightIn, 0)
         : formatLengthCm(heightCm);
-      return currentLanguage === "ar" ? converted + " =" : "= " + converted;
+      return "≈ " + converted;
     }
 
     function formatWeightConversionHint() {
@@ -7319,7 +7334,7 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
       const converted = state.weightUnit === "kg"
         ? formatWeightLbConversion(weightLbs, 0)
         : formatWeightKg(weightKg);
-      return currentLanguage === "ar" ? converted + " =" : "= " + converted;
+      return "≈ " + converted;
     }
 
     function applyUnitSystem(unitSystem, saveDefault) {

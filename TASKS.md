@@ -116,6 +116,10 @@
 - [x] Complete Stage 9 paid-system restore readiness: document the 5-minute restore path, verify all reversible switch points, include early-user notification copy, and record the required static delivery regeneration step.
 - [x] Fix the production delivery sitemap after deployment validation exposed an empty free-mode sitemap: regenerate 70 public localized URLs, keep paid URLs excluded, rerun build, quality gate, operations check, deploy production, and verify the live custom domain.
 - [x] Complete post-deployment production validation: add `NEXT_PUBLIC_ALL_FEATURES_FREE=true` to Vercel Production runtime env, redeploy `delivery`, verify paid-route 301 redirects, payment API 403 guards, sitemap/robots, AI endpoint, and English/Arabic browser calculator flows.
+- [x] Fix height/weight input cursor and conversion hint layout only in input-related CSS/HTML: raise the transparent native input layer, keep mobile behavior unchanged, improve desktop conversion hint placement, preserve Arabic RTL ordering, regenerate localized delivery pages, and verify with browser checks plus build/quality gate.
+- [x] Move height/weight unit conversion hints outside the inline input controls and below each input row, with small gray text, LTR right alignment, RTL left alignment, preserved input focus/editing, regenerated localized delivery pages, and verified build/quality gate.
+- [x] Change height/weight conversion hint wording from equality to approximate copy (`≈ 68 inches`, Arabic `≈ 68 بوصة`), keep live updates while typing, regenerate localized delivery pages, and verify all configured languages across mobile/tablet/desktop.
+- [x] Complete deployment-readiness validation for the height/weight input fix: PC/mobile input checks, Arabic RTL checks, LTR checks, in-app browser spot check, production start smoke check, build, and full quality gate.
 
 ## Next Tasks
 
