@@ -1535,12 +1535,15 @@
 
     .input-value-field {
       position: relative;
+      display: inline-flex;
+      min-width: 0;
       min-height: 24px;
+      align-items: center;
     }
 
     .input-value {
-      display: block;
-      width: 100%;
+      display: inline-block;
+      max-width: 100%;
       min-height: 24px;
       color: var(--text);
       font-size: 16px;
@@ -1557,6 +1560,22 @@
       opacity: 0;
       cursor: text;
       z-index: 999;
+    }
+
+    .input-value-field.is-editing::after {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      margin-left: 3px;
+      border-radius: 999px;
+      background: var(--primary-strong);
+      content: "";
+      animation: inputCaretBlink 1s steps(1) infinite;
+    }
+
+    @keyframes inputCaretBlink {
+      0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
     }
 
     .unit-label,
@@ -1617,6 +1636,10 @@
     html[dir="rtl"] .has-unit .input-value {
       text-align: right;
       direction: ltr;
+    }
+
+    html[dir="rtl"] .has-unit .input-value-field {
+      justify-content: flex-end;
     }
 
     .unit-conversion {
@@ -16619,6 +16642,15 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
     });
 
     elements.ageInput.addEventListener("change", syncNumberInputs);
+    [
+      [elements.heightInput, elements.heightDisplayValue],
+      [elements.weightInput, elements.weightDisplayValue]
+    ].forEach(([input, display]) => {
+      const displayField = display && display.closest(".input-value-field");
+      if (!input || !displayField) return;
+      input.addEventListener("focus", () => displayField.classList.add("is-editing"));
+      input.addEventListener("blur", () => displayField.classList.remove("is-editing"));
+    });
     elements.heightInput.addEventListener("change", () => {
       syncHeightInput(true);
       cleanState();
