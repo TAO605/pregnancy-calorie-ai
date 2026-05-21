@@ -1148,6 +1148,8 @@
   "ai.language_switched": "La lingua è stata cambiata. Fai di nuovo clic su Calcola per ottenere consigli personalizzati nella tua lingua.",
   "auth.account": "Account",
   "auth.signedInAs": "Accesso effettuato come",
+  "auth.emailPlaceholder": "Indirizzo e-mail",
+  "auth.passwordPlaceholder": "Almeno 6 caratteri",
   "home.meta.title": "Calcolatore calorie gravidanza | Guida gratis chiara",
   "home.meta.description": "Calcolatore calorie gravidanza per stimare calorie giornaliere per trimestre, peso, altezza e attività. Vedi il fabbisogno calorico gravidanza oggi. Go.",
   "pricing.meta.title": "Calcolatore calorie gravidanza | Piani chiari online",

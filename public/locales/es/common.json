@@ -1148,6 +1148,8 @@
   "ai.language_switched": "Se ha cambiado el idioma. Haz clic en Calcular de nuevo para obtener consejos personalizados en tu idioma.",
   "auth.account": "Cuenta",
   "auth.signedInAs": "Sesión iniciada como",
+  "auth.emailPlaceholder": "Correo electrónico",
+  "auth.passwordPlaceholder": "Al menos 6 caracteres",
   "home.meta.title": "Calculadora calorías embarazo | Guía gratis fácil hoy",
   "home.meta.description": "Calculadora calorías embarazo para estimar calorías diarias según trimestre, peso, altura y actividad. Revisa necesidades calóricas embarazo gratis y fácil.",
   "pricing.meta.title": "Calculadora calorías embarazo | Planes claros y guía",

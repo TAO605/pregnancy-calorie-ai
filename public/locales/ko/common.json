@@ -1148,6 +1148,8 @@
   "ai.language_switched": "언어가 전환되었습니다. 해당 언어로 맞춤 조언을 받으려면 다시 계산을 클릭하세요.",
   "auth.account": "계정",
   "auth.signedInAs": "로그인 계정:",
+  "auth.emailPlaceholder": "이메일 주소",
+  "auth.passwordPlaceholder": "최소 6자",
   "home.meta.title": "임신 칼로리 계산 | Free daily guide 2026 today 2026",
   "home.meta.description": "임신 칼로리 계산으로 임산부 하루 칼로리와 칼로리 섭취를 확인하세요. 주수, 체중, 키, 활동량에 맞춘 무료 simple online guide for you. Easy free guide. Go",
   "pricing.meta.title": "임신 칼로리 계산 | Free plans and guide today 2026",

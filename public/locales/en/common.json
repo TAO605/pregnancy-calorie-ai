@@ -1147,5 +1147,7 @@
   "dropdown.dailyActivity.veryHigh.desc": "Athlete-level training or physically demanding work",
   "ai.language_switched": "Language has been switched. Please click Calculate again to get personalized advice in your language.",
   "auth.account": "Account",
-  "auth.signedInAs": "Signed in as"
+  "auth.signedInAs": "Signed in as",
+  "auth.emailPlaceholder": "Email address",
+  "auth.passwordPlaceholder": "At least 6 characters"
 }

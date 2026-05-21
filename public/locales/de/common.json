@@ -1148,6 +1148,8 @@
   "ai.language_switched": "Die Sprache wurde geändert. Bitte klicke erneut auf Berechnen, um personalisierte Tipps in deiner Sprache zu erhalten.",
   "auth.account": "Konto",
   "auth.signedInAs": "Angemeldet als",
+  "auth.emailPlaceholder": "E-Mail-Adresse",
+  "auth.passwordPlaceholder": "Mindestens 6 Zeichen",
   "home.meta.title": "Kalorienrechner Schwangerschaft | Gratis Guide heute",
   "home.meta.description": "Kalorienrechner Schwangerschaft für tägliche Kalorien nach Trimester, Gewicht, Größe und Aktivität. Prüfe deinen Kalorienbedarf in der Schwangerschaft.",
   "pricing.meta.title": "Kalorienrechner Schwangerschaft | Klare Pläne online",
