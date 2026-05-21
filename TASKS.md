@@ -127,6 +127,7 @@
 - [x] Complete PC/mobile multilingual switch residue audit: refresh logo, skip-link, auth, form, unit, footer, and modal runtime copy after no-refresh language changes; correct per-locale AI language instructions; add a regression guard; regenerate localized delivery pages; and verify with browser matrix, build, and full quality gate.
 - [x] Restore visible edit caret for height/weight display-layer inputs without changing calculator logic, preserving Arabic RTL unit order and validating build plus full quality gate.
 - [x] Localize auth modal input placeholders across all configured delivery languages, regenerate static language pages, and verify Arabic/French/Spanish/Japanese/Korean placeholders no longer remain English.
+- [x] Add the Product Hunt light footer badge across delivery pages and the Product Hunt homepage embed below the calculation result actions, preserving calculator logic and validating responsive/new-tab behavior.
 
 ## Next Tasks
 
