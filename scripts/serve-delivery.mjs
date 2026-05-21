@@ -53,8 +53,98 @@ function resolveRequestPath(requestUrl) {
   return candidate;
 }
 
+function sendJson(res, statusCode, body) {
+  res.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": "no-store",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+  });
+  res.end(JSON.stringify(body));
+}
+
+async function readJsonBody(req) {
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  const raw = Buffer.concat(chunks).toString("utf8");
+  return raw ? JSON.parse(raw) : {};
+}
+
+async function handleLocalPregnancyGuidance(req, res) {
+  if (req.method === "OPTIONS") {
+    return sendJson(res, 204, {});
+  }
+  if (req.method === "GET") {
+    return sendJson(res, 200, {
+      ok: true,
+      configured: false,
+      provider: "local-static-preview",
+      endpoint: "/api/pregnancy-guidance"
+    });
+  }
+  if (req.method !== "POST") {
+    return sendJson(res, 405, { error: "Method not allowed" });
+  }
+
+  const payload = await readJsonBody(req).catch(() => ({}));
+  if (payload && payload.requestMode === "nutrition-qa") {
+    const week = Number(payload.inputs && payload.inputs.week) || 24;
+    const target = Number(payload.result && payload.result.target) || 2200;
+    return sendJson(res, 200, {
+      source: "local-static-preview",
+      model: "fallback",
+      answer: [
+        `Yes, a balanced choice can fit your Week ${week} nutrition plan.`,
+        `With a ${Math.round(target)} kcal/day target, steady meals with protein, fiber, and hydration matter most.`,
+        "Choose a comfortable portion today and ask your care team for personal medical guidance."
+      ]
+    });
+  }
+
+  const week = Number(payload.inputs && payload.inputs.week) || 24;
+  const target = Number(payload.result && payload.result.target) || 2200;
+  return sendJson(res, 200, {
+    source: "local-static-preview",
+    model: "fallback",
+    diet: [
+      `Use ${Math.round(target)} kcal/day as a planning target for Week ${week}.`,
+      "Split meals into breakfast, lunch, dinner, and two steady snacks.",
+      "Pair each meal with a protein food and a fiber-rich carbohydrate.",
+      "Choose washed produce and fully cooked eggs, meat, fish, tofu, or beans.",
+      "Add calcium-rich dairy or fortified alternatives when they fit your preferences.",
+      "Keep snacks simple, such as yogurt, fruit, nuts, toast, or hummus.",
+      "Drink water regularly and adjust portions around hunger and fullness.",
+      "Use gentle meal prep so the plan stays practical on busy days.",
+      "Review personal restrictions with your prenatal care team."
+    ],
+    exercise: [
+      `For Week ${week}, keep movement gentle and matched to your usual activity level.`,
+      "Walking, swimming, and prenatal yoga are practical options for many users.",
+      "Start with short sessions if energy is low and build gradually.",
+      "Pause movement and check in with care if unusual symptoms appear.",
+      "Use comfortable shoes, hydration, and an easy pace.",
+      "Treat this as educational movement guidance, not medical advice."
+    ],
+    tips: [
+      "Use the calorie number as a guidepost, not a strict rule.",
+      "Notice hunger, fullness, energy, and digestion across the week.",
+      "Bring your result to a clinician or dietitian for personalized advice."
+    ]
+  });
+}
+
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url || "/", "http://127.0.0.1").pathname;
+  if (pathname === "/api/pregnancy-guidance") {
+    handleLocalPregnancyGuidance(req, res).catch((error) => {
+      sendJson(res, 500, { error: error.message || "Local guidance failed" });
+    });
+    return;
+  }
+
   const paidRoute = pathname.match(/^\/(?:(es|fr|de|pt|it|ru|ar|ja|ko)\/)?(?:(?:pricing|premium|refund-policy|billing|subscription-success|subscription-canceled)(?:\/|\.html)?|checkout(?:\/.*)?)$/i);
   if (allFeaturesFree && paidRoute) {
     res.writeHead(301, { Location: paidRoute[1] ? `/${paidRoute[1]}/` : "/" });

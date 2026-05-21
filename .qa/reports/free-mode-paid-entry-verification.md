@@ -95,3 +95,32 @@ Final validation after Stage 7:
 - Jest: 337/337 passed
 - Cypress E2E: 59/59 passed
 - Visual checks: 10/10 passed
+
+## Stage 8 Full Free-Mode Verification
+
+Focused browser/HTTP audit result: PASS.
+
+- Visible page paid-entry checks: 70
+- Multilingual calculator/full-feature browser flows: 10
+- Paid-route redirect checks: 80
+- Sitemap paid marker count: 0
+- Payment API disabled checks: 3
+- Console warning/error failures: 0
+
+The first Stage 8 audit found that stale local preview server processes were serving old redirect behavior. After stopping those processes and restarting `scripts/serve-delivery.mjs`, redirects passed. A second issue was found and fixed in the local static preview server only: `/api/pregnancy-guidance` now returns a local 200 JSON fallback so the static preview no longer logs a 404 while the page falls back to local guidance.
+
+Auth/permission coverage:
+
+- Logged-out free-mode access helper returns Premium access.
+- Persisted `is_early_user=true` users remain Premium after free mode is disabled.
+- `EARLY_FREE_CUTOFF_DATE` fallback users remain Premium after free mode is disabled.
+- Browser register/login was not submitted locally because `POSTGRES_URL` is absent on this machine; registration persistence is covered by `tests/unit/early-user-access.test.cjs`.
+
+Final validation after Stage 8:
+
+- `npm run build`: passed
+- `npm run quality:gate`: passed
+- Jest: 337/337 passed
+- Cypress E2E: 59/59 passed
+- Visual checks: 10/10 passed
+- Detailed local report: `.qa/reports/stage8-free-mode-full-validation.md`
