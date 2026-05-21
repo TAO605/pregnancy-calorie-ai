@@ -47,3 +47,76 @@ describe("language switcher localized routing", () => {
     });
   });
 });
+
+describe("language switch stale AI cleanup", () => {
+  function calculateOnce() {
+    cy.get("#calculator").scrollIntoView();
+    cy.get("#metricUnitButton").click();
+    cy.get("#ageInput").clear().type("28");
+    cy.get("#heightInput").clear().type("165");
+    cy.get("#weightInput").clear().type("65");
+    cy.get('[data-open-choice="week"]').click();
+    cy.get('#choiceList button[data-choice-value="24"]').click();
+    cy.get('[data-open-choice="pregnancyType"]').click();
+    cy.get('#choiceList button[data-choice-value="singleton"]').click();
+    cy.get('[data-open-choice="activity"]').click();
+    cy.get('#choiceList button[data-choice-value="moderate"]').click();
+    cy.get("#calculateButton").click();
+    cy.get("#aiCards .ai-card", { timeout: 60000 }).should("be.visible");
+  }
+
+  function switchLanguage(code) {
+    cy.get('[data-language-switcher][data-location="desktop"] .language-switcher-button')
+      .first()
+      .click();
+    cy.get(`[data-language-switcher][data-location="desktop"] [data-language-option="${code}"]`)
+      .first()
+      .click();
+  }
+
+  it("clears generated AI and QA content after switching to French without another AI request", () => {
+    let aiRequests = 0;
+    let beforeSwitch = 0;
+    cy.intercept("POST", "/api/pregnancy-guidance", (req) => {
+      aiRequests += 1;
+      req.continue();
+    });
+
+    cy.visit("/");
+    calculateOnce();
+    cy.get("#aiCards").should("contain.text", "Personalized");
+    cy.then(() => {
+      beforeSwitch = aiRequests;
+    });
+    switchLanguage("fr");
+    cy.get(".language-switched-notice")
+      .should("be.visible")
+      .and("contain.text", "La langue a été changée");
+    cy.get("#nutritionQaAnswer").should("contain.text", "La langue a été changée");
+    cy.get("#aiCards").should("not.contain.text", "Personalized Daily Diet Plan");
+    cy.then(() => {
+      expect(aiRequests).to.eq(beforeSwitch);
+    });
+  });
+
+  it("keeps Arabic RTL input layout and clears generated AI content after language switch", () => {
+    cy.visit("/");
+    calculateOnce();
+    switchLanguage("ar");
+
+    cy.location("pathname").should("eq", "/ar");
+    cy.get("html").should("have.attr", "dir", "rtl");
+    cy.get(".language-switched-notice")
+      .should("be.visible")
+      .and("contain.text", "تم تبديل اللغة");
+  });
+
+  it("keeps Arabic RTL input layout editable on the calculator input screen", () => {
+    cy.visit("/ar#calculator");
+    cy.get("html").should("have.attr", "dir", "rtl");
+    cy.get("#heightInput").clear().type("166").should("have.value", "166");
+    cy.get("#weightInput").clear().type("66").should("have.value", "66");
+    cy.get("#heightConversionHint").should("be.visible");
+    cy.get("#weightConversionHint").should("be.visible");
+  });
+});

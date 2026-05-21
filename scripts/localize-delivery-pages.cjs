@@ -7,6 +7,7 @@ const localesDir = path.join(root, "public", "locales");
 const siteUrl = "https://aipregnancycaloriecalculator.online";
 
 const languages = ["es", "fr", "de", "pt", "it", "ru", "ar", "ja", "ko"];
+const runtimeLanguages = ["en", ...languages];
 
 const pages = [
   { prefix: "home", source: "index.html", target: "index.html", slug: "" },
@@ -46,7 +47,11 @@ const pages = [
 ];
 
 const runtimeCopyKeys = [
-  ...Array.from({ length: 40 }, (_, index) => `home.${String(index + 48).padStart(4, "0")}`),
+  ...Array.from({ length: 197 }, (_, index) => `home.${String(index + 1).padStart(4, "0")}`),
+  "reset_password.0006",
+  "reset_password.0008",
+  "auth.account",
+  "auth.signedInAs",
   "activity.sedentary",
   "activity.sedentary.desc",
   "activity.light",
@@ -196,6 +201,7 @@ const runtimeCopyKeys = [
   "ai.exerciseTitle",
   "ai.tipsTitle",
   "ai.languageInstruction",
+  "ai.language_switched",
   "ai.disclaimer",
   "mealPlan.title",
   "mealPlan.summary",
@@ -372,7 +378,18 @@ function setHeadMeta(html, target, prefix) {
 
 function injectRuntimeLanguageCopy(html, lang, target) {
   const blockMatch = html.match(new RegExp(`${lang}: \\{[\\s\\S]*?\\n\\s*\\}`));
-  const existingBlock = blockMatch ? blockMatch[0] : "";
+  let existingBlock = blockMatch ? blockMatch[0] : "";
+  let output = html;
+  if (existingBlock) {
+    for (const key of runtimeCopyKeys) {
+      if (typeof target[key] !== "string" || !existingBlock.includes(`"${key}"`)) continue;
+      const keyPattern = new RegExp(`("${escapeRegExp(key)}"\\s*:\\s*)"(?:\\\\.|[^"\\\\])*"`);
+      existingBlock = existingBlock.replace(keyPattern, (_match, prefix) => {
+        return `${prefix}${JSON.stringify(target[key])}`;
+      });
+    }
+    output = output.replace(blockMatch[0], existingBlock);
+  }
   const additions = {};
   for (const key of runtimeCopyKeys) {
     if (typeof target[key] === "string" && !existingBlock.includes(`"${key}"`)) additions[key] = target[key];
@@ -380,26 +397,66 @@ function injectRuntimeLanguageCopy(html, lang, target) {
   for (const [key, value] of Object.entries(target)) {
     if (key.startsWith("phrase.") && typeof value === "string" && !existingBlock.includes(`"${key}"`)) additions[key] = value;
   }
-  if (!Object.keys(additions).length) return html;
+  if (!Object.keys(additions).length) return output;
   const serialized = JSON.stringify(additions, null, 8)
     .replace(/^{\n/, "")
     .replace(/\n}$/, "");
   const pattern = new RegExp(`(${lang}: \\{[\\s\\S]*?)(\\n\\s*\\})`);
-  if (!pattern.test(html)) return html;
-  return html.replace(pattern, (match, before, after) => {
+  if (!pattern.test(output)) return output;
+  return output.replace(pattern, (match, before, after) => {
     const needsComma = /,\s*$/.test(before.trim()) ? "" : ",";
     return `${before}${needsComma}\n        ${serialized}${after}`;
   });
+}
+
+function buildRuntimeCopy(lang, source) {
+  const copy = {};
+  const navMap = {
+    "nav.home": "home.0006",
+    "nav.pricing": "home.0007",
+    "nav.about": "home.0008",
+    "nav.contact": "home.0009",
+    "nav.getStarted": "home.0010",
+    "footer.quickLinks": "home.0006",
+  };
+  for (const [key, sourceKey] of Object.entries(navMap)) {
+    if (typeof source[sourceKey] === "string") copy[key] = source[sourceKey];
+  }
+  copy.title = source["home.0001"] || source["home_meta.title"] || "AI Pregnancy Calorie Calculator | Personalized Trimester Tracker";
+  copy.heroTitle = source["home.0012"] || "AI-Powered Pregnancy Calorie Calculator for a Healthy Journey";
+  copy.calculate = source["home.0044"] || "Calculate My Calories";
+  copy.qaTitle = source["home.0078"] || "Ask a pregnancy nutrition question";
+  copy.qaStatus = source["home.0081"] || "Answers are limited to 3 short sentences.";
+  copy.qaButton = source["home.0080"] || "Submit Question";
+  for (const key of runtimeCopyKeys) {
+    if (typeof source[key] === "string") copy[key] = source[key];
+  }
+  for (const [key, value] of Object.entries(source)) {
+    if (key.startsWith("phrase.") && typeof value === "string") copy[key] = value;
+  }
+  return copy;
+}
+
+function replaceRuntimeLanguageCopy(html) {
+  const languageBlocks = runtimeLanguages.map((lang) => {
+    const source = readJson(path.join(localesDir, lang, "common.json"));
+    const serialized = JSON.stringify(buildRuntimeCopy(lang, source), null, 8)
+      .split("\n")
+      .map((line, index) => index === 0 ? line : "      " + line)
+      .join("\n");
+    return `      ${lang}: ${serialized}`;
+  }).join(",\n");
+  const replacement = `const LANGUAGE_COPY = {\n${languageBlocks}\n    };\n    let currentLanguage`;
+  const pattern = /const LANGUAGE_COPY = \{[\s\S]*?\n\s*\};\n\s*let currentLanguage/;
+  if (!pattern.test(html)) throw new Error("Could not find LANGUAGE_COPY block in delivery/index.html");
+  return html.replace(pattern, replacement);
 }
 
 const english = readJson(path.join(localesDir, "en", "common.json"));
 
 const homeSourcePath = path.join(deliveryDir, "index.html");
 let homeSourceHtml = fs.readFileSync(homeSourcePath, "utf8");
-for (const lang of languages) {
-  const target = readJson(path.join(localesDir, lang, "common.json"));
-  homeSourceHtml = injectRuntimeLanguageCopy(homeSourceHtml, lang, target);
-}
+homeSourceHtml = replaceRuntimeLanguageCopy(homeSourceHtml);
 fs.writeFileSync(homeSourcePath, homeSourceHtml, "utf8");
 
 let generated = 0;

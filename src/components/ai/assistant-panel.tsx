@@ -80,6 +80,7 @@ export function AssistantPanel({
   const router = useRouter();
   const pathname = usePathname();
   const aiSessionIdRef = useRef<string | null>(null);
+  const previousLocaleRef = useRef(locale);
   const [initialEntryContext] = useState(() => ({
     question: initialQuestion?.trim() ?? "",
     source: entrySource,
@@ -107,6 +108,27 @@ export function AssistantPanel({
   const sessionLabels = getAssistantSessionLabelsCopy(locale);
   const hasInitialQuestion = Boolean(initialEntryContext.question);
   const shouldRestoreStoredSession = !hasInitialQuestion && !initialEntryContext.source;
+
+  useEffect(() => {
+    if (previousLocaleRef.current === locale) {
+      return;
+    }
+
+    previousLocaleRef.current = locale;
+    aiSessionIdRef.current = null;
+    startTransition(() => {
+      setQuestion("");
+      setIsLoading(false);
+      setError("");
+      setContext(null);
+      setHistory([]);
+      setSessionEntries([]);
+      setMessageCount(0);
+      setPendingPrefilledQuestion("");
+      setPendingPromptOriginOverride(null);
+      setPendingEntrySource(undefined);
+    });
+  }, [locale]);
 
   useEffect(() => {
     let alive = true;

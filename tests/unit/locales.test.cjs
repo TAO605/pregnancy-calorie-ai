@@ -71,6 +71,23 @@ describe("locale placeholder character safety", () => {
   });
 });
 
+describe("AI language instruction localization", () => {
+  const arabicLanguageNames = /Arabic|arabic|arabe|árabe|arabischer|араб|アラビア|아랍/iu;
+
+  test.each(languages.filter((lang) => lang !== "ar"))(
+    "language file %s does not instruct AI output in Arabic",
+    (lang) => {
+      const locale = readLocale(lang);
+      expect(locale["ai.languageInstruction"]).not.toMatch(arabicLanguageNames);
+    }
+  );
+
+  test("Arabic language file explicitly instructs Arabic output", () => {
+    const locale = readLocale("ar");
+    expect(locale["ai.languageInstruction"]).toMatch(/العربية/);
+  });
+});
+
 describe("DeepL translation audit log", () => {
   test("DeepL call log exists and covers all target languages", () => {
     const log = JSON.parse(fs.readFileSync(path.join(localesRoot, "deepl-api-call-log.json"), "utf8"));
