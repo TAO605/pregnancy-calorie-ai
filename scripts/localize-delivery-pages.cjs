@@ -447,7 +447,7 @@ function replaceRuntimeLanguageCopy(html) {
     return `      ${lang}: ${serialized}`;
   }).join(",\n");
   const replacement = `const LANGUAGE_COPY = {\n${languageBlocks}\n    };\n    let currentLanguage`;
-  const pattern = /const LANGUAGE_COPY = \{[\s\S]*?\n\s*\};\n\s*let currentLanguage/;
+  const pattern = /const LANGUAGE_COPY = \{[\s\S]*?\r?\n\s*\};\r?\n\s*let currentLanguage/;
   if (!pattern.test(html)) throw new Error("Could not find LANGUAGE_COPY block in delivery/index.html");
   return html.replace(pattern, replacement);
 }
