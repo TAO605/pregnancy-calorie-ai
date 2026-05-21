@@ -115,6 +115,7 @@
 - [x] Complete Stage 8 full free-mode verification: validate logged-out premium access, paid-entry removal, paid-route 301 redirects, sitemap/robots cleanup, calculator and advanced features, multilingual routing, payment API disablement, and clean browser console behavior.
 - [x] Complete Stage 9 paid-system restore readiness: document the 5-minute restore path, verify all reversible switch points, include early-user notification copy, and record the required static delivery regeneration step.
 - [x] Fix the production delivery sitemap after deployment validation exposed an empty free-mode sitemap: regenerate 70 public localized URLs, keep paid URLs excluded, rerun build, quality gate, operations check, deploy production, and verify the live custom domain.
+- [x] Complete post-deployment production validation: add `NEXT_PUBLIC_ALL_FEATURES_FREE=true` to Vercel Production runtime env, redeploy `delivery`, verify paid-route 301 redirects, payment API 403 guards, sitemap/robots, AI endpoint, and English/Arabic browser calculator flows.
 
 ## Next Tasks
 

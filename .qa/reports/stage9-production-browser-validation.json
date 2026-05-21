@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-05-21T01:39:29.951Z",
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "status": "passed"
+  },
+  "results": [
+    {
+      "lang": "en",
+      "url": "https://aipregnancycaloriecalculator.online/#calculator",
+      "ok": true,
+      "beforeCheck": {
+        "dir": "ltr",
+        "lang": "en-US",
+        "allFeaturesFree": "true",
+        "buttonCount": 25,
+        "blankButtons": [],
+        "paidLinks": [],
+        "horizontalOverflow": false,
+        "calculateText": "Calculate My Calories"
+      },
+      "resultCheck": {
+        "resultVisible": true,
+        "calorieText": "2,180 kcal",
+        "premiumVisible": false
+      },
+      "logs": []
+    },
+    {
+      "lang": "ar",
+      "url": "https://aipregnancycaloriecalculator.online/ar/#calculator",
+      "ok": true,
+      "beforeCheck": {
+        "dir": "rtl",
+        "lang": "ar",
+        "allFeaturesFree": "true",
+        "buttonCount": 25,
+        "blankButtons": [],
+        "paidLinks": [],
+        "horizontalOverflow": false,
+        "calculateText": "احسبي سعراتك"
+      },
+      "resultCheck": {
+        "resultVisible": true,
+        "calorieText": "2,180 كيلو كالوري",
+        "premiumVisible": false
+      },
+      "logs": []
+    }
+  ]
+}
