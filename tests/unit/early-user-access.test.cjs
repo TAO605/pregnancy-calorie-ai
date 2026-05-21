@@ -30,6 +30,7 @@ describe("early free user access", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     delete process.env.EARLY_FREE_CUTOFF_DATE;
     mockPostgres();
+    mockBcrypt();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
@@ -52,6 +53,7 @@ describe("early free user access", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     process.env.EARLY_FREE_CUTOFF_DATE = "2026-05-21T00:00:00.000Z";
     mockPostgres();
+    mockBcrypt();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
@@ -69,6 +71,7 @@ describe("early free user access", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     delete process.env.EARLY_FREE_CUTOFF_DATE;
     mockPostgres();
+    mockBcrypt();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
