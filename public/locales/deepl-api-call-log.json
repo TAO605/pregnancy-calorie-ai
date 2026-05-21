@@ -1,7 +1,7 @@
 {
   "endpoint": "https://api-free.deepl.com/v2/translate",
   "source_lang": "EN",
-  "total_values": 1147,
+  "total_values": 1149,
   "calls": [
     {
       "lang": "es",
@@ -3396,5 +3396,9 @@
     "status": "locale_values_added_without_runtime_smoke_key",
     "auth_method": "not executed in this local shell",
     "note": "DEEPL_AUTH_KEY was not present in the local shell for a live smoke call; locale files contain the new language-switch prompt and the CI smoke test still requires DEEPL_AUTH_KEY."
-  }
+  },
+  "notes": [
+    "auth.account and auth.signedInAs were added as two small UI strings using GPT-5.5 fallback per user approval when DeepL quota/key availability was constrained.",
+    "ai.languageInstruction was corrected so each non-Arabic locale instructs AI output in its own language instead of Arabic; placeholders were preserved."
+  ]
 }

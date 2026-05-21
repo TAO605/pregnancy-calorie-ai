@@ -124,6 +124,7 @@
 - [x] Lock language-switch memo dependencies and runtime stale-content guards for input, dropdown, navigation/footer, buttons, and form-label surfaces.
 - [x] Finish AI-generated content language-switch cleanup: clear stale AssistantPanel state on `locale` changes, show localized `ai.language_switched` prompts in AI cards and nutrition Q&A after delivery language switches, preserve zero extra AI requests, and verify with targeted Jest, build, quality gate, and browser checks.
 - [x] Add global/API language-pollution guards: pass `lang: currentLanguage` to delivery AI requests, validate supported languages in the delivery AI endpoint and local static server, make AI system prompts language-specific instead of English-only, add Cypress stale-AI cleanup tests, and verify build plus full quality gate.
+- [x] Complete PC/mobile multilingual switch residue audit: refresh logo, skip-link, auth, form, unit, footer, and modal runtime copy after no-refresh language changes; correct per-locale AI language instructions; add a regression guard; regenerate localized delivery pages; and verify with browser matrix, build, and full quality gate.
 
 ## Next Tasks
 
