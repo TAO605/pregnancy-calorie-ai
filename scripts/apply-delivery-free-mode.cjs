@@ -3,6 +3,22 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const deliveryDir = path.join(root, "delivery");
+const siteUrl = "https://aipregnancycaloriecalculator.online";
+const languages = ["en", "es", "fr", "de", "pt", "it", "ru", "ar", "ja", "ko"];
+const publicPages = [
+  { slug: "", changefreq: "weekly", priority: "1" },
+  { slug: "about", changefreq: "monthly", priority: "0.8" },
+  { slug: "contact", changefreq: "monthly", priority: "0.8" },
+  { slug: "medical-disclaimer", changefreq: "monthly", priority: "0.7" },
+  { slug: "privacy-policy", changefreq: "monthly", priority: "0.6" },
+  { slug: "terms-of-service", changefreq: "monthly", priority: "0.6" },
+  { slug: "cookie-policy", changefreq: "monthly", priority: "0.5" },
+];
+const paidPages = [
+  { slug: "pricing", changefreq: "weekly", priority: "0.8" },
+  { slug: "premium", changefreq: "weekly", priority: "0.7" },
+  { slug: "refund-policy", changefreq: "monthly", priority: "0.5" },
+];
 
 function loadProductionEnv() {
   const file = path.join(root, ".env.production");
@@ -149,6 +165,48 @@ function injectRuntimeFlag(html, enabled) {
   return html.replace(/\bconst ALL_FEATURES_FREE = (?:true|false);/g, `const ALL_FEATURES_FREE = ${value};`);
 }
 
+function absoluteUrl(language, slug) {
+  const suffix = slug ? `/${slug}` : "";
+  return language === "en" ? `${siteUrl}${suffix}` : `${siteUrl}/${language}${suffix}`;
+}
+
+function alternateLinks(slug) {
+  return [
+    ...languages.map(
+      (language) =>
+        `<xhtml:link rel="alternate" hreflang="${language}" href="${absoluteUrl(language, slug)}"/>`,
+    ),
+    `<xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl("en", slug)}"/>`,
+  ].join("");
+}
+
+function generateDeliverySitemap(enabled) {
+  const pages = enabled ? publicPages : [...publicPages, ...paidPages];
+  const lastmod = new Date().toISOString();
+  const urls = pages
+    .flatMap((page) =>
+      languages.map(
+        (language) =>
+          `<url><loc>${absoluteUrl(language, page.slug)}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateLinks(page.slug)}</url>`,
+      ),
+    )
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`;
+}
+
+function hasPaidRouteLoc(urlEntry) {
+  const locMatch = urlEntry.match(/<loc>([^<]+)<\/loc>/i);
+  if (!locMatch) return false;
+  const pathname = new URL(locMatch[1]).pathname.toLowerCase();
+  return /(?:^|\/)(pricing|premium|refund-policy|checkout|billing|subscription-success|subscription-canceled)(?:\/|$)/.test(
+    pathname,
+  );
+}
+
+function removePaidSitemapEntries(sitemap) {
+  return sitemap.replace(/<url>[\s\S]*?<\/url>/gi, (entry) => (hasPaidRouteLoc(entry) ? "" : entry));
+}
+
 loadProductionEnv();
 
 const enabled = process.env.NEXT_PUBLIC_ALL_FEATURES_FREE === "true";
@@ -166,9 +224,10 @@ for (const file of listHtmlFiles(deliveryDir)) {
 }
 
 const sitemapFile = path.join(deliveryDir, "sitemap.xml");
-if (enabled && fs.existsSync(sitemapFile)) {
-  const before = fs.readFileSync(sitemapFile, "utf8");
-  const after = before.replace(/\s*<url>[\s\S]*?<loc>[^<]*(?:\/pricing|\/premium|\/refund-policy|\/checkout|\/billing|\/subscription-success|\/subscription-canceled)[^<]*<\/loc>[\s\S]*?<\/url>/gi, "");
+{
+  const before = fs.existsSync(sitemapFile) ? fs.readFileSync(sitemapFile, "utf8") : "";
+  const generated = generateDeliverySitemap(enabled);
+  const after = enabled ? removePaidSitemapEntries(generated) : generated;
   if (after !== before) {
     fs.writeFileSync(sitemapFile, after, "utf8");
     changed += 1;

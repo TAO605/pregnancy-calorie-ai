@@ -114,6 +114,7 @@
 - [x] Complete Stage 7 early-user permanent premium persistence: add `is_early_user` to the Vercel Postgres auth schema, write the flag during free-mode registration, honor persisted/cutoff early users in subscription checks after paid mode returns, and verify with targeted Jest, build, and full quality gate.
 - [x] Complete Stage 8 full free-mode verification: validate logged-out premium access, paid-entry removal, paid-route 301 redirects, sitemap/robots cleanup, calculator and advanced features, multilingual routing, payment API disablement, and clean browser console behavior.
 - [x] Complete Stage 9 paid-system restore readiness: document the 5-minute restore path, verify all reversible switch points, include early-user notification copy, and record the required static delivery regeneration step.
+- [x] Fix the production delivery sitemap after deployment validation exposed an empty free-mode sitemap: regenerate 70 public localized URLs, keep paid URLs excluded, rerun build, quality gate, operations check, deploy production, and verify the live custom domain.
 
 ## Next Tasks
 
