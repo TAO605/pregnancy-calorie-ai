@@ -52,6 +52,8 @@ const runtimeCopyKeys = [
   "reset_password.0008",
   "auth.account",
   "auth.signedInAs",
+  "auth.emailPlaceholder",
+  "auth.passwordPlaceholder",
   "activity.sedentary",
   "activity.sedentary.desc",
   "activity.light",

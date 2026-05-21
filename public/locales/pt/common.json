@@ -1148,6 +1148,8 @@
   "ai.language_switched": "O idioma foi alterado. Clique em Calcular novamente para obter orientações personalizadas no seu idioma.",
   "auth.account": "Conta",
   "auth.signedInAs": "Sessão iniciada como",
+  "auth.emailPlaceholder": "Endereço de e-mail",
+  "auth.passwordPlaceholder": "Pelo menos 6 caracteres",
   "home.meta.title": "Calculadora calorias gravidez | Guia grátis simples",
   "home.meta.description": "Calculadora calorias gravidez para estimar calorias diárias por trimestre, peso, altura e atividade. Veja necessidades calóricas gravidez grátis hoje.",
   "pricing.meta.title": "Calculadora calorias gravidez | Planos claros online",

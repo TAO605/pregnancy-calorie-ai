@@ -1148,6 +1148,8 @@
   "ai.language_switched": "La langue a été changée. Veuillez cliquer à nouveau sur Calculer pour obtenir des conseils personnalisés dans votre langue.",
   "auth.account": "Compte",
   "auth.signedInAs": "Connecté en tant que",
+  "auth.emailPlaceholder": "Adresse e-mail",
+  "auth.passwordPlaceholder": "Au moins 6 caractères",
   "home.meta.title": "Calculateur calories grossesse | Guide gratuit simple",
   "home.meta.description": "Calculateur calories grossesse pour estimer les calories par jour selon trimestre, poids, taille et activité. Voyez vos besoins caloriques grossesse ici.",
   "pricing.meta.title": "Calculateur calories grossesse | Plans clairs et simples",

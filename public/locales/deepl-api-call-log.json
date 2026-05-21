@@ -1,7 +1,7 @@
 {
   "endpoint": "https://api-free.deepl.com/v2/translate",
   "source_lang": "EN",
-  "total_values": 1149,
+  "total_values": 1151,
   "calls": [
     {
       "lang": "es",
@@ -3399,6 +3399,26 @@
   },
   "notes": [
     "auth.account and auth.signedInAs were added as two small UI strings using GPT-5.5 fallback per user approval when DeepL quota/key availability was constrained.",
-    "ai.languageInstruction was corrected so each non-Arabic locale instructs AI output in its own language instead of Arabic; placeholders were preserved."
-  ]
+    "ai.languageInstruction was corrected so each non-Arabic locale instructs AI output in its own language instead of Arabic; placeholders were preserved.",
+    "auth.emailPlaceholder and auth.passwordPlaceholder were added to keep login modal input placeholders localized across delivery languages."
+  ],
+  "auth_placeholder_update": {
+    "timestamp": "2026-05-21T10:58:33.837Z",
+    "key_count": 2,
+    "key_start": "auth.emailPlaceholder",
+    "key_end": "auth.passwordPlaceholder",
+    "target_languages": [
+      "es",
+      "fr",
+      "de",
+      "pt",
+      "it",
+      "ru",
+      "ar",
+      "ja",
+      "ko"
+    ],
+    "status": "locale_values_added_with_gpt55_fallback_per_user_approval",
+    "note": "Auth modal placeholder strings were added after production QA found hardcoded English placeholders. DeepL local quota/key was not used in this shell; user approved GPT-5.5 fallback when quota is constrained. Placeholders contain no dynamic variables."
+  }
 }
