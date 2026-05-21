@@ -18,12 +18,10 @@ describe("Percy visual regression snapshots", () => {
       cy.get("body").should("be.visible");
       cy.get("#calculateButton", { timeout: 20000 }).should("be.visible");
 
-      if (Cypress.env("PERCY_ENABLED") !== false) {
-        cy.percySnapshot(`homepage-${language.code}`, {
-          widths: [390, 768, 1365],
-          minHeight: 900
-        });
-      }
+      cy.percySnapshot(`homepage-${language.code}`, {
+        widths: [390, 768, 1365],
+        minHeight: 900
+      });
       cy.screenshot(`homepage-${language.code}`, { capture: "fullPage" });
     });
   });

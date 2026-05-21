@@ -52,6 +52,10 @@
     return SUPPORTED.some((currency) => currency.code === normalized) ? normalized : "USD";
   }
 
+  function shouldSkipRemoteCurrencyApi() {
+    return location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
+  }
+
   function formatPrice(amountUsd, code) {
     const currency = getCurrency(code);
     const converted = Number(amountUsd) * (rates[code] || 1);
@@ -104,6 +108,10 @@
   }
 
   async function loadRates() {
+    if (shouldSkipRemoteCurrencyApi()) {
+      rates = { ...FALLBACK_RATES };
+      return;
+    }
     try {
       const response = await fetch("/api/pregnancy-guidance?currency=rates", { credentials: "same-origin" });
       const data = await response.json();
@@ -116,6 +124,7 @@
   async function detectCurrency() {
     const saved = normalizeCurrency(decodeURIComponent(readCookie(COOKIE_NAME) || ""));
     if (readCookie(COOKIE_NAME)) return saved;
+    if (shouldSkipRemoteCurrencyApi()) return "USD";
     try {
       const response = await fetch("/api/pregnancy-guidance?currency=detect", { credentials: "same-origin" });
       const data = await response.json();

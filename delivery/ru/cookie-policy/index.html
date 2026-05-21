@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="ru" dir="ltr" data-all-features-free="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <base href="/">
-  <title>Cookie Policy and Local Storage | AI Pregnancy Tool</title>
-  <meta name="description" content="Read our Cookie Policy to understand essential cookies, local storage, account sessions, AI cache, Stripe checkout, and browser controls for this tool.">
+  <title>Политика в отношении файлов cookie и локального хранилища | Инструмент для расчета срока беременности на основе ИИ</title>
+  <meta name="description" content="Ознакомьтесь с нашей Политикой использования файлов cookie, чтобы узнать о необходимых файлах cookie, локальном хранилище, сессиях учетных записей, кэше ИИ, системе оплаты Stripe и настройках браузера для данного инструмента.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://aipregnancycaloriecalculator.online/cookie-policy">
+  <link rel="canonical" href="https://aipregnancycaloriecalculator.online/ru/cookie-policy">
   <!-- Multilingual SEO: Google hreflang cluster. Keep every language reciprocal and absolute. -->
   <link rel="alternate" hreflang="en" href="https://aipregnancycaloriecalculator.online/cookie-policy">
   <link rel="alternate" hreflang="es" href="https://aipregnancycaloriecalculator.online/es/cookie-policy">
@@ -39,7 +39,7 @@
           "@id": "https://aipregnancycaloriecalculator.online/#organization"
         },
         "dateModified": "2026-05-13",
-        "inLanguage": "en-US"
+        "inLanguage": "ru"
       },
       {
         "@type": "Organization",
@@ -64,34 +64,97 @@
     ]
   }
   </script>
+<style id="all-features-free-guard">
+html[data-all-features-free="true"] .subscription-teaser,
+html[data-all-features-free="true"] .premium-result-card,
+html[data-all-features-free="true"] .premium-account-badge,
+html[data-all-features-free="true"] .premium-upgrade-button,
+html[data-all-features-free="true"] .premium-manage-button,
+html[data-all-features-free="true"] .plan-card,
+html[data-all-features-free="true"] .pricing-grid,
+html[data-all-features-free="true"] .pricing-currency-row,
+html[data-all-features-free="true"] .guarantee,
+html[data-all-features-free="true"] .guarantee-note,
+html[data-all-features-free="true"] [data-usd-charge-note],
+html[data-all-features-free="true"] [data-checkout-plan],
+html[data-all-features-free="true"] a[href*="/pricing"],
+html[data-all-features-free="true"] a[href*="pricing.html"],
+html[data-all-features-free="true"] a[href*="/premium"],
+html[data-all-features-free="true"] a[href*="premium.html"],
+html[data-all-features-free="true"] a[href*="/refund-policy"],
+html[data-all-features-free="true"] a[href*="refund-policy.html"],
+html[data-all-features-free="true"] a[href*="/checkout"],
+html[data-all-features-free="true"] a[href*="/billing"],
+html[data-all-features-free="true"] a[href*="/subscription-success"],
+html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
+  display: none !important;
+}
+</style>
+<script id="all-features-free-paid-copy-guard">
+(function(){
+  if (document.documentElement.dataset.allFeaturesFree !== "true") return;
+  function prunePaidCopy(){
+    var paidPattern = /\b(Pricing|Premium|Subscribe|subscription|checkout|Unlock|Upgrade|Buy Now|Start Free Trial|Stripe|billing|payment|paid|price|prices|refund|money-back|charged in USD)\b|\$7\.99|\$79\.99|\b(Precios?|suscripci[oó]n|facturaci[oó]n|pago|reembolso)\b|\b(Prix|abonnement|facturation|paiement|remboursement)\b|\b(Preis|Preise|Abonnement|Zahlung|R[üu]ckerstattung|Erstattung)\b|\b(Pre[cç]os?|assinatura|faturamento|pagamento|reembolso)\b|\b(Prezzi?|abbonamento|fatturazione|pagamento|rimborso)\b|подпис|оплат|плат[её]ж|возврат|премиум|цены|الأسعار|الاشتراك|الدفع|الفواتير|استرداد|返金|価格|料金|支払い|サブスクリプション|プレミアム|환불|가격|요금|결제|구독|프리미엄/i;
+    var selectors = [
+      "p",
+      "li",
+      "a",
+      "button",
+      "h2",
+      "h3",
+      "small",
+      ".currency-note",
+      ".support-card",
+      ".guarantee",
+      ".guarantee-note",
+      ".premium-result-card",
+      ".subscription-teaser",
+      ".premium-account-badge",
+      ".premium-upgrade-button",
+      ".premium-manage-button"
+    ].join(",");
+    document.querySelectorAll(selectors).forEach(function(element){
+      var text = (element.innerText || element.textContent || "").trim();
+      if (text && paidPattern.test(text)) element.hidden = true;
+    });
+    document.querySelectorAll("input[placeholder], textarea[placeholder]").forEach(function(element){
+      var placeholder = element.getAttribute("placeholder") || "";
+      if (!paidPattern.test(placeholder)) return;
+      element.setAttribute("placeholder", placeholder.replace(/\bBilling,?\s*/i, "").replace(/\bsubscription,?\s*/i, "").replace(/\bpayment,?\s*/i, "").replace(/\s{2,}/g, " ").replace(/^,\s*/, "").trim());
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", prunePaidCopy, { once: true });
+  else prunePaidCopy();
+}());
+</script>
 </head>
 <body>
-  <header class="topbar"><nav aria-label="Main navigation"><a class="back" href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Home</a><a class="back" href="https://aipregnancycaloriecalculator.online/pricing.html" title="View AI Pregnancy Calorie Calculator pricing plans">Pricing</a><a class="back" href="https://aipregnancycaloriecalculator.online/about-us.html" title="Learn about AI Pregnancy Calorie Calculator">About</a><a class="back" href="https://aipregnancycaloriecalculator.online/contact-us.html" title="Contact AI Pregnancy Calorie Calculator support">Contact</a></nav></header>
+  <header class="topbar"><nav aria-label="Main navigation"><a class="back" href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Главная</a><a class="back" href="https://aipregnancycaloriecalculator.online/ru/pricing" title="View AI Pregnancy Calorie Calculator pricing plans">Цены</a><a class="back" href="https://aipregnancycaloriecalculator.online/ru/about" title="Learn about AI Pregnancy Calorie Calculator">О нас</a><a class="back" href="https://aipregnancycaloriecalculator.online/ru/contact" title="Contact AI Pregnancy Calorie Calculator support">Контакты</a></nav></header>
   <main>
     <article>
-    <h1>Cookie Policy</h1>
-    <p><strong>Last updated:</strong> May 13, 2026</p>
-    <p class="note">This Cookie Policy explains how AI Pregnancy Calorie Calculator uses essential cookies, local storage, and similar browser technologies to run the calculator, account login, AI cache, and subscription access.</p>
-    <h2>Cookies and local storage</h2>
-    <p>Cookies are small files stored by your browser. Local storage is a browser feature that keeps information on your device. We use these technologies only where they support site functionality, security, or convenience.</p>
-    <h2>How this site uses browser storage</h2>
+    <h1>Политика в отношении файлов cookie</h1>
+    <p><strong>Последнее обновление:</strong> 13.05.2026</p>
+    <p class="note">В настоящей Политике использования файлов cookie объясняется, как сервис «AI Pregnancy Calorie Calculator» использует необходимые файлы cookie, локальное хранилище и аналогичные технологии браузера для работы калькулятора, входа в учетную запись, кэширования данных ИИ и доступа к подписке.</p>
+    <h2>Файлы cookie и локальное хранилище</h2>
+    <p>Файлы cookie — это небольшие файлы, которые сохраняются в вашем браузере. Локальное хранилище — это функция браузера, которая позволяет сохранять информацию на вашем устройстве. Мы используем эти технологии только в тех случаях, когда они необходимы для обеспечения работоспособности сайта, его безопасности или удобства пользователей.</p>
+    <h2>Как этот сайт использует хранилище браузера</h2>
     <ul>
-      <li><strong>Calculator memory:</strong> local storage may remember your age, height, weight, pregnancy week, activity level, unit setting, and optional preferences.</li>
-      <li><strong>Weekly features:</strong> local storage may save pregnancy week, save date, weekly weight records, and report preferences so the tracker can work on return visits.</li>
-      <li><strong>AI response cache:</strong> repeated AI guidance requests for the same input set may load faster through local caching.</li>
-      <li><strong>Account session:</strong> secure session cookies support login, logout, password reset state, and Premium access checks.</li>
-      <li><strong>Subscription processing:</strong> Stripe may use its own cookies or browser technologies during checkout and customer portal sessions.</li>
+      <li><strong>Объем памяти калькулятора:</strong> Локальное хранилище может запомнить ваш возраст, рост, вес, срок беременности, уровень активности, настройки единиц измерения и дополнительные предпочтения.</li>
+      <li><strong>Еженедельные рубрики:</strong> Локальное хранилище может сохранять информацию о сроке беременности, дате родов, еженедельных записях о весе и настройках отчетов, чтобы приложение могло работать при повторных посещениях.</li>
+      <li><strong>Кэш ответов ИИ:</strong> Повторные запросы на вычисление результатов ИИ для одного и того же набора входных данных могут загружаться быстрее благодаря локальному кэшированию.</li>
+      <li><strong>Сеанс учетной записи:</strong> Сеансовые файлы cookie обеспечивают поддержку входа в систему, выхода из системы, состояния сброса пароля, а также проверку доступа к премиум-функциям.</li>
+      <li><strong>Обработка подписки:</strong> Stripe может использовать собственные файлы cookie или технологии браузера во время оформления заказа и сеансов работы на клиентском портале.</li>
     </ul>
-    <h2>Analytics and advertising cookies</h2>
-    <p>The current website does not rely on optional advertising cookies. Hosting providers may still process technical logs to deliver the website, prevent abuse, diagnose errors, and measure reliability.</p>
-    <h2>How to manage storage</h2>
-    <p>You can clear cookies and local storage through your browser settings. Clearing site data may remove saved calculator inputs, weekly records, cached AI guidance, and login state.</p>
-    <h2>Related policy</h2>
-    <p>For more detail about personal data and payment processing, read the <a href="https://aipregnancycaloriecalculator.online/privacy-policy.html" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Privacy Policy</a>.</p>
-    <p><strong>Written and reviewed by the AI Pregnancy Calorie Calculator content team. Last updated: May 13, 2026.</strong></p>
+    <h2>Аналитические и рекламные файлы cookie</h2>
+    <p>Данный веб-сайт не использует дополнительные рекламные файлы cookie. Хостинг-провайдеры могут по-прежнему обрабатывать технические журналы для обеспечения работы веб-сайта, предотвращения злоупотреблений, диагностики ошибок и оценки надежности.</p>
+    <h2>Как управлять хранилищем</h2>
+    <p>Вы можете удалить файлы cookie и данные локального хранилища в настройках браузера. Удаление данных сайта может привести к потере сохраненных вводных данных калькулятора, еженедельных записей, кэшированных рекомендаций ИИ и данных о входе в систему.</p>
+    <h2>Соответствующая политика</h2>
+    <p>Для получения более подробной информации о персональных данных и обработке платежей ознакомьтесь с <a href="https://aipregnancycaloriecalculator.online/ru/privacy-policy" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Политика конфиденциальности</a>.</p>
+    <p><strong>Автор и редактор: команда по подготовке материалов для калькулятора калорий для беременных AI. Последнее обновление: 13.05.2026</strong></p>
     </article>
   </main>
-  <footer class="compliance-footer" aria-label="Compliance navigation"><div class="compliance-footer-inner"><div class="compliance-brand"><a href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">AI Pregnancy Calorie Calculator</a><p>Educational pregnancy calorie estimates, AI nutrition tips, and gentle tracking references.</p><p class="source-statement">Our calculations are based on guidelines from the <a href="https://www.who.int/health-topics/maternal-health" target="_blank" rel="noopener" title="Read WHO maternal health guidance">World Health Organization (WHO)</a> and the <a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank" rel="noopener" title="Read ACOG pregnancy nutrition education">American College of Obstetricians and Gynecologists (ACOG)</a>.</p><p class="ai-content-disclosure">This page contains AI-generated content that has been reviewed and verified for accuracy.</p></div><nav class="compliance-links" aria-label="Footer navigation"><a href="https://aipregnancycaloriecalculator.online/medical-disclaimer.html" title="Read the AI Pregnancy Calorie Calculator Medical Disclaimer">Medical Disclaimer</a><a href="https://aipregnancycaloriecalculator.online/privacy-policy.html" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Privacy Policy</a><a href="https://aipregnancycaloriecalculator.online/terms-of-service.html" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Terms of Service</a><a href="https://aipregnancycaloriecalculator.online/refund-policy" title="Read the AI Pregnancy Calorie Calculator Refund Policy">Refund Policy</a><a href="https://aipregnancycaloriecalculator.online/cookie-policy.html" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Cookie Policy</a><a href="https://aipregnancycaloriecalculator.online/about-us.html" title="Learn about the AI Pregnancy Calorie Calculator">About Us</a><a href="https://aipregnancycaloriecalculator.online/contact-us.html" title="Contact the AI Pregnancy Calorie Calculator support team">Contact Us</a></nav></div></footer>
+  <footer class="compliance-footer" aria-label="Compliance navigation"><div class="compliance-footer-inner"><div class="compliance-brand"><a href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Калькулятор калорий для беременных на базе искусственного интеллекта</a><p>Ориентировочные данные о калорийности рациона во время беременности, рекомендации по питанию от AI и ссылки на ресурсы для удобного отслеживания.</p><p class="source-statement">Наши расчеты основаны на рекомендациях <a href="https://www.who.int/health-topics/maternal-health" target="_blank" rel="noopener" title="Read WHO maternal health guidance">Всемирная организация здравоохранения (ВОЗ)</a> и <a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank" rel="noopener" title="Read ACOG pregnancy nutrition education">Американский колледж акушеров и гинекологов (ACOG)</a>.</p><p class="ai-content-disclosure">На этой странице представлен контент, созданный с помощью искусственного интеллекта, который прошел проверку и подтвердил свою достоверность.</p></div><nav class="compliance-links" aria-label="Footer navigation"><a href="https://aipregnancycaloriecalculator.online/ru/medical-disclaimer" title="Read the AI Pregnancy Calorie Calculator Medical Disclaimer">Медицинское предупреждение</a><a href="https://aipregnancycaloriecalculator.online/ru/privacy-policy" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Политика конфиденциальности</a><a href="https://aipregnancycaloriecalculator.online/ru/terms-of-service" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Условия предоставления услуг</a><a href="https://aipregnancycaloriecalculator.online/ru/refund-policy" title="Read the AI Pregnancy Calorie Calculator Refund Policy">Политика возврата</a><a href="https://aipregnancycaloriecalculator.online/ru/cookie-policy" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Политика в отношении файлов cookie</a><a href="https://aipregnancycaloriecalculator.online/ru/about" title="Learn about the AI Pregnancy Calorie Calculator">О нас</a><a href="https://aipregnancycaloriecalculator.online/ru/contact" title="Contact the AI Pregnancy Calorie Calculator support team">Свяжитесь с нами</a></nav></div></footer>
 </body>
 </html>
 

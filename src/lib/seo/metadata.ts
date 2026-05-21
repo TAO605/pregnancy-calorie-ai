@@ -34,7 +34,9 @@ export function buildMarketingMetadata({
     : undefined;
 
   return {
-    title,
+    title: {
+      absolute: title,
+    },
     description,
     alternates: {
       canonical,

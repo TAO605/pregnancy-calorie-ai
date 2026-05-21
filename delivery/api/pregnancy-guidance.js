@@ -9,10 +9,34 @@ const COMMON_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type"
 };
 
+const SUPPORTED_LANGUAGES = {
+  en: { name: "English", locale: "en-US" },
+  es: { name: "Spanish", locale: "es" },
+  fr: { name: "French", locale: "fr" },
+  de: { name: "German", locale: "de" },
+  pt: { name: "Portuguese", locale: "pt" },
+  it: { name: "Italian", locale: "it" },
+  ru: { name: "Russian", locale: "ru" },
+  ar: { name: "Arabic", locale: "ar" },
+  ja: { name: "Japanese", locale: "ja" },
+  ko: { name: "Korean", locale: "ko" }
+};
+
 function send(response, statusCode, body) {
   response.statusCode = statusCode;
   Object.entries(COMMON_HEADERS).forEach(([key, value]) => response.setHeader(key, value));
   response.end(JSON.stringify(body));
+}
+
+function normalizeLanguage(value) {
+  const code = String(value || "en").toLowerCase().split("-")[0];
+  return Object.prototype.hasOwnProperty.call(SUPPORTED_LANGUAGES, code) ? code : "";
+}
+
+function getPayloadLanguage(payload) {
+  return normalizeLanguage(
+    payload && (payload.lang || payload.language || payload.locale || (payload.inputs && payload.inputs.lang))
+  );
 }
 
 function getDetectedCurrency(request) {
@@ -56,12 +80,14 @@ async function getExchangeRates() {
   }
 }
 
-function buildSystemPrompt() {
+function buildSystemPrompt(lang) {
+  const language = SUPPORTED_LANGUAGES[lang] || SUPPORTED_LANGUAGES.en;
   return [
     "You are a US registered obstetric dietitian and pregnancy exercise guide with 10+ years of clinical experience.",
     "Follow ACOG and IOM pregnancy nutrition, physical activity, energy, and weight gain principles.",
     "This is educational and informational support only, not medical advice.",
-    "Write in English only.",
+    `Write every user-visible JSON string 100% in ${language.name}.`,
+    `Do not mix languages. Do not reuse English text unless the requested language is English.`,
     "Use a warm, practical, positive, non-anxious tone.",
     "Avoid alarmist, absolute, shame-based, diagnostic, treatment, prevention, or cure claims.",
     "Use gentle wording such as recommend, suggest, choose, prioritize, pause, and check in.",
@@ -75,14 +101,16 @@ function buildSystemPrompt() {
   ].join(" ");
 }
 
-function buildQaSystemPrompt() {
+function buildQaSystemPrompt(lang) {
+  const language = SUPPORTED_LANGUAGES[lang] || SUPPORTED_LANGUAGES.en;
   return [
     "You are a pregnancy nutrition Q&A assistant for a global pregnancy calorie calculator.",
     "Base answers on IOM 2009 pregnancy weight gain and energy principles, WHO antenatal nutrition guidance, and current mainstream nutrition research consensus.",
     "Answer only nutrition, food, hydration, caffeine, supplement-food, and meal-pattern questions.",
     "Do not diagnose, prescribe, treat, cure, order tests, recommend medication, or replace a clinician.",
     "Avoid vague phrases like it depends unless followed by a clear practical condition.",
-    "Write in natural English with a warm, calm tone.",
+    `Write all three answer strings 100% in ${language.name} with a warm, calm tone.`,
+    `Do not mix languages. Do not reuse English text unless the requested language is English.`,
     "Return valid JSON only with this exact shape: {\"answer\":[\"direct answer\",\"reason\",\"action\"]}.",
     "The answer array must contain exactly 3 short sentences.",
     "Sentence 1: direct answer.",
@@ -96,6 +124,7 @@ function sanitizePayload(payload) {
   const inputs = payload && payload.inputs ? payload.inputs : {};
   const result = payload && payload.result ? payload.result : {};
   return {
+    lang: getPayloadLanguage(payload),
     age: Number(inputs.age),
     heightValue: Number(inputs.heightValue),
     heightUnit: String(inputs.heightUnit || ""),
@@ -123,6 +152,7 @@ function sanitizeQaPayload(payload) {
   const result = payload && payload.result ? payload.result : {};
   const clean = (value, maxLength) => String(value || "").replace(/\s+/g, " ").trim().slice(0, maxLength);
   return {
+    lang: getPayloadLanguage(payload),
     question: clean(payload && payload.question, 280),
     age: Number(inputs.age),
     week: Number(inputs.week),
@@ -260,8 +290,8 @@ function getProviderStatus() {
     return {
       configured: true,
       provider: "openai",
-      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
-      fallbackModel: process.env.OPENAI_FALLBACK_MODEL || "gpt-4o-mini",
+      model: process.env.OPENAI_MODEL || "gpt-5.5",
+      fallbackModel: process.env.OPENAI_FALLBACK_MODEL || "gpt-5.5",
       baseUrl: process.env.OPENAI_BASE_URL || "https://api.openai.com/v1"
     };
   }
@@ -308,7 +338,7 @@ async function readJsonBody(request) {
 }
 
 function getOpenAIModels() {
-  const primary = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const primary = process.env.OPENAI_MODEL || "gpt-5.5";
   const fallback = process.env.OPENAI_FALLBACK_MODEL || primary;
   return Array.from(new Set([primary, fallback].filter(Boolean)));
 }
@@ -587,9 +617,10 @@ module.exports = async function handler(request, response) {
     return send(response, 200, {
       ok: true,
       endpoint: "/api/pregnancy-guidance",
+      supportedLanguages: Object.keys(SUPPORTED_LANGUAGES),
       contract: {
         method: "POST",
-        request: "{ prompt, inputs, result } or { requestMode: 'nutrition-qa', question, inputs, result }",
+        request: "{ lang, prompt, inputs, result } or { lang, requestMode: 'nutrition-qa', question, inputs, result }",
         response: "{ source, diet: string[], exercise: string[], tips: string[] } or { source, answer: string[3] }"
       },
       ...getProviderStatus()
@@ -602,10 +633,18 @@ module.exports = async function handler(request, response) {
 
   try {
     const payload = await readJsonBody(request);
+    const payloadLanguage = getPayloadLanguage(payload);
+    if (!payloadLanguage) {
+      return send(response, 400, {
+        error: "Unsupported language",
+        supportedLanguages: Object.keys(SUPPORTED_LANGUAGES)
+      });
+    }
+
     if (payload && payload.requestMode === "nutrition-qa") {
       const safeQaData = sanitizeQaPayload(payload);
       if (!safeQaData.question) return send(response, 400, { error: "Question is required" });
-      const qaSystemPrompt = buildQaSystemPrompt();
+      const qaSystemPrompt = buildQaSystemPrompt(safeQaData.lang);
       const qaUserPrompt = buildQaUserPrompt(safeQaData);
       let qaResponse;
       let qaSource;
@@ -634,7 +673,7 @@ module.exports = async function handler(request, response) {
     }
 
     const safeData = sanitizePayload(payload);
-    const systemPrompt = buildSystemPrompt();
+    const systemPrompt = buildSystemPrompt(safeData.lang);
     const userPrompt = buildUserPrompt(safeData);
 
     let aiResponse;

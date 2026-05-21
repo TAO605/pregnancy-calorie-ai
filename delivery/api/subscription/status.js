@@ -6,6 +6,10 @@ const {
   getSubscriptionUserById,
   publicSubscription
 } = require("./_store");
+const {
+  freeModeSubscription,
+  isAllFeaturesFree
+} = require("./_free-mode");
 
 module.exports = async function handler(request, response) {
   if (request.method !== "GET") {
@@ -13,6 +17,13 @@ module.exports = async function handler(request, response) {
   }
 
   try {
+    if (isAllFeaturesFree()) {
+      return sendJson(response, 200, {
+        ok: true,
+        authenticated: false,
+        subscription: freeModeSubscription()
+      });
+    }
     const sessionUser = await getSessionUser(request);
     const subscriptionUser = sessionUser ? await getSubscriptionUserById(sessionUser.id) : null;
     return sendJson(response, 200, {
