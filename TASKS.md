@@ -120,6 +120,7 @@
 - [x] Move height/weight unit conversion hints outside the inline input controls and below each input row, with small gray text, LTR right alignment, RTL left alignment, preserved input focus/editing, regenerated localized delivery pages, and verified build/quality gate.
 - [x] Change height/weight conversion hint wording from equality to approximate copy (`≈ 68 inches`, Arabic `≈ 68 بوصة`), keep live updates while typing, regenerate localized delivery pages, and verify all configured languages across mobile/tablet/desktop.
 - [x] Complete deployment-readiness validation for the height/weight input fix: PC/mobile input checks, Arabic RTL checks, LTR checks, in-app browser spot check, production start smoke check, build, and full quality gate.
+- [x] Fix language-switch stale content cleanup: refresh result-page runtime static copy on language changes, clear old-language AI/QA generated output without new API calls, isolate AI cache by language, regenerate localized delivery pages, and verify preview-style language switching.
 
 ## Next Tasks
 

@@ -46,6 +46,7 @@ const pages = [
 ];
 
 const runtimeCopyKeys = [
+  ...Array.from({ length: 40 }, (_, index) => `home.${String(index + 48).padStart(4, "0")}`),
   "activity.sedentary",
   "activity.sedentary.desc",
   "activity.light",
@@ -392,6 +393,14 @@ function injectRuntimeLanguageCopy(html, lang, target) {
 }
 
 const english = readJson(path.join(localesDir, "en", "common.json"));
+
+const homeSourcePath = path.join(deliveryDir, "index.html");
+let homeSourceHtml = fs.readFileSync(homeSourcePath, "utf8");
+for (const lang of languages) {
+  const target = readJson(path.join(localesDir, lang, "common.json"));
+  homeSourceHtml = injectRuntimeLanguageCopy(homeSourceHtml, lang, target);
+}
+fs.writeFileSync(homeSourcePath, homeSourceHtml, "utf8");
 
 let generated = 0;
 for (const lang of languages) {
