@@ -1,7 +1,17 @@
 const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
-const vercelPostgresPath = path.join(repoRoot, "delivery", "node_modules", "@vercel", "postgres", "dist", "index-node.cjs");
+
+function mockPostgres(sql = jest.fn()) {
+  jest.doMock("@vercel/postgres", () => ({ sql }), { virtual: true });
+  return sql;
+}
+
+function mockBcrypt() {
+  jest.doMock("bcryptjs", () => ({
+    hash: jest.fn(async (password) => `hashed:${password}`)
+  }), { virtual: true });
+}
 
 describe("early free user access", () => {
   const originalFreeMode = process.env.NEXT_PUBLIC_ALL_FEATURES_FREE;
@@ -19,6 +29,7 @@ describe("early free user access", () => {
   test("checkSubscription keeps persisted early users premium after free mode is off", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     delete process.env.EARLY_FREE_CUTOFF_DATE;
+    mockPostgres();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
@@ -40,6 +51,7 @@ describe("early free user access", () => {
   test("checkSubscription keeps cutoff-era users premium as a legacy fallback", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     process.env.EARLY_FREE_CUTOFF_DATE = "2026-05-21T00:00:00.000Z";
+    mockPostgres();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
@@ -56,6 +68,7 @@ describe("early free user access", () => {
   test("checkSubscription leaves ordinary free users on the original subscription path", () => {
     process.env.NEXT_PUBLIC_ALL_FEATURES_FREE = "false";
     delete process.env.EARLY_FREE_CUTOFF_DATE;
+    mockPostgres();
 
     const { checkSubscription } = require(path.join(repoRoot, "delivery", "api", "subscription", "_store.js"));
     const access = checkSubscription({
@@ -87,7 +100,8 @@ describe("early user registration marker", () => {
           is_early_user: values[3]
         }]
       }));
-    jest.doMock(vercelPostgresPath, () => ({ sql: mockSql }));
+    mockPostgres(mockSql);
+    mockBcrypt();
 
     const { createUser } = require(path.join(repoRoot, "delivery", "api", "auth", "_auth.js"));
     const user = await createUser("early@example.com", "secret123");
@@ -108,7 +122,8 @@ describe("early user registration marker", () => {
           is_early_user: values[3]
         }]
       }));
-    jest.doMock(vercelPostgresPath, () => ({ sql: mockSql }));
+    mockPostgres(mockSql);
+    mockBcrypt();
 
     const { createUser } = require(path.join(repoRoot, "delivery", "api", "auth", "_auth.js"));
     const user = await createUser("paid-era@example.com", "secret123");
