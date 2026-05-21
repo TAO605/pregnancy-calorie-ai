@@ -5,7 +5,7 @@ const repoRoot = path.resolve(__dirname, "..", "..");
 const deliveryRoot = path.join(repoRoot, "delivery");
 const localesRoot = path.join(repoRoot, "public", "locales");
 const languages = ["en", "es", "fr", "de", "pt", "it", "ru", "ar", "ja", "ko"];
-const pagePaths = ["", "pricing", "about", "contact"];
+const pagePaths = ["", "about", "contact"];
 
 function pathExistsForRoute(route) {
   if (route === "/") return fs.existsSync(path.join(deliveryRoot, "index.html"));
@@ -29,6 +29,15 @@ describe("localized delivery route availability", () => {
       expect(pathExistsForRoute(route)).toBe(true);
     }
   );
+
+  test("paid static routes are retained for rollback but guarded by free-mode redirect scripts", () => {
+    const pricing = fs.readFileSync(path.join(deliveryRoot, "pricing", "index.html"), "utf8");
+    const premium = fs.readFileSync(path.join(deliveryRoot, "premium", "index.html"), "utf8");
+    expect(pricing).toContain('data-all-features-free="true"');
+    expect(pricing).toContain('all-features-free-paid-route-redirect');
+    expect(premium).toContain('data-all-features-free="true"');
+    expect(premium).toContain('all-features-free-paid-route-redirect');
+  });
 });
 
 describe("localized content and calculation invariants", () => {

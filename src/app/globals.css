@@ -12,6 +12,8 @@
   --accent: #ff7a59;
   --accent-strong: #ff5b4f;
   --accent-soft: rgba(255, 122, 89, 0.12);
+  --brand: var(--accent);
+  --brand-strong: var(--accent-strong);
   --develop: #0a72ef;
   --preview: #ff7aa2;
   --ring: hsla(212, 100%, 48%, 1);
@@ -21,6 +23,12 @@
     0 18px 48px -28px rgba(23, 23, 23, 0.24),
     0 10px 18px -14px rgba(23, 23, 23, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --button-padding-left: 24px;
+  --button-padding-right: 24px;
+  --button-padding-top: 12px;
+  --button-padding-bottom: 12px;
+  --button-padding-inline-start: var(--button-padding-left);
+  --button-padding-inline-end: var(--button-padding-right);
 }
 
 @theme inline {
@@ -33,6 +41,15 @@
 
 * {
   box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+input,
+textarea {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 html {
@@ -70,16 +87,74 @@ a {
 
 button,
 input,
+textarea,
 select {
   font: inherit;
 }
 
+button,
+.btn,
+.button {
+  padding: var(--button-padding-top) var(--button-padding-right) var(--button-padding-bottom) var(--button-padding-left);
+  text-align: center;
+}
+
 button:focus-visible,
 input:focus-visible,
+textarea:focus-visible,
 select:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+[dir="rtl"] button,
+[dir="rtl"] [role="button"],
+[dir="rtl"] .btn,
+[dir="rtl"] .button {
+  min-width: 0;
+  max-width: 100%;
+  direction: rtl;
+  text-align: right;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+[dir="rtl"] button,
+[dir="rtl"] .btn,
+[dir="rtl"] .button {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cta-primary,
+[dir="rtl"] .cta-secondary,
+[dir="rtl"] .btn,
+[dir="rtl"] .button {
+  padding-inline-start: var(--button-padding-inline-end, 1.3rem);
+  padding-inline-end: var(--button-padding-inline-start, 1.3rem);
+}
+
+[dir="rtl"] button svg,
+[dir="rtl"] .btn svg,
+[dir="rtl"] .button svg {
+  margin-inline-start: 0.5rem;
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] #weeklyButton,
+[dir="rtl"] #nutritionQaButton,
+[dir="rtl"] .nutrition-qa-button,
+[dir="rtl"] .update-weekly-btn,
+[dir="rtl"] .send-message-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  text-align: center;
 }
 
 .surface-card {

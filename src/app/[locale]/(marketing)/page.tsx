@@ -9,6 +9,7 @@ import { hasAuthenticatedServerSession } from "@/lib/auth/server-session";
 import { getPublishedContentPages } from "@/lib/content/content-store";
 import { getDictionary } from "@/lib/i18n/copy";
 import { isLocale, type Locale } from "@/lib/i18n/config";
+import { getLocaleJsonMeta } from "@/lib/i18n/locale-meta";
 import { getMarketingHomeCopy } from "@/lib/i18n/marketing-home-copy";
 import { getMarketingPageCopy } from "@/lib/i18n/marketing-page-copy";
 import { buildMarketingMetadata } from "@/lib/seo/metadata";
@@ -33,11 +34,12 @@ export async function generateMetadata({
 }: MarketingHomePageProps): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const pageCopy = getMarketingPageCopy(locale);
+  const localeMeta = getLocaleJsonMeta(locale, "home");
 
   return buildMarketingMetadata({
     locale,
-    title: pageCopy.homeMetaTitle,
-    description: pageCopy.homeMetaDescription,
+    title: localeMeta.title ?? pageCopy.homeMetaTitle,
+    description: localeMeta.description ?? pageCopy.homeMetaDescription,
     path: `/${locale}`,
   });
 }

@@ -1,0 +1,1488 @@
+{
+  "date": "2026-05-21T00:56:33.642Z",
+  "configuredLanguages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "it",
+    "ru",
+    "ar",
+    "ja",
+    "ko"
+  ],
+  "note": "Project i18n config contains 10 locales: en plus 9 target locales.",
+  "pages": [
+    {
+      "lang": "en",
+      "page": "home",
+      "url": "http://127.0.0.1:4173",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "en",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/es",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/es/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/es/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/es/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/es/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/es/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/es/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/fr",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/fr/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/fr/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/fr/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/fr/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/fr/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/fr/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/de",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/de/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/de/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/de/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/de/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/de/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/de/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/pt",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/pt/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/pt/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/pt/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/pt/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/pt/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/pt/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/it",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/it/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/it/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/it/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/it/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/it/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/it/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/ru",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/ru/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/ru/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/ru/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/ru/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/ru/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/ru/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/ar",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/ar/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/ar/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/ar/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/ar/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/ar/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/ar/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/ja",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/ja/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/ja/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/ja/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/ja/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/ja/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/ja/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "home",
+      "url": "http://127.0.0.1:4173/ko",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "about",
+      "url": "http://127.0.0.1:4173/ko/about",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/ko/contact",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "privacy-policy",
+      "url": "http://127.0.0.1:4173/ko/privacy-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "terms-of-service",
+      "url": "http://127.0.0.1:4173/ko/terms-of-service",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "cookie-policy",
+      "url": "http://127.0.0.1:4173/ko/cookie-policy",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "page": "medical-disclaimer",
+      "url": "http://127.0.0.1:4173/ko/medical-disclaimer",
+      "paidMatch": null,
+      "h1Count": 1,
+      "visiblePaidAnchors": [],
+      "consoleWarningsErrors": [],
+      "failedHttpResponses": []
+    }
+  ],
+  "flows": [
+    {
+      "lang": "en",
+      "url": "http://127.0.0.1:4173",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2,530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Weekly report refreshed with your average intake.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "es",
+      "url": "http://127.0.0.1:4173/es",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2.530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Informe semanal actualizado con su ingesta media.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "fr",
+      "url": "http://127.0.0.1:4173/fr",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2 530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Rapport hebdomadaire actualisé avec votre consommation moyenne.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "de",
+      "url": "http://127.0.0.1:4173/de",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2.530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Wöchentlich aktualisierter Bericht mit Ihrer durchschnittlichen Aufnahme.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "pt",
+      "url": "http://127.0.0.1:4173/pt",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2.530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Relatório semanal atualizado com a sua ingestão média.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "it",
+      "url": "http://127.0.0.1:4173/it",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2.530 kcal",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Rapporto settimanale aggiornato con la vostra assunzione media.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ru",
+      "url": "http://127.0.0.1:4173/ru",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2 530 ккал",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "Еженедельно обновляемый отчет со средними показателями потребления.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ar",
+      "url": "http://127.0.0.1:4173/ar",
+      "dir": "rtl",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2,530 كيلو كالوري",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "تقرير أسبوعي مُحدَّث بمتوسط استهلاكك.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ja",
+      "url": "http://127.0.0.1:4173/ja",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2,530 キロカロリー",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "平均摂取量で更新される週報。",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    },
+    {
+      "lang": "ko",
+      "url": "http://127.0.0.1:4173/ko",
+      "dir": "ltr",
+      "paidMatch": null,
+      "badPaidAnchors": [],
+      "calorie": "2,530 킬로칼로리",
+      "mealPlanSets": 1,
+      "weeklyReportReady": true,
+      "weeklyStatus": "주간 보고서가 평균 섭취량으로 새로 고쳐집니다.",
+      "trackerSvgCount": 1,
+      "trackerRecordsReady": true,
+      "qaReady": true,
+      "consoleWarningsErrors": [],
+      "pageErrors": [],
+      "failedHttpResponses": []
+    }
+  ],
+  "redirects": [
+    {
+      "lang": "en",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/premium",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/billing",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "en",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/",
+      "expected": "/"
+    },
+    {
+      "lang": "es",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/premium",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/billing",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "es",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/es/",
+      "expected": "/es/"
+    },
+    {
+      "lang": "fr",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/premium",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/billing",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "fr",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/fr/",
+      "expected": "/fr/"
+    },
+    {
+      "lang": "de",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/premium",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/billing",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "de",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/de/",
+      "expected": "/de/"
+    },
+    {
+      "lang": "pt",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/premium",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/billing",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "pt",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/pt/",
+      "expected": "/pt/"
+    },
+    {
+      "lang": "it",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/premium",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/billing",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "it",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/it/",
+      "expected": "/it/"
+    },
+    {
+      "lang": "ru",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/premium",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/billing",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ru",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/ru/",
+      "expected": "/ru/"
+    },
+    {
+      "lang": "ar",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/premium",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/billing",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ar",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/ar/",
+      "expected": "/ar/"
+    },
+    {
+      "lang": "ja",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/premium",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/billing",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ja",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/ja/",
+      "expected": "/ja/"
+    },
+    {
+      "lang": "ko",
+      "route": "/pricing",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/premium",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/refund-policy",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/checkout",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/checkout/test",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/billing",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/subscription-success",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    },
+    {
+      "lang": "ko",
+      "route": "/subscription-canceled",
+      "status": 301,
+      "location": "/ko/",
+      "expected": "/ko/"
+    }
+  ],
+  "seo": {
+    "sitemapStatus": 200,
+    "robotsStatus": 200,
+    "sitemapPaidMarkerCount": 0,
+    "robotsHasSitemap": true,
+    "robotsAllowsRoot": true
+  },
+  "authPermissions": {
+    "localPostgresUrlPresent": false,
+    "loggedOutGuestPremiumInFreeMode": true,
+    "persistedEarlyUserPremiumAfterFreeModeOff": true,
+    "cutoffFallbackUserPremiumAfterFreeModeOff": true,
+    "browserRegisterLoginCaveat": "POSTGRES_URL is not present locally, so browser register/login was not submitted. Registration persistence is covered by tests/unit/early-user-access.test.cjs."
+  },
+  "paymentApis": {
+    "checkout": {
+      "status": 403,
+      "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+    },
+    "portal": {
+      "status": 403,
+      "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+    },
+    "webhook": {
+      "status": 403,
+      "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+    }
+  },
+  "summary": {
+    "pageChecks": 70,
+    "flowChecks": 10,
+    "redirectChecks": 80,
+    "failures": [],
+    "warnings": [],
+    "passed": true
+  }
+}

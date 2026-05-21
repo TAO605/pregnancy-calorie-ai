@@ -1,0 +1,939 @@
+{
+  "generatedAt": "2026-05-21T01:39:53.257Z",
+  "site": "https://aipregnancycaloriecalculator.online",
+  "deploymentUrl": "https://delivery-5gevlw9hp-xutaos-projects-04f1c683.vercel.app",
+  "summary": {
+    "total": 109,
+    "passed": 109,
+    "failed": 0,
+    "status": "passed"
+  },
+  "results": [
+    {
+      "name": "page:/",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 470100
+      }
+    },
+    {
+      "name": "free-flag:en",
+      "ok": true,
+      "details": {
+        "lang": "en"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:en",
+      "ok": true,
+      "details": {
+        "lang": "en"
+      }
+    },
+    {
+      "name": "page:/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17592
+      }
+    },
+    {
+      "name": "page:/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15674
+      }
+    },
+    {
+      "name": "page:/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16732
+      }
+    },
+    {
+      "name": "page:/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17421
+      }
+    },
+    {
+      "name": "page:/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17713
+      }
+    },
+    {
+      "name": "page:/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 14352
+      }
+    },
+    {
+      "name": "page:/es",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 504961
+      }
+    },
+    {
+      "name": "free-flag:es",
+      "ok": true,
+      "details": {
+        "lang": "es"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:es",
+      "ok": true,
+      "details": {
+        "lang": "es"
+      }
+    },
+    {
+      "name": "page:/es/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19005
+      }
+    },
+    {
+      "name": "page:/es/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16743
+      }
+    },
+    {
+      "name": "page:/es/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18078
+      }
+    },
+    {
+      "name": "page:/es/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19046
+      }
+    },
+    {
+      "name": "page:/es/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19253
+      }
+    },
+    {
+      "name": "page:/es/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15303
+      }
+    },
+    {
+      "name": "page:/fr",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 508188
+      }
+    },
+    {
+      "name": "free-flag:fr",
+      "ok": true,
+      "details": {
+        "lang": "fr"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:fr",
+      "ok": true,
+      "details": {
+        "lang": "fr"
+      }
+    },
+    {
+      "name": "page:/fr/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19183
+      }
+    },
+    {
+      "name": "page:/fr/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16836
+      }
+    },
+    {
+      "name": "page:/fr/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18390
+      }
+    },
+    {
+      "name": "page:/fr/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19556
+      }
+    },
+    {
+      "name": "page:/fr/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19455
+      }
+    },
+    {
+      "name": "page:/fr/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15489
+      }
+    },
+    {
+      "name": "page:/de",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 505821
+      }
+    },
+    {
+      "name": "free-flag:de",
+      "ok": true,
+      "details": {
+        "lang": "de"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:de",
+      "ok": true,
+      "details": {
+        "lang": "de"
+      }
+    },
+    {
+      "name": "page:/de/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18908
+      }
+    },
+    {
+      "name": "page:/de/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16443
+      }
+    },
+    {
+      "name": "page:/de/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18039
+      }
+    },
+    {
+      "name": "page:/de/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18664
+      }
+    },
+    {
+      "name": "page:/de/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19236
+      }
+    },
+    {
+      "name": "page:/de/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15088
+      }
+    },
+    {
+      "name": "page:/pt",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 504690
+      }
+    },
+    {
+      "name": "free-flag:pt",
+      "ok": true,
+      "details": {
+        "lang": "pt"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:pt",
+      "ok": true,
+      "details": {
+        "lang": "pt"
+      }
+    },
+    {
+      "name": "page:/pt/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18576
+      }
+    },
+    {
+      "name": "page:/pt/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16243
+      }
+    },
+    {
+      "name": "page:/pt/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17657
+      }
+    },
+    {
+      "name": "page:/pt/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18523
+      }
+    },
+    {
+      "name": "page:/pt/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18767
+      }
+    },
+    {
+      "name": "page:/pt/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15051
+      }
+    },
+    {
+      "name": "page:/it",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 506777
+      }
+    },
+    {
+      "name": "free-flag:it",
+      "ok": true,
+      "details": {
+        "lang": "it"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:it",
+      "ok": true,
+      "details": {
+        "lang": "it"
+      }
+    },
+    {
+      "name": "page:/it/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19083
+      }
+    },
+    {
+      "name": "page:/it/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16710
+      }
+    },
+    {
+      "name": "page:/it/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18130
+      }
+    },
+    {
+      "name": "page:/it/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18906
+      }
+    },
+    {
+      "name": "page:/it/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19158
+      }
+    },
+    {
+      "name": "page:/it/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15446
+      }
+    },
+    {
+      "name": "page:/ru",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 505515
+      }
+    },
+    {
+      "name": "free-flag:ru",
+      "ok": true,
+      "details": {
+        "lang": "ru"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:ru",
+      "ok": true,
+      "details": {
+        "lang": "ru"
+      }
+    },
+    {
+      "name": "page:/ru/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19132
+      }
+    },
+    {
+      "name": "page:/ru/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 16612
+      }
+    },
+    {
+      "name": "page:/ru/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 18176
+      }
+    },
+    {
+      "name": "page:/ru/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19084
+      }
+    },
+    {
+      "name": "page:/ru/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 19386
+      }
+    },
+    {
+      "name": "page:/ru/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15351
+      }
+    },
+    {
+      "name": "page:/ar",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 500129
+      }
+    },
+    {
+      "name": "free-flag:ar",
+      "ok": true,
+      "details": {
+        "lang": "ar"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:ar",
+      "ok": true,
+      "details": {
+        "lang": "ar"
+      }
+    },
+    {
+      "name": "arabic-rtl-html",
+      "ok": true,
+      "details": {}
+    },
+    {
+      "name": "page:/ar/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17880
+      }
+    },
+    {
+      "name": "page:/ar/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15814
+      }
+    },
+    {
+      "name": "page:/ar/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17046
+      }
+    },
+    {
+      "name": "page:/ar/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17664
+      }
+    },
+    {
+      "name": "page:/ar/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 17882
+      }
+    },
+    {
+      "name": "page:/ar/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 14769
+      }
+    },
+    {
+      "name": "page:/ja",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 485405
+      }
+    },
+    {
+      "name": "free-flag:ja",
+      "ok": true,
+      "details": {
+        "lang": "ja"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:ja",
+      "ok": true,
+      "details": {
+        "lang": "ja"
+      }
+    },
+    {
+      "name": "page:/ja/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15684
+      }
+    },
+    {
+      "name": "page:/ja/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 14506
+      }
+    },
+    {
+      "name": "page:/ja/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 14844
+      }
+    },
+    {
+      "name": "page:/ja/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15289
+      }
+    },
+    {
+      "name": "page:/ja/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15557
+      }
+    },
+    {
+      "name": "page:/ja/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 13257
+      }
+    },
+    {
+      "name": "page:/ko",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 486542
+      }
+    },
+    {
+      "name": "free-flag:ko",
+      "ok": true,
+      "details": {
+        "lang": "ko"
+      }
+    },
+    {
+      "name": "no-tailwind-cdn:ko",
+      "ok": true,
+      "details": {
+        "lang": "ko"
+      }
+    },
+    {
+      "name": "page:/ko/about",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15767
+      }
+    },
+    {
+      "name": "page:/ko/contact",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 14501
+      }
+    },
+    {
+      "name": "page:/ko/medical-disclaimer",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15033
+      }
+    },
+    {
+      "name": "page:/ko/privacy-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15341
+      }
+    },
+    {
+      "name": "page:/ko/terms-of-service",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 15552
+      }
+    },
+    {
+      "name": "page:/ko/cookie-policy",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "bytes": 13174
+      }
+    },
+    {
+      "name": "paid-redirect:/pricing",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/premium",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/refund-policy",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/checkout/test",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/billing",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/subscription-success",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/subscription-canceled",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/"
+      }
+    },
+    {
+      "name": "paid-redirect:/ar/pricing",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/ar/"
+      }
+    },
+    {
+      "name": "paid-redirect:/ar/checkout/test",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/ar/"
+      }
+    },
+    {
+      "name": "paid-redirect:/es/billing",
+      "ok": true,
+      "details": {
+        "status": 301,
+        "location": "/es/"
+      }
+    },
+    {
+      "name": "sitemap-public-urls",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "locCount": 70
+      }
+    },
+    {
+      "name": "sitemap-no-paid-urls",
+      "ok": true,
+      "details": {
+        "paidCount": 0,
+        "paid": []
+      }
+    },
+    {
+      "name": "robots",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "body": "User-agent: *\nAllow: /\nSitemap: https://aipregnancycaloriecalculator.online/sitemap.xml\n"
+      }
+    },
+    {
+      "name": "pregnancy-guidance-api",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "provider": "openai",
+        "model": "gpt-5.5",
+        "baseUrl": "https://rkapi.com/v1"
+      }
+    },
+    {
+      "name": "payment-api-disabled:/api/subscription/create-checkout-session",
+      "ok": true,
+      "details": {
+        "status": 403,
+        "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+      }
+    },
+    {
+      "name": "payment-api-disabled:/api/subscription/create-portal-session",
+      "ok": true,
+      "details": {
+        "status": 403,
+        "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+      }
+    },
+    {
+      "name": "payment-api-disabled:/api/subscription/webhook",
+      "ok": true,
+      "details": {
+        "status": 403,
+        "body": "{\"ok\":false,\"allFeaturesFree\":true,\"error\":\"Payment system is temporarily disabled\"}"
+      }
+    },
+    {
+      "name": "deployment-inspect-ready",
+      "ok": true,
+      "details": {
+        "deploymentId": "dpl_4odVBTYab5gsVh3sLPStvpr1o96Q",
+        "deploymentUrl": "https://delivery-5gevlw9hp-xutaos-projects-04f1c683.vercel.app",
+        "status": "Ready by Vercel inspect",
+        "aliases": [
+          "https://aipregnancycaloriecalculator.online",
+          "https://www.aipregnancycaloriecalculator.online",
+          "https://delivery-umber-psi.vercel.app"
+        ],
+        "note": "Direct *.vercel.app HTTPS fetch times out from this local network, but Vercel inspect reports Ready and custom production domain passed HTTP validation."
+      }
+    }
+  ],
+  "productionEnvironment": {
+    "NEXT_PUBLIC_ALL_FEATURES_FREE": "true",
+    "source": "Vercel Production env var added via CLI and redeployed"
+  },
+  "browserValidation": {
+    "status": "passed",
+    "tool": "Playwright Chromium",
+    "note": "Codex in-app browser plugin failed to start app-server on this machine, so Chromium Playwright was used for equivalent browser verification.",
+    "screenshots": [
+      ".qa/screenshots/production-validation/en-calculator.png",
+      ".qa/screenshots/production-validation/en-result.png",
+      ".qa/screenshots/production-validation/ar-calculator.png",
+      ".qa/screenshots/production-validation/ar-result.png"
+    ],
+    "details": {
+      "generatedAt": "2026-05-21T01:39:29.951Z",
+      "summary": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "status": "passed"
+      },
+      "results": [
+        {
+          "lang": "en",
+          "url": "https://aipregnancycaloriecalculator.online/#calculator",
+          "ok": true,
+          "beforeCheck": {
+            "dir": "ltr",
+            "lang": "en-US",
+            "allFeaturesFree": "true",
+            "buttonCount": 25,
+            "blankButtons": [],
+            "paidLinks": [],
+            "horizontalOverflow": false,
+            "calculateText": "Calculate My Calories"
+          },
+          "resultCheck": {
+            "resultVisible": true,
+            "calorieText": "2,180 kcal",
+            "premiumVisible": false
+          },
+          "logs": []
+        },
+        {
+          "lang": "ar",
+          "url": "https://aipregnancycaloriecalculator.online/ar/#calculator",
+          "ok": true,
+          "beforeCheck": {
+            "dir": "rtl",
+            "lang": "ar",
+            "allFeaturesFree": "true",
+            "buttonCount": 25,
+            "blankButtons": [],
+            "paidLinks": [],
+            "horizontalOverflow": false,
+            "calculateText": "احسبي سعراتك"
+          },
+          "resultCheck": {
+            "resultVisible": true,
+            "calorieText": "2,180 كيلو كالوري",
+            "premiumVisible": false
+          },
+          "logs": []
+        }
+      ]
+    }
+  }
+}

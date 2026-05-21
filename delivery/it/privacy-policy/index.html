@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="it" dir="ltr" data-all-features-free="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <base href="/">
-  <title>Privacy Policy for Pregnancy Data | AI Calorie Tool</title>
-  <meta name="description" content="Read our Privacy Policy to understand how we protect pregnancy calculator data, account details, Stripe payments, AI nutrition requests, and support emails.">
+  <title>Informativa sulla privacy relativa ai dati sulla gravidanza | Strumento di calcolo delle calorie basato sull'intelligenza artificiale</title>
+  <meta name="description" content="Leggi la nostra Informativa sulla privacy per capire come proteggiamo i dati del calcolatore di gravidanza, i dettagli dell'account, i pagamenti tramite Stripe, le richieste nutrizionali basate sull'intelligenza artificiale e le e-mail di assistenza.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://aipregnancycaloriecalculator.online/privacy-policy">
+  <link rel="canonical" href="https://aipregnancycaloriecalculator.online/it/privacy-policy">
   <!-- Multilingual SEO: Google hreflang cluster. Keep every language reciprocal and absolute. -->
   <link rel="alternate" hreflang="en" href="https://aipregnancycaloriecalculator.online/privacy-policy">
   <link rel="alternate" hreflang="es" href="https://aipregnancycaloriecalculator.online/es/privacy-policy">
@@ -38,9 +38,9 @@
     .note { border:1px solid var(--line); border-radius:20px; background:var(--surface); padding:18px; }
     .compliance-footer { width:100%; border-top:1px solid var(--line); background:var(--soft); padding:42px 24px 30px; margin-top:46px; }
     .compliance-footer-inner { display:grid; width:100%; max-width:960px; margin:0 auto; gap:24px; }
-    .compliance-brand { display:flex; flex-direction:column; gap:8px; }
-    .compliance-brand a { width:fit-content; color:var(--text); font-size:16px; font-weight:900; text-decoration:none; }
-    .compliance-brand p { max-width:300px; margin:0; color:var(--muted); font-size:14px; }
+    .compliance-bre { display:flex; flex-direction:column; gap:8px; }
+    .compliance-bre a { width:fit-content; color:var(--text); font-size:16px; font-weight:900; text-decoration:none; }
+    .compliance-bre p { max-width:300px; margin:0; color:var(--muted); font-size:14px; }
     .compliance-links { display:flex; flex-direction:column; gap:12px; }
     .compliance-links a { display:inline-flex; width:fit-content; min-height:40px; align-items:center; color:var(--muted); font-size:14px; font-weight:750; text-decoration:none; }
     .compliance-links a:focus,.compliance-links a:hover { color:var(--strong); outline:none; }
@@ -60,7 +60,7 @@
           "@id": "https://aipregnancycaloriecalculator.online/#organization"
         },
         "dateModified": "2026-05-13",
-        "inLanguage": "en-US",
+        "inLanguage": "it",
         "isPartOf": { "@id": "https://aipregnancycaloriecalculator.online/#website" }
       },
       {
@@ -86,75 +86,138 @@
     ]
   }
   </script>
+<style id="all-features-free-guard">
+html[data-all-features-free="true"] .subscription-teaser,
+html[data-all-features-free="true"] .premium-result-card,
+html[data-all-features-free="true"] .premium-account-badge,
+html[data-all-features-free="true"] .premium-upgrade-button,
+html[data-all-features-free="true"] .premium-manage-button,
+html[data-all-features-free="true"] .plan-card,
+html[data-all-features-free="true"] .pricing-grid,
+html[data-all-features-free="true"] .pricing-currency-row,
+html[data-all-features-free="true"] .guarantee,
+html[data-all-features-free="true"] .guarantee-note,
+html[data-all-features-free="true"] [data-usd-charge-note],
+html[data-all-features-free="true"] [data-checkout-plan],
+html[data-all-features-free="true"] a[href*="/pricing"],
+html[data-all-features-free="true"] a[href*="pricing.html"],
+html[data-all-features-free="true"] a[href*="/premium"],
+html[data-all-features-free="true"] a[href*="premium.html"],
+html[data-all-features-free="true"] a[href*="/refund-policy"],
+html[data-all-features-free="true"] a[href*="refund-policy.html"],
+html[data-all-features-free="true"] a[href*="/checkout"],
+html[data-all-features-free="true"] a[href*="/billing"],
+html[data-all-features-free="true"] a[href*="/subscription-success"],
+html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
+  display: none !important;
+}
+</style>
+<script id="all-features-free-paid-copy-guard">
+(function(){
+  if (document.documentElement.dataset.allFeaturesFree !== "true") return;
+  function prunePaidCopy(){
+    var paidPattern = /\b(Pricing|Premium|Subscribe|subscription|checkout|Unlock|Upgrade|Buy Now|Start Free Trial|Stripe|billing|payment|paid|price|prices|refund|money-back|charged in USD)\b|\$7\.99|\$79\.99|\b(Precios?|suscripci[oó]n|facturaci[oó]n|pago|reembolso)\b|\b(Prix|abonnement|facturation|paiement|remboursement)\b|\b(Preis|Preise|Abonnement|Zahlung|R[üu]ckerstattung|Erstattung)\b|\b(Pre[cç]os?|assinatura|faturamento|pagamento|reembolso)\b|\b(Prezzi?|abbonamento|fatturazione|pagamento|rimborso)\b|подпис|оплат|плат[её]ж|возврат|премиум|цены|الأسعار|الاشتراك|الدفع|الفواتير|استرداد|返金|価格|料金|支払い|サブスクリプション|プレミアム|환불|가격|요금|결제|구독|프리미엄/i;
+    var selectors = [
+      "p",
+      "li",
+      "a",
+      "button",
+      "h2",
+      "h3",
+      "small",
+      ".currency-note",
+      ".support-card",
+      ".guarantee",
+      ".guarantee-note",
+      ".premium-result-card",
+      ".subscription-teaser",
+      ".premium-account-badge",
+      ".premium-upgrade-button",
+      ".premium-manage-button"
+    ].join(",");
+    document.querySelectorAll(selectors).forEach(function(element){
+      var text = (element.innerText || element.textContent || "").trim();
+      if (text && paidPattern.test(text)) element.hidden = true;
+    });
+    document.querySelectorAll("input[placeholder], textarea[placeholder]").forEach(function(element){
+      var placeholder = element.getAttribute("placeholder") || "";
+      if (!paidPattern.test(placeholder)) return;
+      element.setAttribute("placeholder", placeholder.replace(/\bBilling,?\s*/i, "").replace(/\bsubscription,?\s*/i, "").replace(/\bpayment,?\s*/i, "").replace(/\s{2,}/g, " ").replace(/^,\s*/, "").trim());
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", prunePaidCopy, { once: true });
+  else prunePaidCopy();
+}());
+</script>
 </head>
 <body>
-  <header class="topbar"><nav aria-label="Main navigation"><a class="back" href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Home</a><a class="back" href="https://aipregnancycaloriecalculator.online/pricing.html" title="View AI Pregnancy Calorie Calculator pricing plans">Pricing</a><a class="back" href="https://aipregnancycaloriecalculator.online/about-us.html" title="Learn about AI Pregnancy Calorie Calculator">About</a><a class="back" href="https://aipregnancycaloriecalculator.online/contact-us.html" title="Contact AI Pregnancy Calorie Calculator support">Contact</a></nav></header>
+  <header class="topbar"><nav aria-label="Main navigation"><a class="back" href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Home</a><a class="back" href="https://aipregnancycaloriecalculator.online/it/pricing" title="View AI Pregnancy Calorie Calculator pricing plans">Prezzi</a><a class="back" href="https://aipregnancycaloriecalculator.online/it/about" title="Learn about AI Pregnancy Calorie Calculator">Informazioni su</a><a class="back" href="https://aipregnancycaloriecalculator.online/it/contact" title="Contact AI Pregnancy Calorie Calculator support">Contatti</a></nav></header>
   <main>
     <article>
-    <h1>Privacy Policy</h1>
-    <p><strong>Last updated:</strong> May 13, 2026</p>
-    <p class="note">AI Pregnancy Calorie Calculator is a personal SaaS tool operated by Tao Xu. This policy explains what information is needed to provide pregnancy calorie estimates, AI nutrition guidance, account access, and optional Premium subscriptions.</p>
+    <h1>Informativa sulla privacy</h1>
+    <p><strong>Ultimo aggiornamento:</strong> 13/05/2026</p>
+    <p class="note">AI Pregnancy Calorie Calculator è uno strumento SaaS personale gestito da Tao Xu. La presente informativa illustra quali dati sono necessari per fornire stime caloriche in gravidanza, consigli nutrizionali basati sull'intelligenza artificiale, accesso all'account e abbonamenti Premium facoltativi.</p>
 
-    <h2>Information we collect</h2>
-    <p>We collect only the information needed to operate this service:</p>
+    <h2>I dati che raccogliamo</h2>
+    <p>Raccogliamo solo le informazioni necessarie per la gestione di questo servizio:</p>
     <ul>
-      <li><strong>Account data:</strong> your email address and password-protected login session when you create an account.</li>
-      <li><strong>Pregnancy calculator data:</strong> age, height, pre-pregnancy weight, pregnancy week, pregnancy type, activity level, unit preference, optional diet preferences, allergies, budget, cooking difficulty, and weekly weight records that you choose to enter.</li>
-      <li><strong>AI request data:</strong> the calculator result and the pregnancy nutrition question or customization request you submit, so the AI guidance can be generated.</li>
-      <li><strong>Payment data:</strong> subscription status, plan type, Stripe customer ID, renewal or expiration information, and payment event identifiers needed to manage Premium access.</li>
-      <li><strong>Technical data:</strong> standard hosting logs such as IP address, browser type, requested URL, date, time, and diagnostic events used for security and reliability.</li>
+      <li><strong>Dati dell'account:</strong> il tuo indirizzo e-mail e la sessione di accesso protetta da password al momento della creazione dell'account.</li>
+      <li><strong>Dati del calcolatore di gravidanza:</strong> età, altezza, peso pre-gravidanza, settimana di gravidanza, tipo di gravidanza, livello di attività fisica, unità di misura preferite, eventuali preferenze alimentari, allergie, budget, difficoltà di preparazione e registrazioni settimanali del peso che scegli di inserire.</li>
+      <li><strong>Dati relativi alle richieste di IA:</strong> il risultato del calcolatore e la domanda sull'alimentazione in gravidanza o la richiesta di personalizzazione che invii, in modo da poter generare i consigli dell'IA.</li>
+      <li><strong>Dati di pagamento:</strong> stato dell'abbonamento, tipo di piano, ID cliente Stripe, informazioni sul rinnovo o sulla scadenza e identificatori degli eventi di pagamento necessari per gestire l'accesso Premium.</li>
+      <li><strong>Dati tecnici:</strong> log standard di hosting quali indirizzo IP, tipo di browser, URL richiesto, data, ora ed eventi diagnostici utilizzati a fini di sicurezza e affidabilità.</li>
     </ul>
 
-    <h2>Stripe payment processing</h2>
-    <p>Payments are processed by Stripe. We do not store, process, or have access to your full credit card number, CVC, or card authentication details. Stripe may collect billing details and payment method information according to Stripe's own privacy and security practices.</p>
+    <h2>Elaborazione dei pagamenti con Stripe</h2>
+    <p>I pagamenti vengono gestiti da Stripe. Non conserviamo, non elaboriamo né abbiamo accesso al numero completo della tua carta di credito, al codice CVC o ai dati di autenticazione della carta. Stripe potrebbe raccogliere i dati di fatturazione e le informazioni relative al metodo di pagamento in conformità con le proprie politiche in materia di privacy e sicurezza.</p>
 
-    <h2>How we use information</h2>
+    <h2>Come utilizziamo i dati</h2>
     <ul>
-      <li>To calculate daily pregnancy calorie goals, macro targets, weight gain references, and nutrition summaries.</li>
-      <li>To generate AI-powered educational pregnancy nutrition guidance based on the inputs you provide.</li>
-      <li>To create and manage your account, login session, password reset, subscription status, and Premium access.</li>
-      <li>To provide customer support when you contact us.</li>
-      <li>To protect the website, prevent abuse, debug errors, and improve service reliability.</li>
+      <li>Per calcolare il fabbisogno calorico giornaliero in gravidanza, gli obiettivi nutrizionali, i valori di riferimento per l'aumento di peso e i riepiloghi nutrizionali.</li>
+      <li>Per generare consigli nutrizionali per la gravidanza basati sull'intelligenza artificiale, sulla base delle informazioni fornite.</li>
+      <li>Per creare e gestire il tuo account, la sessione di accesso, la reimpostazione della password, lo stato dell'abbonamento e l'accesso Premium.</li>
+      <li>Per fornirti assistenza quando ci contatti.</li>
+      <li>Per proteggere il sito web, prevenire abusi, correggere gli errori e migliorare l'affidabilità del servizio.</li>
     </ul>
 
-    <h2>Local browser storage</h2>
-    <p>The website may store your recent calculator inputs and weekly tracker records in your browser's local storage. This helps you return to the calculator without re-entering everything. You can clear this data by clearing site data in your browser.</p>
+    <h2>Memoria locale del browser</h2>
+    <p>Il sito web potrebbe salvare nel memoria locale del tuo browser i dati inseriti di recente nel calcolatore e i dati registrati nel tracker settimanale. In questo modo potrai tornare al calcolatore senza dover reinserire tutte le informazioni. Puoi cancellare questi dati cancellando i dati dei siti nel tuo browser.</p>
 
-    <h2>Sharing with service providers</h2>
-    <p>We use service providers only where needed to operate the product: Vercel for hosting and serverless functions, a database provider for accounts and subscription state, Stripe for payments, Resend for password reset emails, and AI API providers for nutrition guidance requests. We do not sell personal data.</p>
+    <h2>Condivisione con i fornitori di servizi</h2>
+    <p>Ci avvaliamo di fornitori di servizi solo nella misura necessaria al funzionamento del prodotto: Vercel per l'hosting e le funzioni serverless, un fornitore di database per la gestione degli account e dello stato degli abbonamenti, Stripe per i pagamenti, Resend per le e-mail di reimpostazione della password e fornitori di API di intelligenza artificiale per le richieste di consigli nutrizionali. Non vendiamo dati personali.</p>
 
-    <h2>Health and pregnancy information</h2>
-    <p>The pregnancy information you enter is used to produce educational nutrition estimates and AI guidance. It is not used for medical diagnosis, treatment, insurance decisions, or advertising profiling.</p>
+    <h2>Informazioni su salute e gravidanza</h2>
+    <p>Le informazioni sulla gravidanza fornite vengono utilizzate per elaborare stime nutrizionali a scopo informativo e indicazioni relative all'inseminazione artificiale. Non vengono utilizzate per diagnosi mediche, trattamenti, decisioni assicurative o profilazione pubblicitaria.</p>
 
-    <h2>Data retention</h2>
-    <p>Account and subscription records are kept while your account is active and as needed for security, legal, accounting, or dispute purposes. Browser local storage remains on your device until you clear it. Password reset tokens expire and are invalidated after use.</p>
+    <h2>Conservazione dei dati</h2>
+    <p>I dati relativi all'account e all'abbonamento vengono conservati finché l'account rimane attivo e per il tempo necessario a fini di sicurezza, legali, contabili o in caso di controversie. I dati memorizzati nella memoria locale del browser rimangono sul dispositivo fino a quando non vengono cancellati. I token per il ripristino della password scadono e vengono invalidati dopo l'uso.</p>
 
-    <h2>Your choices and rights</h2>
-    <p>You may use the free calculator without subscribing. You may clear browser storage, cancel your subscription through Stripe, or contact us to request access, correction, or deletion of account-related data where applicable law allows.</p>
+    <h2>Le tue scelte e i tuoi diritti</h2>
+    <p>Puoi utilizzare il calcolatore gratuito senza abbonarti. Puoi svuotare la cache del browser, annullare l'abbonamento tramite Stripe oppure contattarci per richiedere l'accesso, la rettifica o la cancellazione dei dati relativi al tuo account, nei casi in cui la normativa vigente lo consenta.</p>
 
-    <h2>Medical disclaimer</h2>
-    <p>This service provides nutrition education only. It does not provide medical advice and does not replace your obstetrician, physician, registered dietitian, midwife, or qualified healthcare provider.</p>
+    <h2>Avviso legale in materia medica</h2>
+    <p>Questo servizio offre esclusivamente consulenza nutrizionale. Non fornisce consulenza medica e non sostituisce il proprio ginecologo, medico, dietista, ostetrica o operatore sanitario qualificato.</p>
 
-    <h2>Contact</h2>
-    <p>For privacy questions or data requests, contact us at <a href="mailto:support@aipregnancycaloriecalculator.online" title="Email AI Pregnancy Calorie Calculator support">support@aipregnancycaloriecalculator.online</a>.</p>
-    <p>This Privacy Policy should be read together with our <a href="https://aipregnancycaloriecalculator.online/terms-of-service.html" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Terms of Service</a> and <a href="https://aipregnancycaloriecalculator.online/cookie-policy.html" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Cookie Policy</a>.</p>
-    <p><strong>Written and reviewed by the AI Pregnancy Calorie Calculator content team. Last updated: May 13, 2026.</strong></p>
+    <h2>Contatti</h2>
+    <p>Per domande relative alla privacy o richieste di informazioni sui dati, contattateci all'indirizzo <a href="mailto:support@aipregnancycaloriecalculator.online" title="Email AI Pregnancy Calorie Calculator support">support@aipregnancycaloriecalculator.online</a>.</p>
+    <p>La presente Informativa sulla privacy va letta insieme alla nostra <a href="https://aipregnancycaloriecalculator.online/it/terms-of-service" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Condizioni di servizio</a> e <a href="https://aipregnancycaloriecalculator.online/it/cookie-policy" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Informativa sui cookie</a>.</p>
+    <p><strong>Scritto e revisionato dal team responsabile dei contenuti di AI Pregnancy Calorie Calculator. Ultimo aggiornamento: 13/05/2026.</strong></p>
     </article>
   </main>
   <footer class="compliance-footer" aria-label="Compliance navigation">
     <div class="compliance-footer-inner">
       <div class="compliance-brand">
-        <a href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">AI Pregnancy Calorie Calculator</a>
-        <p>AI-powered pregnancy calorie goals, meal planning, and progress tracking.</p><p class="source-statement">Our calculations are based on guidelines from the <a href="https://www.who.int/health-topics/maternal-health" target="_blank" rel="noopener" title="Read WHO maternal health guidance">World Health Organization (WHO)</a> and the <a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank" rel="noopener" title="Read ACOG pregnancy nutrition education">American College of Obstetricians and Gynecologists (ACOG)</a>.</p><p class="ai-content-disclosure">This page contains AI-generated content that has been reviewed and verified for accuracy.</p>
+        <a href="https://aipregnancycaloriecalculator.online/" title="Open the AI Pregnancy Calorie Calculator homepage">Calcolatore di calorie in gravidanza basato sull'intelligenza artificiale</a>
+        <p>Obiettivi calorici in gravidanza basati sull'intelligenza artificiale, pianificazione dei pasti e monitoraggio dei progressi.</p><p class="source-statement">I nostri calcoli si basano sulle linee guida del <a href="https://www.who.int/health-topics/maternal-health" target="_blank" rel="noopener" title="Read WHO maternal health guidance">Organizzazione Mondiale della Sanità (OMS)</a> e il <a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank" rel="noopener" title="Read ACOG pregnancy nutrition education">Collegio americano di ostetrici e ginecologi (ACOG)</a>.</p><p class="ai-content-disclosure">Questa pagina contiene contenuti generati dall'intelligenza artificiale che sono stati controllati e verificati per garantirne l'accuratezza.</p>
       </div>
       <nav class="compliance-links" aria-label="Footer navigation">
-        <a href="https://aipregnancycaloriecalculator.online/medical-disclaimer.html" title="Read the AI Pregnancy Calorie Calculator Medical Disclaimer">Medical Disclaimer</a>
-        <a href="https://aipregnancycaloriecalculator.online/privacy-policy.html" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Privacy Policy</a>
-        <a href="https://aipregnancycaloriecalculator.online/terms-of-service.html" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Terms of Service</a>
-        <a href="https://aipregnancycaloriecalculator.online/refund-policy" title="Read the AI Pregnancy Calorie Calculator Refund Policy">Refund Policy</a>
-        <a href="https://aipregnancycaloriecalculator.online/cookie-policy.html" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Cookie Policy</a>
-        <a href="https://aipregnancycaloriecalculator.online/about-us.html" title="Learn about the AI Pregnancy Calorie Calculator">About Us</a>
-        <a href="https://aipregnancycaloriecalculator.online/contact-us.html" title="Contact the AI Pregnancy Calorie Calculator support team">Contact Us</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/medical-disclaimer" title="Read the AI Pregnancy Calorie Calculator Medical Disclaimer">Avviso legale in materia medica</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/privacy-policy" title="Read the AI Pregnancy Calorie Calculator Privacy Policy">Informativa sulla privacy</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/terms-of-service" title="Read the AI Pregnancy Calorie Calculator Terms of Service">Condizioni di servizio</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/refund-policy" title="Read the AI Pregnancy Calorie Calculator Refund Policy">Politica di rimborso</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/cookie-policy" title="Read the AI Pregnancy Calorie Calculator Cookie Policy">Informativa sui cookie</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/about" title="Learn about the AI Pregnancy Calorie Calculator">Chi siamo</a>
+        <a href="https://aipregnancycaloriecalculator.online/it/contact" title="Contact the AI Pregnancy Calorie Calculator support team">Contattaci</a>
       </nav>
     </div>
   </footer>

@@ -10,6 +10,9 @@ const {
   updateUserSubscription,
   updateUserSubscriptionByStripeCustomer
 } = require("./_store");
+const {
+  isAllFeaturesFree
+} = require("./_free-mode");
 
 async function applySubscription(subscription, fallbackUserId, fallbackPlan) {
   const stripeCustomerId = typeof subscription.customer === "string" ? subscription.customer : subscription.customer && subscription.customer.id;
@@ -24,6 +27,14 @@ async function applySubscription(subscription, fallbackUserId, fallbackPlan) {
 module.exports = async function handler(request, response) {
   if (request.method !== "POST") {
     return sendJson(response, 405, { ok: false, error: "Method not allowed" });
+  }
+
+  if (isAllFeaturesFree()) {
+    return sendJson(response, 403, {
+      ok: false,
+      allFeaturesFree: true,
+      error: "Payment system is temporarily disabled"
+    });
   }
 
   const stripe = getStripe();

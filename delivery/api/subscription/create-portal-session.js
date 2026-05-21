@@ -9,6 +9,9 @@ const {
 const {
   getSubscriptionUserById
 } = require("./_store");
+const {
+  isAllFeaturesFree
+} = require("./_free-mode");
 
 module.exports = async function handler(request, response) {
   if (request.method !== "POST") {
@@ -16,6 +19,13 @@ module.exports = async function handler(request, response) {
   }
 
   try {
+    if (isAllFeaturesFree()) {
+      return sendJson(response, 403, {
+        ok: false,
+        allFeaturesFree: true,
+        error: "Payment system is temporarily disabled"
+      });
+    }
     const sessionUser = await getSessionUser(request);
     if (!sessionUser) {
       return sendJson(response, 401, { ok: false, error: "Please log in to manage your subscription." });

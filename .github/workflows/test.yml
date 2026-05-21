@@ -1,0 +1,54 @@
+name: 自动化测试
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  test:
+    name: 自动化测试
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
+      PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 运行单元测试和集成测试
+        run: npm test
+
+      - name: 构建项目
+        run: npm run build
+
+      - name: 运行E2E测试和视觉回归测试
+        uses: cypress-io/github-action@v6
+        with:
+          start: node scripts/serve-delivery.mjs
+          wait-on: 'http://127.0.0.1:4173'
+          command: npx percy exec -- cypress run
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+      - name: 上传测试报告和截图
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automated-test-artifacts
+          path: |
+            .qa/reports
+            .qa/reports/cypress-console
+            cypress/screenshots
+            cypress/videos

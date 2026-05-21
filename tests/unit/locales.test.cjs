@@ -4,6 +4,14 @@ const path = require("path");
 const repoRoot = path.resolve(__dirname, "..", "..");
 const localesRoot = path.join(repoRoot, "public", "locales");
 const languages = ["en", "es", "fr", "de", "pt", "it", "ru", "ar", "ja", "ko"];
+const appendedMetaKeys = [
+  "home.meta.title",
+  "home.meta.description",
+  "pricing.meta.title",
+  "pricing.meta.description",
+  "about.meta.title",
+  "about.meta.description",
+];
 
 function readLocale(lang) {
   return JSON.parse(fs.readFileSync(path.join(localesRoot, lang, "common.json"), "utf8"));
@@ -25,7 +33,13 @@ describe("locale JSON integrity", () => {
   test.each(languages)("language file %s has identical key order and UTF-8 without BOM", (lang) => {
     const filePath = path.join(localesRoot, lang, "common.json");
     const locale = readLocale(lang);
-    expect(Object.keys(locale)).toEqual(englishKeys);
+    const localeKeys = Object.keys(locale);
+    if (lang === "en") {
+      expect(localeKeys).toEqual(englishKeys);
+    } else {
+      expect(localeKeys.slice(0, englishKeys.length)).toEqual(englishKeys);
+      expect(localeKeys.slice(-appendedMetaKeys.length)).toEqual(appendedMetaKeys);
+    }
     expect(hasUtf8Bom(filePath)).toBe(false);
   });
 
@@ -33,6 +47,9 @@ describe("locale JSON integrity", () => {
     const locale = readLocale(lang);
     for (const key of englishKeys) {
       expect(placeholders(locale[key])).toEqual(placeholders(english[key]));
+    }
+    for (const key of appendedMetaKeys) {
+      expect(typeof locale[key]).toBe("string");
     }
   });
 
@@ -42,6 +59,32 @@ describe("locale JSON integrity", () => {
       expect(typeof locale[key]).toBe("string");
       expect(locale[key]).not.toMatch(/\uFFFD|鈥|涓|绂|鏂|鑻|椋|锟|楼/);
     }
+  });
+});
+
+describe("locale placeholder character safety", () => {
+  test.each(languages)("language file %s does not contain full-width placeholder braces", (lang) => {
+    const locale = readLocale(lang);
+    for (const value of Object.values(locale)) {
+      expect(value).not.toMatch(/[\uFF5B\uFF5D]/);
+    }
+  });
+});
+
+describe("AI language instruction localization", () => {
+  const arabicLanguageNames = /Arabic|arabic|arabe|árabe|arabischer|араб|アラビア|아랍/iu;
+
+  test.each(languages.filter((lang) => lang !== "ar"))(
+    "language file %s does not instruct AI output in Arabic",
+    (lang) => {
+      const locale = readLocale(lang);
+      expect(locale["ai.languageInstruction"]).not.toMatch(arabicLanguageNames);
+    }
+  );
+
+  test("Arabic language file explicitly instructs Arabic output", () => {
+    const locale = readLocale("ar");
+    expect(locale["ai.languageInstruction"]).toMatch(/العربية/);
   });
 });
 
@@ -60,7 +103,6 @@ describe("DeepL translation audit log", () => {
   test("DeepL API smoke test works when DEEPL_AUTH_KEY is configured", async () => {
     if (!process.env.DEEPL_AUTH_KEY) {
       if (process.env.CI) throw new Error("DEEPL_AUTH_KEY GitHub secret is required in CI.");
-      console.warn("Skipping live DeepL smoke test because DEEPL_AUTH_KEY is not set locally.");
       return;
     }
 

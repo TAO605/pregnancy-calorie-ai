@@ -93,11 +93,13 @@ async function ensureAuthSchema() {
       reset_token_hash TEXT,
       reset_expires_at TIMESTAMPTZ,
       reset_requested_at TIMESTAMPTZ,
-      reset_request_count INTEGER NOT NULL DEFAULT 0
+      reset_request_count INTEGER NOT NULL DEFAULT 0,
+      is_early_user BOOLEAN NOT NULL DEFAULT FALSE
     )
   `;
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS reset_requested_at TIMESTAMPTZ`;
   await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS reset_request_count INTEGER NOT NULL DEFAULT 0`;
+  await sql`ALTER TABLE pcc_users ADD COLUMN IF NOT EXISTS is_early_user BOOLEAN NOT NULL DEFAULT FALSE`;
   await sql`
     CREATE TABLE IF NOT EXISTS pcc_sessions (
       id TEXT PRIMARY KEY,
@@ -115,7 +117,8 @@ function publicUser(row) {
   return {
     id: row.id,
     email: row.email,
-    createdAt: row.created_at
+    createdAt: row.created_at,
+    isEarlyUser: Boolean(row.is_early_user)
   };
 }
 
@@ -137,7 +140,7 @@ async function getSessionUser(request) {
   if (!token) return null;
   const tokenHash = hashToken(token);
   const result = await sql`
-    SELECT u.id, u.email, u.created_at
+    SELECT u.id, u.email, u.created_at, u.is_early_user
     FROM pcc_sessions s
     JOIN pcc_users u ON u.id = s.user_id
     WHERE s.token_hash = ${tokenHash}
@@ -157,17 +160,18 @@ async function deleteSession(request) {
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 12);
   const userId = crypto.randomUUID();
+  const isEarlyUser = process.env.NEXT_PUBLIC_ALL_FEATURES_FREE === "true";
   const result = await sql`
-    INSERT INTO pcc_users (id, email, password_hash)
-    VALUES (${userId}, ${email}, ${passwordHash})
-    RETURNING id, email, created_at
+    INSERT INTO pcc_users (id, email, password_hash, is_early_user)
+    VALUES (${userId}, ${email}, ${passwordHash}, ${isEarlyUser})
+    RETURNING id, email, created_at, is_early_user
   `;
   return publicUser(result.rows[0]);
 }
 
 async function findUserByEmail(email) {
   const result = await sql`
-    SELECT id, email, password_hash, created_at, reset_requested_at, reset_request_count
+    SELECT id, email, password_hash, created_at, reset_requested_at, reset_request_count, is_early_user
     FROM pcc_users
     WHERE email = ${email}
     LIMIT 1
@@ -206,7 +210,7 @@ async function setPasswordReset(email) {
 async function verifyPasswordResetToken(token) {
   const tokenHash = hashToken(token);
   const result = await sql`
-    SELECT id, email, created_at
+    SELECT id, email, created_at, is_early_user
     FROM pcc_users
     WHERE reset_token_hash = ${tokenHash}
       AND reset_expires_at > NOW()
