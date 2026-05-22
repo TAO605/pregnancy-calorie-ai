@@ -3226,6 +3226,7 @@
 
     .product-hunt-footer-badge {
       display: flex;
+      grid-column: 1 / -1;
       justify-content: center;
       margin: 20px 0;
     }
@@ -3243,6 +3244,7 @@
 
     .product-hunt-home-embed iframe {
       max-width: 100%;
+      pointer-events: none;
     }
 
     .compliance-brand {
@@ -4088,7 +4090,7 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
       </section>
 
       <section class="product-hunt-home-embed" aria-label="AI Pregnancy Calorie Calculator on Product Hunt">
-        <iframe src="https://www.producthunt.com/posts/ai-pregnancy-calorie-calculator/embed?theme=light" width="350" height="120" style="border: none; border-radius: 8px; margin: 30px auto; display: block;" allowtransparency="true"></iframe>
+        <a href="https://www.producthunt.com/posts/ai-pregnancy-calorie-calculator" target="_blank" rel="noopener noreferrer"><iframe src="https://www.producthunt.com/posts/ai-pregnancy-calorie-calculator/embed?theme=light" width="350" height="120" style="border: none; border-radius: 8px; margin: 30px auto; display: block;" allowtransparency="true"></iframe></a>
       </section>
 
       <!-- 本次新增：结果页底部Premium入口。免费用户显示，Premium用户自动隐藏，不阻挡原有免费功能。 -->
@@ -4244,9 +4246,9 @@ html[data-all-features-free="true"] a[href*="/subscription-canceled"] {
         <div class="footer-language" aria-label="Footer language selector">
           <div class="language-switcher" data-language-switcher data-location="footer"></div>
         </div>
-        <div class="product-hunt-footer-badge" aria-label="Support AI Pregnancy Calorie Calculator on Product Hunt">
-          <a href="https://www.producthunt.com/posts/ai-pregnancy-calorie-calculator?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;pregnancy&#0045;calorie&#0045;calculator" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=498765&theme=light" alt="AI Pregnancy Calorie Calculator - Personalized AI-powered calorie guide for expecting mothers | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-        </div>
+      </div>
+      <div class="product-hunt-footer-badge" aria-label="Support AI Pregnancy Calorie Calculator on Product Hunt">
+        <a href="https://www.producthunt.com/posts/ai-pregnancy-calorie-calculator?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;pregnancy&#0045;calorie&#0045;calculator" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=498765&theme=light" alt="AI Pregnancy Calorie Calculator - Personalized AI-powered calorie guide for expecting mothers | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
       </div>
     </div>
   </footer>
